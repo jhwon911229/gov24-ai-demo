@@ -1828,14 +1828,13 @@ body.v24-voice-open{overflow:hidden}
 	function showChat() { if (!root.classList.contains('is-chat')) { root.classList.add('is-chat'); window.scrollTo(0, 0); } }
 	function showHome() { root.classList.remove('is-chat'); window.scrollTo(0, 0); }
 	function reset() { log.innerHTML = ''; resetState(); }
-	function scrollTo(n) {
-		setTimeout(function () {
-			var off = 16, mh = $('.aih-mohead'), h = $('#iw_header');
-			if (mh && getComputedStyle(mh).display !== 'none') off += mh.offsetHeight;
-			else if (h) { var p = getComputedStyle(h).position; if (p === 'fixed' || p === 'sticky') off += h.offsetHeight; }
-			window.scrollTo({ top: Math.max(0, n.getBoundingClientRect().top + window.pageYOffset - off), behavior: 'smooth' });
-		}, 40);
+	// 대화가 진행되면(질문·답변·단계 갱신) 대화창이 항상 아래로 따라 내려감
+	function scrollBottom() {
+		clearTimeout(scrollBottom.t);
+		scrollBottom.t = setTimeout(function () { window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }); }, 80);
 	}
+	function scrollTo(n) { scrollBottom(); }
+	new MutationObserver(scrollBottom).observe(log, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['class', 'style'] });
 	function addQ(q, via) { var n = el('<div class="iw-ai-my-q' + (via === 'voice' ? ' is-voice' : '') + '"><div class="cont">' + esc(q) + '</div></div>'); log.appendChild(n); scrollTo(n); return n; }
 	var TITLE = '<div class="iw-ai-title-wrap"><div class="left"><p class="tit"><span>정부<span class="sr-only">24</span></span><span class="point">AI국민비서</span></p></div></div>';
 	var THINK = '<div class="ai-process-messages aih-thinking"><ul class="ai-process-list"><li class="now">답변을 준비하고 있어요.</li></ul></div>';
