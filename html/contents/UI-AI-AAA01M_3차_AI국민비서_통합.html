@@ -2214,7 +2214,6 @@ body.v24-voice-open{overflow:hidden}
 		if (!t || !window.DemoSession) return; e.preventDefault(); e.stopImmediatePropagation();
 		DemoSession.set(!t.classList.contains('ico-logout'));
 	}, true);
-	$$('#iw_header .header-search .open-total-search').forEach(function (e) { e.style.display = 'none'; });
 	window.__aihHeaderLogin = headerLogin;
 	var PC_MAIN = './UI-PT-AAA01M_3차_시연.html', MO_MAIN = './UI-PT-AAA01M-AD_3차_시연.html';
 	var mainUrl = function () { var u = window.innerWidth <= 1024 ? MO_MAIN : PC_MAIN; return window.DemoSession ? DemoSession.url(u) : u; };

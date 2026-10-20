@@ -3653,7 +3653,6 @@
       if (!t) return; e.preventDefault(); e.stopImmediatePropagation();
       DemoSession.set(!t.classList.contains('ico-logout'));
     }, true);
-    $$('#iw_header .header-search .open-total-search').forEach(function (e) { e.hidden = true; e.style.display = 'none'; });
     // 자주 찾는 서비스 단독 영역(최근 이용 민원 탭 제거)
     var fav = $('.sc-main-my-cutom-favorite');
     if (fav) {
