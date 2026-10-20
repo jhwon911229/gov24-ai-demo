@@ -353,6 +353,8 @@ body.v24-voice-open{overflow:hidden}
 .aih-prompts .lbl{margin-right:.4rem;font-size:2rem;color:#464c53}
 .aih .prompt-chip{padding:1.2rem 1.4rem;border:0;border-radius:1rem;background:#fff;font-size:2rem;font-weight:700;color:#1e2124;box-shadow:0 .2rem .8rem rgba(26,51,102,.06);cursor:pointer}
 .aih .prompt-chip:hover{background:#f2f7ff}
+@keyframes demoPulse{0%{box-shadow:0 0 0 0 rgba(37,110,244,.55)}70%{box-shadow:0 0 0 1.2rem rgba(37,110,244,0)}100%{box-shadow:0 0 0 0 rgba(37,110,244,0)}}
+.aih .prompt-chip.demo-pulse{outline:.2rem solid #256ef4;animation:demoPulse 1.6s ease-out 4}
 /* 자주 찾는 서비스 */
 .aih-svc{margin:10rem auto 0;padding:3.2rem 2.8rem 2.8rem;border-radius:2rem;background:rgba(255,255,255,.6)}
 .aih-svc h3{display:flex;align-items:center;gap:.8rem;margin:0 0 2.4rem;font-size:2.8rem;font-weight:700;color:#1e2124}
@@ -2189,10 +2191,16 @@ body.v24-voice-open{overflow:hidden}
 	$$('[data-scn]', remote).forEach(function (b) { b.addEventListener('click', function () {
 		remote.classList.remove('open'); goHome();
 		var n = b.getAttribute('data-scn');
-		if (n === '1') ask('회사에 제출할 서류 준비해줘');
-		else if (n === '2') ask('운전면허 갱신기간 알려줘');
-		else { VOICE_Q = '내가 받을 수 있는 혜택 뭐 있어?'; S.permGranted = true; openVoice(); }
+		if (n === '3') { VOICE_Q = '내가 받을 수 있는 혜택 뭐 있어?'; S.permGranted = true; openVoice(); }
+		else pickChip(+n);   // 시나리오상 검색창에 타이핑하지 않음 → AI전용홈의 예시 질문을 눌러 시작
 	}); });
+	// AI전용홈 예시 질문 강조(시연 진입용) : 해당 칩이 깜빡이고, 누르면 대화 시작
+	function pickChip(n) {
+		var chips = $$('.prompt-chip'); chips.forEach(function (c) { c.classList.remove('demo-pulse'); });
+		var c = chips[n - 1]; if (!c) return; c.classList.add('demo-pulse');
+		setTimeout(function () { c.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 100);
+	}
+	var pk = /[?&]pick=([123])/.exec(location.search); if (pk) setTimeout(function () { pickChip(+pk[1]); }, 300);
 	var vm = /[?&]voice=1/.test(location.search);
 	if (vm) { VOICE_Q = '내가 받을 수 있는 혜택 뭐 있어?'; S.permGranted = true; setTimeout(openVoice, 300); }
 	// 메인 검색창에서 질문을 가지고 들어온 경우(?q=) 바로 대화 시작
