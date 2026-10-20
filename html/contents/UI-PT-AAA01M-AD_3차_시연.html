@@ -2488,6 +2488,9 @@
       if (h1) h1.hidden = !!on; if (ui) ui.hidden = !on; if (hd) hd.classList.toggle('has-user', !!on);
     }
     applyLogin(DemoSession.get());
+    // 뒤로가기(bfcache 복원)·탭 복귀 시에도 세션 상태 재적용
+    window.addEventListener('pageshow', function () { applyLogin(DemoSession.get()); });
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) applyLogin(DemoSession.get()); });
     document.addEventListener('demo-login', function (e) { applyLogin(e.detail); });
     document.addEventListener('click', function (e) {
       var t = e.target.closest && e.target.closest('#iw_header .ico-login, #iw_header .ico-logout');

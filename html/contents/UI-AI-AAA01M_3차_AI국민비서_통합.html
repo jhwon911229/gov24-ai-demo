@@ -2168,6 +2168,7 @@ body.v24-voice-open{overflow:hidden}
 		$$('#iw_header .non-member').forEach(function (e) { e.classList.remove('on'); });
 	}
 	headerLogin(S.loggedIn);
+	window.addEventListener('pageshow', function () { S.loggedIn = !!(window.DemoSession && DemoSession.get()); headerLogin(S.loggedIn); });
 	document.addEventListener('demo-login', function (e) { S.loggedIn = !!e.detail; headerLogin(S.loggedIn); });
 	document.addEventListener('click', function (e) {   // 헤더 로그인/로그아웃 : 시연 세션 전환
 		var t = e.target.closest && e.target.closest('#iw_header .ico-login, #iw_header .ico-logout');
