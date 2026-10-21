@@ -1415,6 +1415,8 @@ body.v24-voice-open{overflow:hidden}
               <button type="button" class="prompt-chip">“회사에 제출할 서류 준비해줘”</button>
               <button type="button" class="prompt-chip">“운전면허 갱신기간 알려줘”</button>
               <button type="button" class="prompt-chip">“내가 받을 수 있는 혜택 뭐 있어?”</button>
+              <button type="button" class="prompt-chip">“이사 가면 해야 할 일 정리해줘”</button>
+              <button type="button" class="prompt-chip">“출산하면 받을 수 있는 서비스랑 해야 할 신고 다 알려줘”</button>
             </div>
           </section>
           <section class="aih-svc" aria-labelledby="aihSvcTit">
@@ -1711,7 +1713,7 @@ body.v24-voice-open{overflow:hidden}
 	var homeInput = $('#aihInput'), homeMic = $('.aih-hero .btn-mic'), homeSearch = $('.aih-hero .btn-search');
 	var log = $('#aiLog'), bInput = $('#aiBottomInput');
 	var S;
-	function resetState() { S = { loggedIn: !!(window.DemoSession && DemoSession.get()), issued: false, doc: null, method: null, wait: null, asked: {}, cont: null, pendingDocs: null, benefitConsent: false, permGranted: S ? S.permGranted : false }; }
+	function resetState() { S = { loggedIn: !!(window.DemoSession && DemoSession.get()), issued: false, doc: null, method: null, wait: null, asked: {}, cont: null, pendingDocs: null, issuedDocs: [], benefitConsent: false, permGranted: S ? S.permGranted : false }; }
 	resetState();
 
 	/* ================= 음성 레이어 : 1안 누르고 말하기 (화면 흐름만) ================= */
@@ -2036,10 +2038,12 @@ body.v24-voice-open{overflow:hidden}
 	}
 	function openDoc(doc) { window.open(AihDoc.printUrl(doc), '_blank'); }
 	function packDone(docs) {
+		S.issuedDocs = (S.issuedDocs || []).concat(docs);
+		var fq = docs.indexOf('주민등록표 등본') >= 0 ? ['발급한 등본에 세대원은 몇 명이에요?', '내가 받을 수 있는 혜택 뭐 있어?', '소득금액증명도 발급해줘'] : ['여권 만료일 알려줘', '내가 받을 수 있는 혜택 뭐 있어?', '소득금액증명도 발급해줘'];
 		answer(false, function (sec) {
 			put(sec, '<p class="ai-followup-copy">발급 신청하신 문서는 온라인발급(본인출력)으로 진행했어요. 발급이 완료되어 인쇄할 수 있어요.</p>' +
 				'<p class="ai-complete-message">모든 발급이 완료되었습니다. 각 문서는 서비스 신청 내역에서 확인할 수 있습니다.</p>' + links([['서비스 신청내역', MYAPPLY]]));
-			end(sec, ['여권 만료일 알려줘', '내가 받을 수 있는 혜택 뭐 있어?', '소득금액증명도 발급해줘']);
+			end(sec, fq);
 		}, { delay: 400 });
 	}
 
@@ -2134,6 +2138,57 @@ body.v24-voice-open{overflow:hidden}
 			end(sec);
 		});
 	}
+	/* ---------- 발급된 민원서류 안내 : 방금 발급한 등본 내용으로 답변 (질문 시나리오 2-1) ---------- */
+	function hasIssued(doc) { return (S.issuedDocs || []).indexOf(doc) >= 0; }
+	function docQA(kind) {
+		if (!hasIssued('주민등록표 등본')) {
+			answer(true, function (sec) {
+				put(sec, '<p>발급한 서류의 내용은 <strong>같은 대화에서 발급한 뒤</strong> 물어볼 수 있어요. 먼저 주민등록표 등본을 발급해 주세요.</p>' +
+					'<p class="ai-followup-copy">이렇게 물어보세요.</p>' + chips('dq', [['주민등록등본 발급해줘', 'data-q="주민등록등본 발급해줘"']], 'ai-conversation-actions ai-delivery-options'));
+			});
+			return;
+		}
+		var A = {
+			count: '발급하신 <strong>주민등록표 등본</strong>에는 세대주를 포함해 <strong>세대원 3명</strong>이 있습니다.',
+			spouse: '네, 발급하신 등본에 세대주와의 관계가 <strong>배우자</strong>인 세대원이 있습니다.',
+			marriage: '서류에서 그 내용을 확인할 수 없어요. 혼인 관계는 <strong>가족관계증명서(혼인관계증명서)</strong>에서 확인할 수 있어요.',
+			rrn: '주민등록번호 같은 <strong>개인정보는 대화로 안내해 드리지 않아요.</strong> 정부24에서 발급된 서류를 직접 확인해 주세요.'
+		};
+		var FQ = { count: ['배우자도 같이 올라가 있어요?', '혼인 날짜도 나와요?', '주민등록번호는 어떻게 나와요?'], spouse: ['혼인 날짜도 나와요?', '주민등록번호는 어떻게 나와요?', '발급한 등본에 세대원은 몇 명이에요?'], marriage: ['주민등록번호는 어떻게 나와요?', '가족관계증명서 발급해줘', '내가 받을 수 있는 혜택 뭐 있어?'], rrn: ['발급한 등본 인쇄해줘', '소득금액증명도 발급해줘', '내가 받을 수 있는 혜택 뭐 있어?'] };
+		answer(true, function (sec) {
+			put(sec, '<p>' + A[kind] + '</p>' + (kind === 'rrn' ? links([['발급한 등본 보기', AihDoc.printUrl('주민등록표 등본')]]) : ''));
+			end(sec, FQ[kind]);
+		});
+	}
+	function docPrint() {
+		if (!hasIssued('주민등록표 등본')) return docQA('count');
+		answer(true, function (sec) { put(sec, '<p>발급하신 <strong>주민등록표 등본</strong>을 인쇄 화면으로 열어드릴게요.</p>' + links([['주민등록표 등본 인쇄하기', AihDoc.printUrl('주민등록표 등본')]])); end(sec); });
+	}
+
+	/* ---------- 민원·혜택 지능형 검색 : 생활가이드 답변 (질문 시나리오 3-1 / 3-3) ---------- */
+	function olHtml(items) { return '<ol class="aih-ol">' + items.map(function (t) { return '<li><b>' + esc(t) + '</b></li>'; }).join('') + '</ol>'; }
+	function lifeMove() {
+		answer(true, function (sec) {
+			put(sec, '<div class="aih-rich"><p class="lead">이사를 할 때</p><p>거주지를 다른 장소로 이전하는 것으로, 전입신고 등 행정절차가 수반된 필요한 사항을 안내합니다.</p>' +
+				olHtml(['이사 업체 선정 하기', '불필요한 물품 처리 하기', '주소 이전 및 우편물 관리 하기', '공과금 및 관리비 정산 하기', '전입신고 및 확정일자 받기', '가스, 전기, 수도 등 명의변경 하기', '자녀 전학 수속 하기']) +
+				'<p class="src">자세한 사항은 정부24 생활가이드에서 확인해 주세요.</p></div>' + links([['생활가이드 바로가기', LIFE]]));
+			end(sec, ['출산하면 받을 수 있는 서비스랑 해야 할 신고 다 알려줘', '주민등록등본 발급해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
+		});
+	}
+	function lifeBirth() {
+		answer(true, function (sec) {
+			put(sec, '<div class="aih-rich"><p class="aih-h" style="margin-top:0">■ 우리지역 서비스/혜택</p><p class="lead" style="margin-bottom:.4rem">출산장려금 지원 <span style="font-weight:500;color:#6d7882">(경기도 하남시)</span></p>' +
+				'<ul class="aih-dash"><li><b>지원대상</b>신생아의 출생일 기준으로 ‘부 또는 모’가 하남시에 6개월 이상 주민등록을 두고 관내에 출생신고한 가정<br>단, 거주기간이 6개월 미만인 경우 전입일로부터 6개월 이상 거주 후 신청 가능</li><li><b>신청방법</b>관할 동 행정복지센터 방문신청 또는 ‘정부24’ 행복출산 온라인신청</li><li><b>신청기간</b>출생일로부터 1년 이내</li><li><b>구비서류</b>신분증, 통장 사본, 출산서비스 통합처리 신청서, 주민등록등·초본, 가족관계증명서 (필요 시)</li></ul>' +
+				'<p class="aih-h">■ 검색된 서비스</p><p class="lead" style="margin-bottom:.4rem">출산 관련 서비스 통합처리 신청(행복출산) <span style="font-weight:500;color:#6d7882">(행정안전부)</span></p>' +
+				'<ul class="aih-dash"><li><b>서비스개요</b>출생신고와 함께 각종 출산지원 서비스를 읍면동 또는 정부24에서 한 번에 통합신청하는 서비스</li><li><b>신청방법</b>방문(읍면동 주민센터) 또는 정부24 온라인 신청</li></ul>' +
+				'<p class="aih-h">■ 생활가이드</p><p class="lead" style="margin-bottom:.4rem">아이가 태어났을 때</p><p>출산으로 신생아가 세상에 태어난 상황을 말하며, 출생신고 등 법적 절차가 요구됩니다.</p>' +
+				olHtml(['출생확인 하기', '산후관리 하기', '출생신고 하기', '출산지원 신청 하기', '출산휴가 및 육아휴직 신청 하기', '영유아 검진 예약 하기', '어린이집 입소대기 신청 하기', '그밖에 할 일']) +
+				'<p class="src">자세한 사항은 정부24 생활가이드에서 확인해 주세요.</p></div>' +
+				links([['출산장려금 지원', BNF], ['행복출산', GOV], ['아이가 태어났을 때', LIFE], ['생활가이드 바로가기', LIFE]]));
+			end(sec, ['이사 가면 해야 할 일 정리해줘', '주민등록등본 발급해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
+		});
+	}
+
 	function fallback() {
 		answer(true, function (sec) {
 			put(sec, '<p>질문을 정확히 이해하지 못했어요. 아래 예시처럼 다시 말씀해 주세요.</p>');
@@ -2153,6 +2208,13 @@ body.v24-voice-open{overflow:hidden}
 		if (/여권/.test(t) && !/재발급|신청/.test(t)) return passport();
 		if (/통관/.test(t)) return customs();
 		if (/국세|고지/.test(t)) return tax();
+		if (/출산|태어|출생/.test(t)) return lifeBirth();
+		if (/이사|이사가면|이사할때/.test(t)) return lifeMove();
+		if (/발급한등본|발급받은등본|등본인쇄|등본출력|인쇄해줘/.test(t) && /인쇄|출력/.test(t)) return docPrint();
+		if (/세대원|몇명/.test(t)) return docQA('count');
+		if (/배우자/.test(t)) return docQA('spouse');
+		if (/혼인/.test(t)) return docQA('marriage');
+		if (/주민등록번호|주민번호/.test(t)) return docQA('rrn');
 		if (/혜택|지원금|난방비|바우처|받을수있는/.test(t)) return benefit();
 		for (var i = 0; i < DOCS.length; i++) if (DOCS[i][0].test(t)) return single(DOCS[i][1]);
 		for (var j = 0; j < GO.length; j++) if (GO[j][0].test(t)) return svcGo(GO[j][1]);
