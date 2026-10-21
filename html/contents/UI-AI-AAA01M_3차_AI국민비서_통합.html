@@ -199,6 +199,43 @@ body.v24-voice-open{overflow:hidden}
 .v24-readbar .set::before{content:"⚙"}
 .v24-readbar .pp{width:4.4rem;height:4.4rem;border:0;border-radius:50%;background:var(--v24-grad);color:#fff;font-size:1.4rem;font-weight:700;cursor:pointer}
 .v24-readbar .pp::before{content:"❚❚"}.v24-ai.is-paused .v24-readbar .pp::before{content:"▶"}
+
+/* 생활·가족가이드 답변 (Figma PC_AI통합검색_생활 가이드 추가) */
+.aih-guide{display:flex;flex-direction:column;gap:.8rem;margin-top:1.6rem;padding:0;list-style:none}
+.aih-guide li{margin:0}
+.aih-guide a{display:flex;align-items:center;gap:.8rem;padding:.8rem 1.2rem;border:.1rem solid #e6e8ea;border-radius:1rem;background:#fff;box-shadow:0 0 .8rem rgba(88,97,106,.08);color:#1e2124;text-decoration:none;font-size:1.5rem;line-height:1.5}
+.aih-guide a .n{flex:0 0 2.3rem;width:2.3rem;height:2.3rem;border-radius:10rem;font-weight:700;text-align:center;line-height:2.3rem}
+.aih-guide a .t{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.aih-guide a .b{display:flex;gap:.4rem;flex:0 0 auto}
+.aih-guide a .b span{display:inline-flex;align-items:center;height:2.4rem;padding:0 .8rem;border-radius:.4rem;background:#8a949e;color:#fff;font-size:1.5rem;line-height:1.5}
+.aih-guide a .b .apply{background:#256ef4}.aih-guide a .b .bnf{background:#228738}
+.aih-guide a:hover,.aih-guide a:focus-visible{background:#eef2f7;border-color:#d6e0eb}
+.aih-guide a:hover .n,.aih-guide a:focus-visible .n{background:#063a74;color:#fff}
+.aih-guide a:hover .t,.aih-guide a:focus-visible .t{font-weight:700}
+.aih .ai-conversation-section>.aih-guide+.aih-ext-chips{margin-top:1.6rem}
+/* 답변전체읽기 */
+.aih .iw-ai-feedback{display:flex;align-items:center;gap:.6rem}
+.aih .btn-tts{display:inline-flex;align-items:center;gap:.4rem;height:4rem;padding:0 1.2rem;border:.1rem solid #cdd1d5;border-radius:9.9rem;background:#f4f5f6;font-size:1.5rem;color:#464c53;line-height:1}
+.aih .btn-tts::before{content:"";display:block;width:2.4rem;height:2.4rem;border-radius:50%;background:#256ef4 url('../../static/images/common/ico/ico-voice.svg') no-repeat center/1.6rem;filter:none}
+.aih .btn-tts.on{background:#eef2f7;border-color:#256ef4;color:#0b50d0}
+/* 자주 묻는 질문 (Figma PC_AI통합검색_자주 묻는 질문) */
+.aih-faq-tit{display:flex;align-items:center;gap:.4rem;margin:0;font-size:1.7rem;font-weight:700;color:#1e2124}
+.aih-faq-tit::before{content:"";display:block;width:2.4rem;height:2.4rem;background:url('../../static/images/common/ico/ico-question-mark.svg') no-repeat center/contain}
+.aih .iw-ai-util-area+.aih-faq-tit{margin-top:3.2rem}
+.aih-faq{margin:3.2rem 0 0;padding:0;list-style:none}
+.aih-faq-tit+.aih-faq{margin-top:2.4rem}
+.aih-faq li{border-top:.1rem solid #cdd1d5;padding:.4rem 0}
+.aih-faq li:last-child{border-bottom:.1rem solid #cdd1d5}
+.aih-faq li.open{border-top-color:#6d7882;padding-bottom:2rem}
+.aih-faq .q{display:flex;align-items:center;gap:1.6rem;width:100%;padding:1.2rem 0;border:0;background:transparent;text-align:left;font-size:1.7rem;font-weight:700;line-height:1.5;color:#1e2124}
+.aih-faq li.open .q{color:#052b57}
+.aih-faq .q::after{content:"";flex:0 0 2.4rem;width:2.4rem;height:2.4rem;margin-left:auto;background:url('../../static/images/common/ico/ico-arr-bottom.svg') no-repeat center/contain;transition:transform .2s}
+.aih-faq li.open .q::after{transform:rotate(180deg)}
+.aih-faq .a{display:none;padding:.8rem 1.2rem;background:#e6e8ea;font-size:1.7rem;line-height:1.5;color:#1e2124}
+.aih-faq li.open .a{display:block}
+.aih-faq .a p{margin:0}.aih-faq .a p+p{margin-top:1.6rem}
+.aih-faq .a .sub{display:block;margin-top:.4rem;padding-left:1.6rem;color:#464c53}
+.aih-faq .a .shot{display:block;max-width:50rem;margin:1rem 0 0;border:.1rem solid #cdd1d5;background:#fff}
 /* 하단 입력 */
 .v24-dock{position:sticky;bottom:0;z-index:50;padding:1.6rem 0 2.4rem;background:linear-gradient(rgba(238,244,248,0),#eef4f8 1.6rem)}
 .v24-dock form{display:flex;align-items:center;gap:1rem;padding:.8rem .8rem .8rem 2.2rem;border:.2rem solid transparent;border-radius:99rem;background:linear-gradient(#fff,#fff) padding-box,var(--v24-grad) border-box}
@@ -1875,9 +1912,9 @@ body.v24-voice-open{overflow:hidden}
 	}
 	function link(label, href) { return '<a href="' + (href || GOV) + '" class="btn-choice" target="_blank" title="' + esc(label) + ' (새 창 열림)"><span>' + esc(label) + '</span><i class="iconset ico-arr-more" aria-hidden="true"></i></a>'; }
 	function links(arr) { return '<div class="answer-choice">' + arr.map(function (l) { return link(l[0], l[1]); }).join('') + '</div>'; }
-	var FEEDBACK = '<div class="iw-ai-util-area"><div class="iw-ai-feedback"><button type="button" class="btn-feedback" data-fb><i class="iconset ico-good"><span class="sr-only">좋아요</span></i></button><button type="button" class="btn-feedback" data-fb><i class="iconset ico-bad"><span class="sr-only">싫어요</span></i></button></div></div>';
+	var FEEDBACK = '<div class="iw-ai-util-area"><div class="iw-ai-feedback"><button type="button" class="btn-feedback" data-fb><i class="iconset ico-good"><span class="sr-only">좋아요</span></i></button><button type="button" class="btn-feedback" data-fb><i class="iconset ico-bad"><span class="sr-only">싫어요</span></i></button><button type="button" class="btn-tts" data-tts>답변전체읽기</button></div></div>';
 	function card(rows) { return '<div class="ai-license-card"><ul>' + rows.map(function (r) { return '<li>' + (r[1] != null ? '<strong>' + esc(r[0]) + '</strong>' + esc(r[1]) : esc(r[0])) + '</li>'; }).join('') + '</ul></div>'; }
-	function lock(sec) { $$('input,button:not([data-fb]):not(.btn-choice)', sec).forEach(function (x) { if (!x.closest('.iw-ai-util-area')) x.disabled = true; }); $$('a.btn-txt[data-act]', sec).forEach(function (a) { a.remove(); }); }
+	function lock(sec) { $$('input,button:not([data-fb]):not(.btn-choice):not(.q):not(.btn-tts)', sec).forEach(function (x) { if (!x.closest('.iw-ai-util-area')) x.disabled = true; }); $$('a.btn-txt[data-act]', sec).forEach(function (a) { a.remove(); }); }
 	function lockAll() { $$('.ai-conversation-section', log).forEach(function (s) { $$('[data-act]', s).forEach(function (x) { if (/^(docView|print)$/.test(x.getAttribute('data-act'))) return; if (x.tagName === 'A') x.remove(); else if (x.tagName === 'INPUT') { var ar = x.closest('.chip-area'); if (ar) ar.classList.add('is-done'); x.tabIndex = -1; } else x.disabled = true; }); }); }
 
 	/* ======================================================================
@@ -2166,28 +2203,61 @@ body.v24-voice-open{overflow:hidden}
 		answer(true, function (sec) { put(sec, '<p>발급하신 <strong>주민등록표 등본</strong>을 인쇄 화면으로 열어드릴게요.</p>' + links([['주민등록표 등본 인쇄하기', AihDoc.printUrl('주민등록표 등본')]])); end(sec); });
 	}
 
-	/* ---------- 민원·혜택 지능형 검색 : 생활·가족가이드 답변 (질문 시나리오 3-1 / 3-3) ---------- */
 	function extChips(arr) { return '<div class="aih-ext-chips">' + arr.map(function (l) { return '<a href="' + l[1] + '" target="_blank" title="' + esc(l[0]) + ' (새 창 열림)">' + esc(l[0]) + '<i class="iconset ico-new-window" aria-hidden="true"></i></a>'; }).join('') + '</div>'; }
-	function olHtml(items) { return '<ol class="aih-ol">' + items.map(function (t) { return '<li><b>' + esc(t) + '</b></li>'; }).join('') + '</ol>'; }
-	function lifeMove() {
+	/* ---------- 답변전체읽기 (브라우저 TTS, 시연용) ---------- */
+	function ttsToggle(btn) {
+		var on = btn.classList.contains('on'); var SS = window.speechSynthesis;
+		$$('.btn-tts.on', log).forEach(function (b) { b.classList.remove('on'); b.textContent = '답변전체읽기'; });
+		if (SS) SS.cancel();
+		if (on) return;
+		var sec = btn.closest('.ai-conversation-section'); var txt = '';
+		$$('p, li, h3', sec).forEach(function (n) { if (n.closest('.iw-ai-util-area') || n.closest('.chip-area')) return; txt += n.textContent.trim() + '. '; });
+		btn.classList.add('on'); btn.textContent = '읽기 중지';
+		if (SS && txt) { var u = new SpeechSynthesisUtterance(txt); u.lang = 'ko-KR'; u.onend = function () { btn.classList.remove('on'); btn.textContent = '답변전체읽기'; }; SS.speak(u); }
+		else setTimeout(function () { btn.classList.remove('on'); btn.textContent = '답변전체읽기'; }, 4000);
+	}
+
+	/* ---------- 생활·가족가이드 답변 (Figma: 생활·가족가이드에서 관련 정보를 찾았어요 + 번호 목록 + 배지) ---------- */
+	var BADGE = { apply: '<span class="apply">신청</span>', bnf: '<span class="bnf">혜택</span>', info: '<span>안내</span>' };
+	function guideList(rows, href) {   // rows: [title, badges]
+		return '<ul class="aih-guide">' + rows.map(function (r, i) {
+			return '<li><a href="' + href + '" target="_blank" title="' + esc(r[0]) + ' (새 창 열림)"><span class="n">' + (i + 1) + '</span><span class="t">' + esc(r[0]) + '</span><span class="b">' + r[1].map(function (k) { return BADGE[k]; }).join('') + '</span></a></li>';
+		}).join('') + '</ul>';
+	}
+	function guideAnswer(intro, rows, href, chipsArr, fq) {
 		answer(true, function (sec) {
-			put(sec, '<div class="aih-rich"><p class="lead">이사를 할 때</p><p>거주지를 다른 장소로 이전하는 것으로, 전입신고 등 행정절차가 수반된 필요한 사항을 안내합니다.</p>' +
-				olHtml(['이사 업체 선정 하기', '불필요한 물품 처리 하기', '주소 이전 및 우편물 관리 하기', '공과금 및 관리비 정산 하기', '전입신고 및 확정일자 받기', '가스, 전기, 수도 등 명의변경 하기', '자녀 전학 수속 하기']) +
-				'<p class="src">자세한 사항은 생활·가족가이드에서 확인해 주세요.</p></div>' + links([['생활·가족가이드 바로가기', LIFE]]) + extChips([['이사를 할 때', LIFE + '/lgddtl?contsSn=404']]));
-			end(sec, ['출산하면 받을 수 있는 서비스랑 해야 할 신고 다 알려줘', '주민등록등본 발급해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
+			put(sec, '<p class="ai-complete-message">생활·가족가이드에서 관련 정보를 찾았어요.</p><p>' + intro + '</p>' + guideList(rows, href) + (chipsArr ? extChips(chipsArr) : ''));
+			end(sec, fq);
 		});
 	}
+	function lifeMove() {
+		guideAnswer('이사를 준비하거나 전입신고 등 행정절차가 궁금하다면 아래 정보를 확인해 보세요.',
+			[['이사 업체 선정 하기', ['info']], ['불필요한 물품 처리 하기', ['info']], ['주소 이전 및 우편물 관리 하기', ['apply', 'info']], ['공과금 및 관리비 정산 하기', ['info']], ['전입신고 및 확정일자 받기', ['apply', 'info']], ['가스, 전기, 수도 등 명의변경 하기', ['apply', 'info']], ['자녀 전학 수속 하기', ['apply', 'info']]],
+			LIFE + '/lgddtl?contsSn=404', null,
+			['출산하면 받을 수 있는 서비스랑 해야 할 신고 다 알려줘', '주민등록등본 발급해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
+	}
 	function lifeBirth() {
+		guideAnswer('출산 후 받을 수 있는 지원과 해야 할 신고가 궁금하다면 아래 정보를 확인해 보세요.',
+			[['출생확인 하기', ['info']], ['산후관리 하기', ['bnf', 'info']], ['출생신고 하기', ['apply', 'info']], ['출산지원 신청 하기', ['apply', 'bnf', 'info']], ['출산휴가 및 육아휴직 신청 하기', ['apply', 'bnf', 'info']], ['영유아 검진 예약 하기', ['apply', 'info']], ['어린이집 입소대기 신청 하기', ['apply', 'info']], ['그밖에 할 일', ['info']]],
+			LIFE + '/lgddtl?contsSn=15', [['출산장려금 지원 (경기도 하남시)', BNF], ['행복출산 통합신청', GOV]],
+			['이사 가면 해야 할 일 정리해줘', '주민등록등본 발급해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
+	}
+
+	/* ---------- 자주 묻는 질문 (Figma PC_AI통합검색_자주 묻는 질문) ---------- */
+	var FAQ_LIST = [
+		['서비스를 빠르고 쉽게 찾고 싶습니다.', '<p>정부24 상단 검색창에 찾고 싶은 서비스명이나 키워드를 입력하면 민원·혜택·정책 정보를 한 번에 검색할 수 있어요. AI국민비서에게 말로 물어보셔도 바로 안내해 드립니다.</p>'],
+		['정부24 비밀번호를 잊어버렸어요.', '<p>1. 로그인 창 하단의 [비밀번호 찾기] 메뉴를 클릭합니다.</p><p>2. 아이디, 성명, 주민등록번호를 입력하시고 다음 3가지 방법 중 하나로 비밀번호를 재설정합니다.<span class="sub">① 등록하신 간편(민간인증서) 인증<br>② 등록하신 공동인증서 인증<br>③ 등록하신 금융인증서 인증</span></p><p>3. 위의 방법으로도 비밀번호 찾기가 불가능한 경우 헬프데스크(1588-2188)로 연락 주시면 주민등록증 또는 운전면허증의 진위여부로 본인확인 후 안내해 드립니다.</p>'],
+		['해외 거주 중 자녀의 출입국 사실증명서 발급 방법이 궁금해요.', '<p>1. 발급물 화면의 왼쪽 상단 [저장] 버튼을 클릭합니다.</p><p>2. “주민등록번호 앞 6자리로 비밀번호가 설정됩니다.”라는 알림창이 표시되면 [확인] 버튼을 클릭합니다.</p><p>3. 파일을 원하는 위치에 다운로드합니다.</p><p>4. 저장한 위치에서 생년월일(주민등록번호 앞 6자리)을 입력하여 저장된 발급물을 열람합니다.</p>'],
+		['주민등록표등(초)본 발급은 무료인가요?', '<p>정부24에서 온라인으로 발급(본인출력)하는 주민등록표 등·초본은 수수료가 없습니다. 무인민원발급기나 주민센터 방문 발급은 수수료가 부과될 수 있어요.</p>'],
+		['[취학통지서] 취학통지서는 언제까지 온라인 발급이 가능한가요?', '<p>취학통지서 온라인 발급은 매년 12월 초부터 다음 해 1월 말까지 가능합니다. 기간은 교육청 일정에 따라 달라질 수 있어요.</p>'],
+		['[취학통지서] 취학통지서 온라인 발급을 위해서 반드시 인증서가 필요한가요?', '<p>네, 보호자 본인확인을 위해 간편인증·공동인증서·금융인증서 중 하나로 로그인해야 발급할 수 있습니다.</p>'],
+		['[취학통지서] 스마트폰(모바일앱)을 통해서는 취학통지서를 발급받을 수 없나요?', '<p>정부24 모바일 앱과 모바일 웹에서도 취학통지서를 확인·발급할 수 있습니다.</p>']
+	];
+	function faq(openIdx, fq) {
 		answer(true, function (sec) {
-			put(sec, '<div class="aih-rich"><p class="aih-h" style="margin-top:0">■ 우리지역 서비스/혜택</p><p class="lead" style="margin-bottom:.4rem">출산장려금 지원 <span style="font-weight:500;color:#6d7882">(경기도 하남시)</span></p>' +
-				'<ul class="aih-dash"><li><b>지원대상</b>신생아의 출생일 기준으로 ‘부 또는 모’가 하남시에 6개월 이상 주민등록을 두고 관내에 출생신고한 가정<br>단, 거주기간이 6개월 미만인 경우 전입일로부터 6개월 이상 거주 후 신청 가능</li><li><b>신청방법</b>관할 동 행정복지센터 방문신청 또는 ‘정부24’ 행복출산 온라인신청</li><li><b>신청기간</b>출생일로부터 1년 이내</li><li><b>구비서류</b>신분증, 통장 사본, 출산서비스 통합처리 신청서, 주민등록등·초본, 가족관계증명서 (필요 시)</li></ul>' +
-				'<p class="aih-h">■ 검색된 서비스</p><p class="lead" style="margin-bottom:.4rem">출산 관련 서비스 통합처리 신청(행복출산) <span style="font-weight:500;color:#6d7882">(행정안전부)</span></p>' +
-				'<ul class="aih-dash"><li><b>서비스개요</b>출생신고와 함께 각종 출산지원 서비스를 읍면동 또는 정부24에서 한 번에 통합신청하는 서비스</li><li><b>신청방법</b>방문(읍면동 주민센터) 또는 정부24 온라인 신청</li></ul>' +
-				'<p class="aih-h">■ 생활·가족가이드</p><p class="lead" style="margin-bottom:.4rem">아이가 태어났을 때</p><p>출산으로 신생아가 세상에 태어난 상황을 말하며, 출생신고 등 법적 절차가 요구됩니다.</p>' +
-				olHtml(['출생확인 하기', '산후관리 하기', '출생신고 하기', '출산지원 신청 하기', '출산휴가 및 육아휴직 신청 하기', '영유아 검진 예약 하기', '어린이집 입소대기 신청 하기', '그밖에 할 일']) +
-				'<p class="src">자세한 사항은 생활·가족가이드에서 확인해 주세요.</p></div>' +
-				links([['생활·가족가이드 바로가기', LIFE]]) + extChips([['출산장려금 지원', BNF], ['행복출산', GOV], ['아이가 태어났을 때', LIFE + '/lgddtl?contsSn=15']]));
-			end(sec, ['이사 가면 해야 할 일 정리해줘', '주민등록등본 발급해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
+			put(sec, FEEDBACK + '<h3 class="aih-faq-tit">자주 묻는 질문</h3><ul class="aih-faq">' + FAQ_LIST.map(function (q, i) {
+				var o = i === openIdx; return '<li' + (o ? ' class="open"' : '') + '><button type="button" class="q" aria-expanded="' + o + '">' + esc(q[0]) + '</button><div class="a">' + q[1] + '</div></li>';
+			}).join('') + '</ul>' + follow(fq));
 		});
 	}
 
@@ -2210,6 +2280,9 @@ body.v24-voice-open{overflow:hidden}
 		if (/여권/.test(t) && !/재발급|신청/.test(t)) return passport();
 		if (/통관/.test(t)) return customs();
 		if (/국세|고지/.test(t)) return tax();
+		if (/비밀번호|비번/.test(t)) return faq(1, ['주민등록등본 발급해줘', '이사 가면 해야 할 일 정리해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
+		if (/출입국/.test(t)) return faq(2, ['주민등록등본 발급해줘', '이사 가면 해야 할 일 정리해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
+		if (/취학통지/.test(t)) return faq(4, ['주민등록등본 발급해줘', '이사 가면 해야 할 일 정리해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
 		if (/출산|태어|출생/.test(t)) return lifeBirth();
 		if (/이사|이사가면|이사할때/.test(t)) return lifeMove();
 		if (/발급한등본|발급받은등본|등본인쇄|등본출력|인쇄해줘/.test(t) && /인쇄|출력/.test(t)) return docPrint();
@@ -2251,6 +2324,8 @@ body.v24-voice-open{overflow:hidden}
 		if (b && b.getAttribute('data-act') === 'docView') return;
 		if (b) { e.preventDefault(); if (b.disabled) return; var sec = b.closest('.ai-conversation-section'); if (b.tagName === 'BUTTON') $$('button[data-act]', sec).forEach(function (x) { x.disabled = true; }); ACTS[b.getAttribute('data-act')](b); return; }
 		var f = e.target.closest('[data-fb]'); if (f) { f.classList.toggle('on'); f.setAttribute('aria-pressed', String(f.classList.contains('on'))); }
+		var tts = e.target.closest('[data-tts]'); if (tts) { ttsToggle(tts); return; }
+		var fq = e.target.closest('.aih-faq .q'); if (fq) { var li = fq.parentNode; var o = !li.classList.contains('open'); li.classList.toggle('open', o); fq.setAttribute('aria-expanded', String(o)); return; }
 	});
 
 	/* ---------- 입력 연결 ---------- */
