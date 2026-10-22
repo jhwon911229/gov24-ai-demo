@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <title>정부24 - 혜택알리미</title>
+
+  <!-- 캐시 타임 관리를 위해 각각 임포트 -->
+  <link rel="stylesheet" type="text/css" href="../../static/css/@pub/import.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../static/css/@pub/variable.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../static/css/@pub/layout.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../static/css/@pub/common.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../static/css/@pub/contents.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../static/css/@pub/inf_contents.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../static/css/@pub/main_legacy.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../static/css/@pub/main.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../static/css/@pub/print.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../static/css/@pub/iw-ai.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../static/css/@pub/aih-doc.css" media="all">
+
+
+  <script src="../../static/js/swiper-bundle.js"></script>
+  <script src="../../static/js/ui-script-layout.js" defer></script><!-- 퍼블리싱 js -->
+  <script src="../../static/js/aih-doc.js"></script>
+  <script src="../../static/js/ui-script.js" defer></script><!-- 퍼블리싱 js -->
+<style id="demo-proto-banner">#demoProtoBanner{position:fixed;top:0;left:0;right:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;gap:.8rem;height:3.6rem;padding:0 1.2rem;background:#ffcc33;color:#1e2124;font-size:1.4rem;font-weight:700;line-height:1.2;text-align:center;box-shadow:0 .1rem .4rem rgba(0,0,0,.15);pointer-events:none}#demoProtoBanner::before{content:"!";display:inline-flex;align-items:center;justify-content:center;width:1.8rem;height:1.8rem;border-radius:50%;background:#1e2124;color:#ffcc33;font-size:1.2rem}html body{padding-top:3.6rem!important}.v24-voice{top:3.6rem!important}.aih-mohead{top:3.6rem!important}.demo-remote{z-index:2147483001}@media (max-width:1024px){#demoProtoBanner{font-size:1.2rem;height:3.2rem}html body{padding-top:3.2rem!important}.v24-voice{top:3.2rem!important}.aih-mohead{top:3.2rem!important}}</style></head>
+
+<style>
+.aih-bnf{padding:0 0 8rem}
+.aih-bnf>.breadcrumb-wrap,.aih-bnf>.tit-page-wrap,.aih-bnf>.bnf-wrap{width:100%;max-width:124.8rem;margin-left:auto;margin-right:auto;padding-left:2.4rem;padding-right:2.4rem;box-sizing:border-box}
+.aih-bnf .tit-page-wrap{display:flex;align-items:center;justify-content:space-between}
+.bnf-share{display:flex;gap:1.6rem}
+.bnf-share .s{width:2.4rem;height:2.4rem;border:0;background:no-repeat center/contain;cursor:pointer}
+.bnf-share .fb{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e2124'%3E%3Cpath d='M12 2a10 10 0 0 0-1.6 19.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 12 2z'/%3E%3C/svg%3E")}
+.bnf-share .x{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e2124' stroke-width='2'%3E%3Cpath d='M4 4l16 16M20 4L4 20'/%3E%3C/svg%3E")}
+.bnf-share .url{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e2124' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1'/%3E%3C/svg%3E")}
+.bnf-share .print{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e2124' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M6 9V3h12v6M6 18H3v-7h18v7h-3M6 14h12v7H6z'/%3E%3C/svg%3E")}
+.bnf-wrap{margin-top:1.6rem}
+.bnf-head{display:flex;align-items:center;justify-content:space-between;gap:1.6rem;flex-wrap:wrap}
+.bnf-name{margin:0;font-size:2.4rem;font-weight:700;color:#1e2124}
+.bnf-date{margin:.6rem 0 0;font-size:1.6rem;color:#464c53}
+.bnf-head .r{display:flex;gap:1.6rem}
+.bnf-head .btn{height:5.6rem;padding:0 2.4rem;border-radius:3rem;border:.1rem solid #cdd1d5;background:#fff;color:#1e2124;font-size:1.7rem;font-weight:600;display:inline-flex;align-items:center;gap:.8rem}
+.bnf-head .btn::before{content:"";width:2.4rem;height:2.4rem;background:no-repeat center/contain}
+.bnf-head .bnf-ico-set::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e2124' stroke-width='1.8'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z'/%3E%3C/svg%3E")}
+.bnf-head .bnf-ico-bell::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e2124' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M18 16v-5a6 6 0 1 0-12 0v5l-2 2h16zM10 20a2 2 0 0 0 4 0'/%3E%3C/svg%3E")}
+.bnf-alarm{display:flex;align-items:center;gap:1.2rem;margin-top:2rem;padding:1.6rem 2rem;border:.1rem solid #ffe08a;border-radius:.8rem;background:#fff8e1;font-size:1.7rem;color:#1e2124}
+.bnf-alarm .bell{width:2.4rem;height:2.4rem;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f5a623'%3E%3Cpath d='M18 16v-5a6 6 0 1 0-12 0v5l-2 2h16zM10 20a2 2 0 0 0 4 0z'/%3E%3C/svg%3E") no-repeat center/contain}
+.bnf-cnt{display:grid;grid-template-columns:1fr 1fr 18rem;gap:1.6rem;margin-top:1.6rem}
+.bnf-cnt .card{position:relative;display:flex;flex-direction:column;justify-content:center;gap:1.2rem;min-height:14.2rem;padding:2.4rem 3.2rem;border-radius:1.2rem;border:.1rem solid transparent;text-decoration:none;color:#1e2124}
+.bnf-cnt .card .t{font-size:1.7rem;font-weight:700}
+.bnf-cnt .card strong{font-size:3rem;font-weight:800}
+.bnf-cnt .blue{background:#eef4ff;border-color:#dbe6fb}.bnf-cnt .blue strong{color:#0b50d0}
+.bnf-cnt .red{background:#fdeeee;border-color:#f8d8d8}.bnf-cnt .red strong{color:#c0392b}
+.bnf-cnt .ic{position:absolute;right:3.2rem;top:50%;width:4.8rem;height:4.8rem;margin-top:-2.4rem;border-radius:50%;background:#fff no-repeat center/2.4rem}
+.bnf-cnt .ic-gift{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e6fd9' stroke-width='1.8'%3E%3Cpath d='M3 10h18v4H3zM5 14v7h14v-7M12 10v11M12 10c-2-3-5-3-5-1s3 1 5 1zm0 0c2-3 5-3 5-1s-3 1-5 1z'/%3E%3C/svg%3E")}
+.bnf-cnt .ic-doc{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e0533f' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M6 3h9l4 4v14H6zM9 13l2 2 4-4'/%3E%3C/svg%3E")}
+.bnf-cnt .more{white-space:nowrap;align-items:center;justify-content:center;flex-direction:row;gap:.6rem;background:#fff;border-color:#e4e7ea;font-size:1.7rem;font-weight:600}
+.bnf-cnt .more .arr{width:1.6rem;height:1.6rem;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e2124' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M9 5l7 7-7 7'/%3E%3C/svg%3E") no-repeat center/contain}
+.bnf-family{display:flex;align-items:center;gap:1.2rem;margin-top:1.6rem;padding:2.4rem 3.2rem;border:.1rem solid #e4e7ea;border-radius:1.2rem;background:#fff}
+.bnf-family .txt{margin-right:3.2rem}
+.bnf-family .t1{margin:0;font-size:1.7rem;font-weight:700;color:#0b50d0}
+.bnf-family .t2{margin:.4rem 0 0;font-size:1.7rem;font-weight:700;color:#1e2124}
+.bnf-family .fam-add{width:4.8rem;height:4.8rem;border:.1rem solid #0b50d0;border-radius:.6rem;background:#fff;color:#0b50d0;font-size:2.4rem;line-height:1}
+.bnf-family .fam{display:inline-flex;align-items:center;height:4.8rem;padding:0 1.6rem;border:.1rem solid #8a949e;border-radius:.6rem;background:#fff;font-size:1.7rem}
+.bnf-note{margin:1.6rem 0 0;font-size:1.6rem;color:#464c53}
+.bnf-sec{margin:5.6rem 0 0;font-size:1.9rem;font-weight:700;color:#1e2124}
+.bnf-tabs{display:flex;gap:.8rem;margin-top:1.6rem;border-bottom:.1rem solid #cdd1d5}
+.bnf-tabs button{padding:1.2rem 1.6rem;border:0;border-bottom:.3rem solid transparent;background:transparent;font-size:1.7rem;font-weight:600;color:#464c53;margin-bottom:-.1rem}
+.bnf-tabs button em{font-style:normal;color:#0b50d0}
+.bnf-tabs button.on{color:#1e2124;border-bottom-color:#1e2124}
+.bnf-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem;margin:2.4rem 0 0;padding:0;list-style:none}
+.bnf-list li{padding:2.4rem;border:.1rem solid #e4e7ea;border-radius:1.2rem;background:#fff}
+.bnf-list .tag{display:inline-block;margin-bottom:1rem;padding:.2rem .8rem;border-radius:.4rem;font-size:1.4rem;font-weight:600;background:#eef4ff;color:#0b50d0}
+.bnf-list li.chk .tag{background:#fdeeee;color:#c0392b}
+.bnf-list .nm{margin:0;font-size:1.9rem;font-weight:700;color:#1e2124}
+.bnf-list .d{margin:.8rem 0 0;font-size:1.6rem;color:#464c53;line-height:1.5}
+.bnf-list .go{display:inline-flex;align-items:center;margin-top:1.6rem;height:4rem;padding:0 1.6rem;border-radius:.6rem;background:#0b50d0;color:#fff;font-size:1.5rem;font-weight:600;text-decoration:none}
+.bnf-list li.chk .go{background:#fff;border:.1rem solid #0b50d0;color:#0b50d0}
+@media (max-width:1024px){.aih-bnf{padding:0 1.6rem 6rem}.bnf-cnt{grid-template-columns:1fr}.bnf-list{grid-template-columns:1fr}.bnf-head .r{width:100%}.bnf-head .btn{flex:1;justify-content:center;padding:0 1.2rem;height:4.8rem;font-size:1.5rem}.bnf-family{flex-wrap:wrap}.bnf-family .txt{margin-right:0;width:100%}}
+</style>
+</head>
+<body><div id="demoProtoBanner" role="note">시연용 프로토타입 · 실제 정부24 서비스가 아닙니다</div>
+  <div id="iw_wrap">
+    <div class="skip-nav"><a href="#iw_container">본문 바로가기</a></div>
+    <div id="iw_gov_top" class="main sch-main">
+        <div class="inner-wrap">
+            <p class="txt">이 누리집은 대한민국 공식 전자정부 누리집입니다.</p>
+        </div>
+    </div>
+
+    <!-- 메인은 클래스 .main, sch-main 추가 -->
+    <header id="iw_header" class="main sch-main">
+        <div class="header-in">
+            <div class="header-body">
+                <div class="header-top">
+                    <!-- 2025-10-30 : 2차 변경사항: 모바일(1024px 이하) 미로그인: 로고이미지, 로그인 시 로고 숨기고 사용자 정보 노출 -->
+                    <h1 class="logo"><a href=""><span class="sr-only">정부24</span></a></h1>
+
+                    <!-- 2025-02-10 유틸 순서 변경-->
+                    <div class="header-util">
+                        <div class="top">
+                            <div class="div">
+                                <button type="button" class="btn-txt sm ico-arr-bottom toggle">For Foreigners<span class="sr-only">목록<em>펼치기</em></span></button>
+
+                                <div class="toggle-layer foreign-language">
+                                    <ul>
+                                        <li><a href="https://www.gov.kr/portal/foreigner/ko" class="btn-txt sm ico-new-window" target="_blank" title="새 창 열림">한국어</a></li>
+                                        <li><a href="https://www.gov.kr/portal/foreigner/en" class="btn-txt sm ico-new-window" target="_blank" title="새 창 열림">ENG</a></li>
+                                        <li><a href="https://www.gov.kr/portal/foreigner/zh" class="btn-txt sm ico-new-window" target="_blank" title="새 창 열림">中文</a></li>
+                                        <li><a href="" class="btn-txt sm ico-new-window" target="_blank" title="새 창 열림">Guide</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="div">
+                                <a href="https://kids.gov.kr/main.ds" class="btn-txt sm ico-new-window" target="_blank" title="새 창 열림">어린이</a>
+                            </div>
+
+                            <div class="div">
+                                <button type="button" class="btn-txt sm ico-arr-bottom toggle">지원<span class="sr-only">목록 <em>펼치기</em></span></button>
+
+                                <div class="toggle-layer support-list">
+                                    <ul>
+                                        <li><a href="" class="btn-txt">인증등록/관리</a></li>
+                                        <li><a href="" class="btn-txt">복합인증관리</a></li>
+                                        <li><a href="" class="btn-txt">보안 센터</a></li>
+                                        <li><a href="" class="btn-txt">누리집안내도</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="div">
+                                <button type="button" class="btn-txt sm ico-arr-bottom toggle">화면크기<span class="sr-only">제어 목록 <em>펼치기</em></span></button>
+
+                                <div class="toggle-layer screen-size">
+                                    <ul>
+                                        <li><button type="button" class="btn-size sm">작게</button></li>
+                                        <li class="active"><button type="button" class="btn-size md"
+                                                title="선택된 상태">보통</button></li>
+                                        <li><button type="button" class="btn-size lg">조금 크게</button></li>
+                                        <li><button type="button" class="btn-size xlg">크게</button></li>
+                                        <li><button type="button" class="btn-size xxlg">가장 크게</button></li>
+                                        <li><button type="button" class="btn-size reset">초기화</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bottom">
+                            <!-- 로그인 전, 후 공통 -->
+                            <div class="header-search">
+                                <!-- 2025-10-27 : 정부24 AI 버튼 추가 -->
+                                <button type="button" class="btn-txt ico-before ico-sammy-ai">AI국민비서</button>
+                                <button type="button" class="btn-txt ico-before ico-search open-total-search" aria-controls="layer_totalSearch">통합검색</button>
+
+                                <!-- 통합검색 레이어는 header 끝 부분에 있음. -->
+                            </div>
+                            <!--// 로그인 전, 후 공통 -->
+
+                            <!-- 로그인 전 -->
+                            <!--
+                                보일때
+                                <div class="log-before on">
+                                
+                                안 보일때
+                                <div class="log-before">
+                                -->
+                            <div class="log-before">
+                                <a href="" class="btn-txt ico-before ico-login">로그인</a>
+                                <a href="" class="btn-txt ico-before ico-join">회원가입</a>
+                            </div>
+                            <!--// 로그인 전 -->
+
+                            <!-- 로그인 후 -->
+                            <!--
+                                보일때
+                                <div class="log-after on">
+                                
+                                안 보일때
+                                <div class="log-after">
+                                -->
+                            <div class="log-after on">
+                                <div class="header-mygov">
+                                    <button type="button"
+                                        class="btn-txt ico-before ico-mygov open-header-mygov">MyGOV</button>
+
+                                    <div class="layer-header-mygov">
+                                        <div class="my-gov-info">
+                                            <p class="name"><em>홍길동</em>님</p>
+                                        </div>
+
+                                        <div class="list-my-gov">
+                                            <ul>
+                                                <li><a href="">MyGOV 홈</a></li>
+                                                <li><a href="">나의 신청내역</a></li>
+                                                <li><a href="">나의 생활정보</a></li>
+                                                <li><a href="">나의 정보관리</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <button type="button" class="btn-txt ico-before ico-logout">로그아웃</button>
+                                    </div>
+                                </div>
+
+                                <!-- 2025-02-18 : 로그아웃 버튼 추가 : 중복이지만 들어갑니다. -->
+                                <button type="button" class="btn-txt ico-before ico-logout">로그아웃</button>
+                            </div>
+                            <!--// 로그인 후 -->
+
+                            <!-- 2025-02-18 : 비회원 로그인 추가 -->
+                            <!-- 비회원 로그인 후 -->
+                            <!--
+                                보일때
+                                <div class="non-member on">
+                                
+                                안 보일때
+                                <div class="non-member">
+                                -->
+                            <div class="non-member">
+                                <div class="header-mygov">
+                                    <button type="button" class="btn-txt ico-before ico-mygov open-header-mygov">비회원
+                                        메뉴</button>
+
+                                    <div class="layer-header-mygov">
+                                        <div class="my-gov-info">
+                                            <p class="name"><em>홍길동홍길동홍길동홍길동홍길동(비회원)</em>님</p>
+                                        </div>
+
+                                        <div class="list-my-gov">
+                                            <ul>
+                                                <li><a href="">MyGOV 홈</a></li>
+                                                <li><a href="">나의 신청내역</a></li>
+                                                <li><a href="">나의 생활정보</a></li>
+                                                <li><a href="">나의 정보관리</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <button type="button" class="btn-txt ico-before ico-logout">로그아웃</button>
+                                    </div>
+                                </div>
+
+                                <!-- 2025-02-18 : 로그아웃 버튼 추가 : 중복이지만 들어갑니다. -->
+                                <button type="button" class="btn-txt ico-before ico-logout">로그아웃</button>
+                            </div>
+
+                            <!-- 모바일만 나옴. 메인페이지에는 여기 위치 함. 서브 페이지는 tit-page-wrap 안에 있음 -->
+                            <!--
+                                2025-02-18 로그인 링크 추가
+                                -->
+                            <div class="mo-menu">
+                                <a href="" class="btn-txt ico-before ico-sammy-ai">AI국민비서</a>
+                                <!--로그인 전에만 나옵니다.-->
+                                <a href="" class="btn-txt ico-before ico-login">로그인</a>
+                                <!--//로그인 전에만 나옵니다.-->
+                                <!-- 2025-10-30 : 로그인 후에만 나옵니다.-->
+                                <button type="button" class="btn-txt ico-before ico-search open-total-search" aria-controls="layer_totalSearch">
+                                    <span>통합검색</span>
+                                </button>
+                                <!--// 2025-10-30 : 로그인 후에만 나옵니다.-->
+
+                                <button type="button" class="btn-open-allmenu">
+                                    <span>전체메뉴</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-bottom">
+                    <nav id="iw_gnb">
+                        <ul class="depth-1">
+                            <!--
+                                기본 일때
+                                <li>
+                                
+                                현재 페이지 활성화 일때
+                                <li class="active">
+                                -->
+                            <li>
+                                <button type="button" class="btn-depth-1">민원서비스</button>
+
+                                <div class="depth-2-wrap">
+                                    <div class="box">
+                                        <p class="tit">민원서비스</p>
+
+                                        <ul class="depth-2">
+                                            <!--
+                                                기본 일때
+                                                <li>
+                                                
+                                                현재 페이지 활성화 일때
+                                                <li class="active">
+                                                -->
+                                            <li>
+                                                <a href="" class="btn-depth-2">민원서비스안내</a>
+                                                <p class="depth-desc">신청 &middot; 조회 &middot; 발급기능 서비스이용 및 정보를 확인할 수
+                                                    있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">주제별 보기</a>
+                                                <p class="depth-desc">서비스를 주제별로 분류하여 쉽게 찾을 수 있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">사실/진위확인</a>
+                                                <p class="depth-desc">서비스 이용 사실관계 확인 및 발급한 증명서의 진위를 확인할 수 있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">원스톱서비스</a>
+                                                <p class="depth-desc">서비스를 통합하여 한 번에 신청하거나 유사 서비스를 확인할 수 있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">돌봄시설 등 위치찾기</a>
+                                                <p class="depth-desc">영&middot;유아/초등 돌봄 및 청소년 지원센터 등 시설의 위치를 찾을 수
+                                                    있어요</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <button type="button" class="btn-depth-1">혜택알리미</button>
+
+                                <div class="depth-2-wrap">
+                                    <div class="box">
+                                        <p class="tit">혜택알리미</p>
+                                        <a href="" class="depth-2-link">
+                                            혜택알리미 홈
+                                            <i class="iconset ico-arr-right"></i>
+                                        </a>
+                                        <ul class="depth-2">
+                                            <li>
+                                                <a href="" class="btn-depth-2">나의 혜택</a>
+                                                <p class="depth-desc">내가 받을 수 있는 혜택을 한 눈에 확인하세요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">관심</a>
+                                                <p class="depth-desc">내 상황과 연관된 혜택을 확인해 보세요.</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">발견</a>
+                                                <p class="depth-desc">아직 몰랐던 숨은 혜택을 찾아드려요.</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">간편찾기</a>
+                                                <p class="depth-desc">선택한 상황 조건으로 빠르게 원하는 해택을 찾아요.</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">전체 혜택</a>
+                                                <p class="depth-desc">분야별로 제공되는 모든 혜택을 한곳에서 확인해요.</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">설정</a>
+                                                <p class="depth-desc">가족등록, 맞춤안내 조건 등 서비스 이용 환경을 관리해요.</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <button type="button" class="btn-depth-1">생활</button>
+
+                                <div class="depth-2-wrap">
+                                    <div class="box">
+                                        <p class="tit">생활</p>
+
+                                        <ul class="depth-2">
+                                            <li>
+                                                <a href="" class="btn-depth-2">생활가이드</a>
+                                                <p class="depth-desc">정부의 민원과 혜택을 필요한 상황에 이용해 보세요.</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">생활안전</a>
+                                                <p class="depth-desc">정부의 주요 안전 소식을 알아볼 수 있어요.</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <button type="button" class="btn-depth-1">정책정보</button>
+
+                                <div class="depth-2-wrap">
+                                    <div class="box">
+                                        <p class="tit">정책정보</p>
+
+                                        <ul class="depth-2">
+                                            <li>
+                                                <a href="" class="btn-depth-2">분야별 정책정보</a>
+                                                <p class="depth-desc">국가 주요 정책뉴스, 연구보고서, 등의 원문정보 및 동영상 자료를 확인할 수 있어요
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">정부/지자체 조직도</a>
+                                                <p class="depth-desc">정부 조직 구조 및 각 조직의 역할, 제공 서비스 등을 확인할 수 있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">정부/지자체누리집</a>
+                                                <p class="depth-desc">정부와 지자체에서 운영하고 있는 누리집, 모바일 웹/앱정보를 확인할 수 있어요
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">지자체 소식</a>
+                                                <p class="depth-desc">전국 시/도, 시/군/구에서 운영하는 누리집 소식을 확인할 수 있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">공모전</a>
+                                                <p class="depth-desc">정부24 및 중앙부처, 지자체, 공공기관 등에서 진행하는 공모전을 확인할 수 있어요
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">공공자원공유</a>
+                                                <p class="depth-desc">공공기관이 제공하는 회의실, 체육관, 주차장 등을 검색·예약할 수 있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">국고보조금 부정수급 신고</a>
+                                                <p class="depth-desc">정부 각종 보조금&middot;지원금 등을 부정한 방법으로 지급하거나 사용하는
+                                                    경우에 대해 신고할 수 있어요</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <button type="button" class="btn-depth-1">고객센터</button>
+
+                                <div class="depth-2-wrap">
+                                    <div class="box">
+                                        <p class="tit">고객센터</p>
+
+                                        <ul class="depth-2">
+                                            <li>
+                                                <a href="" class="btn-depth-2">공지사항</a>
+                                                <p class="depth-desc">새소식, 운영점검 등 서비스 이용에 필요한 정보를 확인할 수 있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">이용안내</a>
+                                                <p class="depth-desc">정부24 서비스의 이용방법을 확인할 수 있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">자주 묻는 질문</a>
+                                                <p class="depth-desc">가장 많이 받는 질문을 FAQ형식으로 확인할 수 있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">자료실</a>
+                                                <p class="depth-desc">서비스 이용, 민원사무 처리 관련 자료를 확인할 수 있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">상담예약</a>
+                                                <p class="depth-desc">정부24 이용 중 기술지원에 대한 상담을 받을 수 있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">개선의견</a>
+                                                <p class="depth-desc">서비스를 이용하면서 느낀 불편사항을 말씀해주세요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">인증센터</a>
+                                                <p class="depth-desc">인증서를 등록·관리할 수 있어요</p>
+                                            </li>
+                                            <li>
+                                                <a href="" class="btn-depth-2">보안센터</a>
+                                                <p class="depth-desc">보안 및 발급 프로그램 설치, 약관 등을 확인할 수 있어요</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div id="layer_totalSearch" class="total-search-layer" role="dialog" aria-modal="true">
+            <div class="total-search-layer-wrap" tabindex="0">
+                <div class="cell">
+                    <div class="box-total"><!-- 서식 css 와 충돌 나서 class 명 변경 -->
+                        <div class="search-area">
+                            <label for="totalSearchInput" class="label">
+                                <span>모든 정부 서비스, </span>
+                                <span>이제 한 곳에서 찾아보세요</span>
+                            </label>
+
+                            <span class="input-fn">
+                                <input type="search" placeholder="검색어를 입력해 주세요." id="totalSearchInput" class="input"
+                                    autocomplete="off">
+
+                                <!--
+                                    to 개발:
+                                    삭제 버튼 없을 경우 태그 자체를 빼주세요
+                                -->
+                                <button type="button" class="btn-clear"><span class="sr-only">삭제</span></button>
+                                <button type="button" class="btn-total-search"><span class="sr-only">검색</span></button>
+                            </span>
+
+                            <!--
+                                to 개발
+
+                                자동완성 안 보일 때
+                                <div class="auto-complete-area">
+
+                                자동완성 보일 때
+                                <div class="auto-complete-area on">
+                                -->
+                            <div class="auto-complete-area on">
+                                <div class="col auto-area">
+                                    <div class="auto-off" style="display:none;">
+                                        자동완성 기능이 꺼져 있습니다.<br>
+                                        보다 빠른 검색을 위해 자동완성 기능을 켜주세요.
+                                    </div>
+
+                                    <ul class="list-auto">
+                                        <li><a href="" class="btn-auto"><em class="keyword">주민</em></a></li>
+                                        <li><a href="" class="btn-auto"><em class="keyword">주민</em>등록증</a></li>
+                                        <li><a href="" class="btn-auto"><em class="keyword">주민</em>등록등본</a></li>
+                                        <li><a href="" class="btn-auto"><em class="keyword">주민</em>등록초본</a></li>
+                                        <li><a href="" class="btn-auto"><em class="keyword">주민</em>등록증 모바일 확인
+                                                서비스</a></li>
+                                        <li><a href="" class="btn-auto"><em class="keyword">주민</em></a></li>
+                                        <li><a href="" class="btn-auto">글자가 길 경우 글자가 길 경우 글자가 길 경우 글자가 길 경우 글자가 길 경우
+                                                글자가 길 경우 글자가 길 경우 글자가
+                                                길 경우 글자가 길 경우 글자가 길 경우 글자가 길 경우 <em class="keyword">주민</em>등록증</a>
+                                        </li>
+                                        <li><a href="" class="btn-auto"><em class="keyword">주민</em>등록등본</a></li>
+                                        <li><a href="" class="btn-auto"><em class="keyword">주민</em>등록초본</a></li>
+                                        <li><a href="" class="btn-auto"><em class="keyword">주민</em>등록증 모바일 확인
+                                                서비스</a></li>
+                                    </ul>
+
+                                    <!-- 2025-02-14 : 자동완성 체크 기능 추가 -->
+                                    <div class="auto-control">
+                                        <div class="form-switch">
+                                            <input type="checkbox" id="chk_auto_complete_pc" checked>
+                                            <label for="chk_auto_complete_pc">자동 완성</label>
+                                        </div>
+                                    </div>
+                                    <!--// 2025-02-14 : 자동완성 체크 기능 추가 -->
+                                </div>
+
+                                <div class="col service-area">
+                                    <p class="tit">관련 서비스</p>
+
+                                    <ul class="list-service">
+                                        <li><a href="" class="btn-txt ico-arr-right">주민등록표 등본 발급</a></li>
+                                        <li><a href="" class="btn-txt ico-arr-right">주민등록표 초본 발급</a></li>
+                                        <li><a href="" class="btn-txt ico-arr-right">주민등록표 등본(영문) 발급</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="word-area">
+                            <div class="col favorite">
+                                <p class="tit">자주 찾는 검색어</p>
+
+                                <ol class="list">
+                                    <li>
+                                        <a href="">
+                                            <span class="rank">1</span>
+                                            <span class="word">자주 찾느 검색어 1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span class="rank">2</span>
+                                            <span class="word">자주 찾느 검색어 1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span class="rank">3</span>
+                                            <span class="word">자주 찾느 검색어 1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span class="rank">4</span>
+                                            <span class="word">자주 찾느 검색어 1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span class="rank">5</span>
+                                            <span class="word">자주 찾느 검색어 1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span class="rank">6</span>
+                                            <span class="word">자주 찾느 검색어 1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span class="rank">7</span>
+                                            <span class="word">자주 찾느 검색어 1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span class="rank">8</span>
+                                            <span class="word">자주 찾느 검색어 1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span class="rank">9</span>
+                                            <span class="word">자주 찾느 검색어 1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span class="rank">10</span>
+                                            <span class="word">자주 찾느 검색어 1</span>
+                                        </a>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div class="col lately">
+                                <p class="tit">최근 검색어</p>
+
+                                <!-- 2024-12-26 : 추가 : 최근 검색어 없는 경우 -->
+                                <!--
+                                    to 개발
+                                    검색어 없는 경우 보이기
+                                    <div class="no-lately">
+
+                                    검색어 없는 경우 안보이기
+                                    <div class="no-lately" style="display:none;">
+                                -->
+                                <div class="no-lately">
+                                    최근 검색어가 없습니다.
+                                </div>
+
+                                <!-- 최근 검색어 있는 경우 -->
+                                <ul class="list">
+                                    <li>
+                                        <a href="">토지(임야)대장</a>
+                                        <button type="button" class="btn-del-word"><span
+                                                class="sr-only">삭제</span></button>
+                                    </li>
+                                    <li>
+                                        <a href="">최근 검색어</a>
+                                        <button type="button" class="btn-del-word"><span
+                                                class="sr-only">삭제</span></button>
+                                    </li>
+                                </ul>
+
+                                <button type="button" class="all-del btn-del-word">최근 검색어 전체 삭제</button>
+                                <!--// 최근 검색어 있는 경우 -->
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn-close-total-search"><span class="sr-only">통합검색
+                                닫기</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="iw_container" class="benefit-g2 aih-bnf">
+      <div class="breadcrumb-wrap"><nav class="breadcrumb"><ol><li class="home"><a href="./UI-PT-AAA01M_3차_시연.html" class="txt" onclick="this.href=DemoSession.url(this.getAttribute('href'))">홈</a></li><li><a href="#" class="txt" onclick="return false">혜택알리미</a></li></ol></nav></div>
+      <div class="tit-page-wrap"><h2 class="tit-page">혜택알리미</h2>
+        <div class="bnf-share" aria-label="공유"><button type="button" class="s fb"><span class="sr-only">페이스북 공유</span></button><button type="button" class="s x"><span class="sr-only">X 공유</span></button><button type="button" class="s url"><span class="sr-only">URL 복사</span></button><button type="button" class="s print" onclick="window.print()"><span class="sr-only">인쇄</span></button></div>
+      </div>
+      <div class="bnf-wrap">
+        <div class="bnf-head">
+          <div class="l"><h3 class="bnf-name">홍길동님의 맞춤혜택</h3><p class="bnf-date" id="bnfDate"></p></div>
+          <div class="r"><button type="button" class="btn secondary bnf-ico-set">맞춤안내 조건 설정</button><button type="button" class="btn secondary bnf-ico-bell">알림 내역 보기</button></div>
+        </div>
+        <div class="bnf-alarm"><span class="bell" aria-hidden="true"></span>국민은행(KB스타뱅킹)으로 알림 받고 있어요</div>
+        <div class="bnf-cnt">
+          <a href="#bnfList" class="card blue"><span class="t">신청 가능한 혜택</span><strong>8개</strong><i class="ic ic-gift" aria-hidden="true"></i></a>
+          <a href="#bnfList" class="card red"><span class="t">확인 필요한 혜택</span><strong>2개</strong><i class="ic ic-doc" aria-hidden="true"></i></a>
+          <a href="#" class="card more" onclick="return false">지난 혜택보기<i class="arr" aria-hidden="true"></i></a>
+        </div>
+        <div class="bnf-family"><div class="txt"><p class="t1">등록된 가족 구성에 따라</p><p class="t2">자녀 · 가족 대상 혜택을 자동으로 안내해드립니다.</p></div><button type="button" class="fam-add" aria-label="가족 추가">+</button><span class="fam">홍길순</span></div>
+        <p class="bnf-note">※ 가족 구성은 [가족 맞춤안내 설정]에서 변경가능합니다.</p>
+
+        <h3 class="bnf-sec" id="bnfList">추천 혜택</h3>
+        <div class="bnf-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" class="on">신청 가능한 혜택 <em>8</em></button><button type="button" role="tab" aria-selected="false">확인 필요한 혜택 <em>2</em></button></div>
+        <ul class="bnf-list" id="bnfItems"></ul>
+      </div>
+    </div>
+
+    <a href="#iw_header" class="iw-btn-top show"><span class="sr-only">위로 이동</span><span>Top</span></a>
+    <footer id="iw_footer">
+      <div class="footer-related">
+        <div class="inner-wrap">
+          <ul class="footer-related-list">
+            <li>
+              <button type="button" class="btn-related btn-open-related"
+                aria-controls="layer_ralated_channel">국민소통채널</button>
+
+              <div class="related-layer footer-channel" id="layer_ralated_channel" role="dialog" aria-modal="true">
+                <div class="related-wrap" tabindex="0">
+                  <div class="related-dialog">
+                    <div class="related-header">
+                      <h2 class="related-title">국민소통채널</h2>
+                    </div>
+
+                    <div class="related-body">
+                      <ul class="footer-channel-list">
+                        <li><a href="https://www.innovation.go.kr" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-01.png" alt="정부혁신 지식정보 포털 혁신24"></a></li>
+                        <li><a href="https://efamily.scourt.go.kr/index.jsp" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-02.png" alt="대한민국 법원-전자가족관계등록시스템"></a></li>
+                        <li><a href="https://www.safekorea.go.kr" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-03.png" alt="국민재난안전포털"></a></li>
+                        <li><a href="https://docu.gdoc.go.kr/index.do" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-04.png" alt="문서24"></a></li>
+                        <li><a href="https://sotong.go.kr/front/main/index.do" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-05.png" alt="소통24"></a></li>
+                        <li><a href="https://www.easylaw.go.kr/CSP/Main.laf" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-06.png" alt="찾기쉬운 생활법령정보"></a></li>
+                        <li><a href="http://www.safe182.go.kr" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-07.png" alt="안전 Dream 아동·여성·장애인 경찰지원센터"></a>
+                        </li>
+                        <li><a href="https://www.open.go.kr/" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-08.png" alt="open.go.kr 정보공개"></a></li>
+                        <li><a href="http://www.mpm.go.kr/proactivePublicService/" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-09.png" alt="적극행정"></a></li>
+                        <li><a href="https://www.epeople.go.kr/" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-10.png" alt="국민신문고"></a></li>
+                        <li><a href="https://www.safetyreport.go.kr/" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-11.png" alt="안전신문고"></a></li>
+                        <li><a href="http://kosis.kr/" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-12.png" alt="KOSIS"></a></li>
+                        <li><a href="javascript:fn_proLogin()" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-13.png" alt="공공개방자원 다 가치나눔터 공유누리"></a></li>
+                        <li><a href="https://www.consumer.go.kr/" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-14.png" alt="소비자24 24시간 열린 소비자포털"></a></li>
+                        <li><a href="https://www.korea.kr/" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-15.png" alt="대한민국 정책브리핑"></a></li>
+                        <li><a href="https://www.bokjiro.go.kr/" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-16.png" alt="복지ro"></a></li>
+                        <li><a href="https://www.129.go.kr/" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-17.png" alt="위험할 땐 119 힘겨울 땐 129"></a></li>
+                        <li><a href="https://www.workplus.go.kr/index.do" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-18.png" alt="고용복지센터"></a></li>
+                        <!-- <li><a href="https://www.ips.go.kr" target="_blank" title="새 창 열림"><img src="../../static/images/layout/img-channel-19.png" alt="국민비서"></a></li> -->
+                        <li><a href="https://www.nps.or.kr/main.do" target="_blank" title="새 창 열림"><img
+                              src="../../static/images/layout/img-channel-20.png" alt="NPS국민연금 가입지원, 신고센터"></a></li>
+                      </ul>
+                    </div>
+
+                    <button type="button" class="btn-close-related"><span class="sr-only">닫기</span></button>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-footer">
+
+        <!--2025-02-10 div 추가 -->
+        <div class="info-toggle">
+          <p class="logo"><span class="sr-only">정부24</span></p>
+
+          <!--
+        2025-03-24 : 글자 수정. 열기 => 닫기
+        2025-04-01 : 글자 수정. 닫기 => 열기
+      -->
+          <button type="button" class="btn-footer-toggle"><span class="sr-only">정부24 안내<em
+                class="txt">열기</em></span></button>
+          <!-- 2025-11-20 : sns-link 위치 운영과 동일한 위치로 이동 -->
+          <div class="sns-link">
+            <ul class="list">
+              <!-- <li><a href="https://www.youtube.com/" target="_blank" title="정부24 유튜브 (새 창 열림)" class="ico-youtube"><span class="sr-only">유튜브</span></a></li> -->
+              <!-- <li><a href="https://www.facebook.com/" target="_blank" title="정부24 페이스북(새 창 열림)" class="ico-facebook"><span class="sr-only">페이스북</span></a></li> -->
+              <li><a href="https://www.instagram.com/" target="_blank" title="범정부통합포털 인스타그램(새 창 열림)"
+                  class="ico-instagram"><span class="sr-only">인스타그램</span></a></li>
+              <li><a href="https://twitter.com/" target="_blank" title="정부24 X(구 트위터)(새 창 열림)" class="ico-twitter"><span
+                    class="sr-only">X</span></a></li>
+              <li><a href="https://story.kakao.com/ch/governmentkorea" target="_blank" title="정부24 카카오스토리(새 창 열림)"
+                  class="ico-kakao-story"><span class="sr-only">카카오스토리</span></a></li>
+              <li><a href="https://blog.naver.com/" target="_blank" title="정부24 블로그(새 창 열림)" class="ico-blog"><span
+                    class="sr-only">블로그</span></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2025-04-01 : 전화번호 영역 추가 -->
+        <div class="info-tel">
+          <ul class="list">
+            <li><b>콜센터</b> 1588-2188, <span>02-721-0600 (지역번호 '02'를 확인하세요.)</span> <span>(09:00 ~ 18:00 평일)</span></li>
+            <li><b>정부민원안내콜센터</b> 국번없이 110 (무료, 휴일포함 365일 24시간)</li>
+          </ul>
+        </div>
+        <!--// 2025-04-01 : 전화번호 영역 추가 -->
+
+        <div class="info">
+          <address class="address">
+            <div class="add">
+              <p>본관 : 30112 세종특별자치시 도움6로 42(어진동)</p>
+              <p>별관 : 30116 세종특별자치시 가름로 143(어진동)</p>
+            </div>
+
+            <div class="tel">
+              <ul class="list">
+                <li><b>콜센터</b> 1588-2188, <span>02-721-0600 (지역번호 '02'를 확인하세요.)</span> <span>(09:00 ~ 18:00 평일)</span>
+                </li>
+                <li><b>정부민원안내콜센터</b> 국번없이 110 (무료, 휴일포함 365일 24시간)</li>
+                <li>
+                  <b>내선번호</b>
+
+                  <ul class="extension">
+                    <li>1번 주민등록표 등본(초본), 건축물대장, 토지대장</li>
+                    <li>2번 민원신청 및 발급문의</li>
+                    <li>3번 보조금24 조회, 신청문의</li>
+                    <li>4번 회원가입 및 로그인 문의</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </address>
+
+          <div class="link-area">
+            <div class="link">
+              <ul class="list">
+                <li><a href="https://www.mois.go.kr/frt/sub/a07/map/screen.do" target="_blank" title="새 창 열림"
+                    class="btn-txt ico-new-window">찾아오시는 길</a></li>
+                <li><a href="" class="btn-txt ico-arr-right">상담예약</a></li>
+                <li><a href="" class="btn-txt ico-arr-right">누리집 의견 수렴</a></li>
+                <li><a href="" class="btn-txt ico-arr-right">공공서비스 활용(Open API)</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <nav class="fnb">
+            <!--
+          2025-02-10
+          
+          1. li 순서 변경
+          2. 저작권정책 => 보안센터
+        -->
+            <ul class="list">
+              <li class="privacy"><a href=""><strong>개인정보처리방침</strong></a></li>
+              <li><a href="">이용약관</a></li>
+              <li><a href="">보안센터</a></li>
+              <li><a href="https://www.wa.or.kr/board/list.asp?BoardID=0006" target="_blank" title="새 창 열림">웹 접근성 품질인증
+                  마크 획득</a></li>
+            </ul>
+          </nav>
+
+          <!-- 2025-02-10 : 글자 변경-->
+          <p class="copy">&copy; Ministry of the Interior and Safety. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+<script>
+  /* 시연용 로그인 세션 : 메인 · AI국민비서 화면 간 로그인 상태 유지(sessionStorage, 저장이 막힌 환경은 URL ls=1로 전달). 기본은 로그인된 상태(홍길동) */
+  (function () {
+    'use strict';
+    var KEY = 'gov24AiDemoLoggedIn';
+    var mem = !/[?&]ls=0(&|#|$)/.test(location.search);   // 시연 기본값: 로그인된 상태(홍길동). ?ls=0 이면 로그인 전
+    function get() { try { var v = sessionStorage.getItem(KEY); if (v !== null) return v === '1'; } catch (e) {} return mem; }
+    function set(v) { mem = !!v; try { sessionStorage.setItem(KEY, v ? '1' : '0'); } catch (e) {} document.dispatchEvent(new CustomEvent('demo-login', { detail: !!v })); }
+    var urlLs = /[?&]ls=([01])(&|#|$)/.exec(location.search);
+    if (urlLs) { try { sessionStorage.setItem(KEY, urlLs[1]); } catch (e) {}
+      try { history.replaceState(null, '', location.href.replace(/([?&])ls=[01](&?)/, function (m, a, b) { return b ? a : ''; }).replace(/\?$/, '')); } catch (e) {} }
+    window.DemoSession = { get: get, set: set, url: function (u) { return u + (u.indexOf('?') > -1 ? '&' : '?') + 'ls=' + (get() ? '1' : '0'); } };
+  })();
+  (function () {
+    var $ = function (s, c) { return (c || document).querySelector(s); }, $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+	function headerLogin(on) {
+		$$('#iw_header .log-before').forEach(function (e) { e.classList.toggle('on', !on); });
+		$$('#iw_header .log-after').forEach(function (e) { e.classList.toggle('on', !!on); });
+		$$('#iw_header .non-member').forEach(function (e) { e.classList.remove('on'); });
+	}
+
+    headerLogin(DemoSession.get());
+    window.addEventListener('pageshow', function () { headerLogin(DemoSession.get()); });
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest && e.target.closest('#iw_header .ico-login, #iw_header .ico-logout');
+      if (!t) return; e.preventDefault(); e.stopImmediatePropagation(); DemoSession.set(!t.classList.contains('ico-logout')); headerLogin(DemoSession.get());
+    }, true);
+    $$('#iw_header .logo a').forEach(function (a) { a.setAttribute('href', './UI-PT-AAA01M_3차_시연.html'); a.addEventListener('click', function (e) { e.preventDefault(); location.href = DemoSession.url(window.innerWidth <= 1024 ? './UI-PT-AAA01M-AD_3차_시연.html' : './UI-PT-AAA01M_3차_시연.html'); }); });
+    $$('#iw_header .ico-sammy-ai').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); location.href = DemoSession.url('./UI-AI-AAA01M_3차_AI국민비서_통합.html'); }); });
+    var d = new Date(); d.setDate(d.getDate() - 15); $('#bnfDate').textContent = '15일 전 (' + d.getFullYear() + '년 ' + ('0' + (d.getMonth() + 1)).slice(-2) + '월 ' + ('0' + d.getDate()).slice(-2) + '일)';
+    var APPLY = [['청년 월세 한시 특별지원', '만 19~34세 · 무주택 청년', '~ 12.31.', '주거'], ['경기도 청년 노동자 통장', '경기도 거주 만 18~34세 노동자', '~ 11.14.', '자산형성'], ['에너지바우처', '기초생활수급자·차상위계층', '~ 12.31.', '생활'], ['국민취업지원제도', '구직 중인 15~69세', '상시신청', '취업'], ['경기도 청년기본소득', '경기도 3년 이상 거주 만 24세', '분기 접수', '청년'], ['통합문화이용권(문화누리카드)', '기초생활수급자·차상위계층', '~ 11.30.', '문화'], ['청년 전세보증금 반환보증 보증료 지원', '만 19~39세 전세 임차인', '상시신청', '주거'], ['파주시 청년 면접수당', '파주시 거주 만 18~39세 구직자', '~ 12.15.', '취업']];
+    var CHECK = [['근로장려금 (하반기 신청)', '소득·재산 요건 확인이 필요해요', '~ 12.01.', '세금'], ['국가건강검진 (일반·암검진)', '검진 대상 여부 확인이 필요해요', '~ 12.31.', '건강']];
+    function render(list, chk) { $('#bnfItems').innerHTML = list.map(function (b) { return '<li' + (chk ? ' class="chk"' : '') + '><span class="tag">' + b[3] + '</span><p class="nm">' + b[0] + '</p><p class="d">대상 : ' + b[1] + '<br>기간 : ' + b[2] + '</p><a href="https://www.gov.kr/portal/rcvfvrSvc/main" target="_blank" class="go" title="' + b[0] + ' (새 창 열림)">' + (chk ? '자격 확인하기' : '신청하기') + '</a></li>'; }).join(''); }
+    render(APPLY, false);
+    $$('.bnf-tabs button').forEach(function (b, i) { b.addEventListener('click', function () { $$('.bnf-tabs button').forEach(function (x) { x.classList.remove('on'); x.setAttribute('aria-selected', 'false'); }); b.classList.add('on'); b.setAttribute('aria-selected', 'true'); render(i ? CHECK : APPLY, !!i); }); });
+    $$('.bnf-cnt .card').forEach(function (c, i) { if (i > 1) return; c.addEventListener('click', function () { $$('.bnf-tabs button')[i].click(); }); });
+  })();
+</script>
+</body>
+</html>
