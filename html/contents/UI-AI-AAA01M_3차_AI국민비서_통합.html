@@ -1753,7 +1753,7 @@ body.v24-voice-open{overflow:hidden}
 	var homeInput = $('#aihInput'), homeMic = $('.aih-hero .btn-mic'), homeSearch = $('.aih-hero .btn-search');
 	var log = $('#aiLog'), bInput = $('#aiBottomInput');
 	var S;
-	function resetState() { S = { loggedIn: !!(window.DemoSession && DemoSession.get()), issued: false, doc: null, method: null, wait: null, asked: {}, cont: null, pendingDocs: null, issuedDocs: [], benefitConsent: false, permGranted: S ? S.permGranted : false }; }
+	function resetState() { S = { loggedIn: !!(window.DemoSession && DemoSession.get()), issued: false, doc: null, method: null, wait: null, asked: {}, cont: null, lookup: null, pendingDocs: null, issuedDocs: [], benefitConsent: false, permGranted: S ? S.permGranted : false }; }
 	resetState();
 
 	/* ================= 음성 레이어 : 1안 누르고 말하기 (화면 흐름만) ================= */
@@ -2091,59 +2091,68 @@ body.v24-voice-open{overflow:hidden}
 	/* ---------- Ⅳ-2 ② 대화로 필요한 개인 정보 조회 (조회 5종) ---------- */
 	var LIC = { no: '11-22-333333-44', type: '2종 보통', status: '유효', renew: '2031-12-07 ~ 2032-12-31', issued: '2021-12-07', expire: '2032-12-31' };
 	function infoBox(rows) { return '<div class="box-bg-gray"><ul>' + rows.map(function (r) { return '<li>' + esc(r[0]) + ' : ' + r[1] + '</li>'; }).join('') + '</ul></div>'; }
+	/* ---------- 조회 전 확인 : "조회할까요?" → 조회하기 선택 시 진행 ---------- */
+	function askLookup(what, run) {
+		S.lookup = run;
+		answer(true, function (sec) {
+			put(sec, '<p class="ai-followup-copy"><strong>' + what + '</strong>' + josa(what, '을', '를') + ' 조회할까요?</p>' +
+				'<p class="form-hint info">' + NAME + '님의 본인 정보를 정부24에서 확인해 알려드려요.</p>' +
+				chips('lk', [['조회하기', 'data-act="lookupYes"'], ['그만두기', 'data-act="lookupNo"']], 'ai-conversation-actions'));
+		});
+	}
 	function licRenew() {
-		needAuth('운전면허 정보는 본인확인 후 알려드릴 수 있어요.', function () {
+		askLookup('운전면허 적성검사(갱신) 기간', function () { needAuth('운전면허 정보는 본인확인 후 알려드릴 수 있어요.', function () {
 			answer(true, function (sec) {
 				put(sec, '<p class="ai-followup-copy">' + NAME + '님의 운전면허 <strong>적성검사(갱신) 기간</strong>은 <strong class="aih-point">' + LIC.renew + '</strong>이에요.</p>' +
 					infoBox([['남은 기간', '약 5년 1개월 (만료일 ' + LIC.expire + ')'], ['면허 상태', LIC.status]]) +
 					'<p class="form-hint info">갱신 기간이 지나면 과태료가 부과될 수 있어요. 기간 안에 운전면허시험장이나 경찰서에서 갱신해 주세요.</p>');
 				end(sec, ['운전면허 정보 전체 보기', '여권 만료일 알려줘', '개인통관고유부호 알려줘']);
 			});
-		});
+		}); });
 	}
 	function licFull() {
-		needAuth('운전면허 정보는 본인확인 후 알려드릴 수 있어요.', function () {
+		askLookup('운전면허 정보', function () { needAuth('운전면허 정보는 본인확인 후 알려드릴 수 있어요.', function () {
 			answer(true, function (sec) {
 				put(sec, '<p class="ai-followup-copy"><strong>“운전면허 정보”</strong>를 조회합니다.</p>' +
 					infoBox([['운전면허번호', LIC.no], ['면허 종별', LIC.type], ['면허 상태', LIC.status], ['취득일', LIC.issued], ['적성(갱신)기간', LIC.renew], ['벌점', '0점']]) +
 					'<p class="ai-complete-message">조회가 완료되었습니다. 더 자세한 정보는 민원 신청 화면에서 확인해 주세요.</p>' + links([['운전면허 정보 조회하기', GOV]]));
 				end(sec, ['여권 발급 이력 조회해줘', '국세 고지내역 알려줘', '회사에 제출할 서류 준비해줘']);
 			});
-		});
+		}); });
 	}
 	function passport() {
-		needAuth('여권 정보는 본인확인 후 알려드릴 수 있어요.', function () {
+		askLookup('여권 만료일', function () { needAuth('여권 정보는 본인확인 후 알려드릴 수 있어요.', function () {
 			answer(true, function (sec) {
 				put(sec, '<p class="ai-followup-copy">' + NAME + '님의 여권 <strong>만료일</strong>은 <strong class="aih-point">2029-03-14</strong>이에요. 남은 유효기간은 약 2년 5개월이에요.</p>' +
 					infoBox([['여권번호', 'M123A4567'], ['종류', '일반여권(복수)'], ['영문이름', 'HONG GILDONG']]) +
 					'<p class="form-hint info">유효기간이 6개월 미만이면 입국이 제한되는 나라가 있어요.</p>' + links([['여권 발급 이력 조회하기', GOV]]));
 				end(sec, ['여권 재발급 신청하고 싶어', '내가 받을 수 있는 혜택 뭐 있어?']);
 			});
-		});
+		}); });
 	}
 	function customs() {
-		needAuth('개인통관고유부호는 본인확인 후 알려드릴 수 있어요.', function () {
+		askLookup('개인통관고유부호', function () { needAuth('개인통관고유부호는 본인확인 후 알려드릴 수 있어요.', function () {
 			answer(true, function (sec) {
 				put(sec, '<p class="ai-followup-copy">' + NAME + '님의 <strong>개인통관고유부호</strong>는 <strong class="aih-point">P123456789012</strong>예요.</p><p class="form-hint info">해외직구 결제 시 입력하세요. 관세청 유니패스에서도 확인할 수 있어요.</p>');
 				end(sec, ['운전면허 갱신기간 알려줘', '회사에 제출할 서류 준비해줘']);
 			});
-		});
+		}); });
 	}
 	function tax() {
-		needAuth('국세 고지내역은 본인확인 후 알려드릴 수 있어요.', function () {
+		askLookup('국세 고지내역', function () { needAuth('국세 고지내역은 본인확인 후 알려드릴 수 있어요.', function () {
 			answer(true, function (sec) {
 				put(sec, '<p class="ai-followup-copy">현재 납부해야 할 국세 고지내역이 <strong>1건</strong> 있어요.</p>' +
 					infoBox([['세목', '종합소득세'], ['고지세액', '325,000원'], ['납부기한', '2026-11-30'], ['납부여부', '<strong class="aih-point">미납</strong>'], ['전자납부번호', '0126-0426-2026-11-0001']]) + links([['국세고지내역 조회하기', GOV]]));
 				end(sec);
 			});
-		});
+		}); });
 	}
 
 	/* ---------- Ⅳ-3 ③ 음성으로 나의 맞춤혜택 확인 (혜택 나열 대신 혜택알리미 연결) ---------- */
 	var BNF_LIST = [['에너지바우처(난방비 지원)', '생계·의료급여 수급 가구 중 노인·장애인·영유아 등이 포함된 가구', '기간 내 신청'], ['청년 월세 한시 특별지원', '만 19~34세 무주택 청년', '상시신청'], ['국민취업지원제도', '구직 중인 15~69세', '상시신청'], ['경기도 청년기본소득', '경기도 3년 이상 거주 만 24세', '분기 접수'], ['통합문화이용권(문화누리카드)', '기초생활수급자·차상위계층', '~ 11.30.']];
 	// 혜택 : 대화창에서는 행정정보 이용 동의를 받지 않음(동의·조건 설정은 혜택알리미에서) → 로그인 후 바로 조회
 	function benefit() {
-		needAuth('맞춤 혜택은 ' + NAME + '님의 정보를 바탕으로 찾아드려요.', function () { benefitResult(); });
+		askLookup('내 맞춤 혜택', function () { needAuth('맞춤 혜택은 ' + NAME + '님의 정보를 바탕으로 찾아드려요.', function () { benefitResult(); }); });
 	}
 	function benefitResult() {
 		var none = !!($('#demoNoBenefit') && $('#demoNoBenefit').checked);
@@ -2330,6 +2339,8 @@ body.v24-voice-open{overflow:hidden}
 	var ACTS = {
 		auth: authDone, login: function (b, e) { openLogin(); },
 		packIssue: packIssue,
+		lookupYes: function () { addQ('조회하기'); var r = S.lookup; S.lookup = null; if (r) r(); },
+		lookupNo: function () { addQ('그만두기'); say('알겠어요. 필요할 때 다시 말씀해 주세요.', '', { end: true }); },
 		packStop: function () { addQ('그만두기'); say('알겠어요. 필요할 때 다시 말씀해 주세요.', '', { end: true }); },
 		singleIssue: function (b) { var d = b.getAttribute('data-doc'); addQ('발급하기'); needAuth('발급을 위해 본인확인이 필요해요.', function () { addrStep([d]); }, true); },
 		addrYes: function () { addQ('맞아요'); var d = S.pendingDocs || ['주민등록표 등본']; S.pendingDocs = null; answer(false, function (sec) { put(sec, '<p class="ai-followup-copy">“' + esc(ADDR.sido + ' ' + ADDR.gugun) + '”(으)로 온라인발급(본인출력)을 진행합니다.</p>'); setTimeout(function () { packProgress(d); }, 500); }, { delay: 300 }); },
