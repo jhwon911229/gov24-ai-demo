@@ -3,45 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>[시연용] 정부24 - 발급 문서출력</title>
+<title>정부24 - 문서출력</title>
 <link rel="stylesheet" href="../../static/css/@pub/import.css">
 <link rel="stylesheet" href="../../static/css/@pub/aih-doc.css">
 <style>
-html,body{margin:0;background:#4b5563;font-size:16px}
+html,body{margin:0;background:#e9ebee;font-size:16px}
 body{font-family:"Pretendard GOV",Pretendard,sans-serif;color:#1e2124;min-height:100vh;display:flex;flex-direction:column}
-.dp-notice{display:flex;align-items:center;gap:12px;padding:10px 16px;background:#1e2a3a;color:#fff;font-size:15px;font-weight:600;line-height:1.4}
-.dp-notice .tag{white-space:nowrap}
-.dp-notice .tag{padding:2px 8px;border-radius:4px;background:#ffd23f;color:#1e2124;font-weight:800}
-.dp-head{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fff}
-.dp-head .logo{width:110px;height:34px;background:url("../../static/images/layout/logo-header.svg") no-repeat left center/contain;flex:0 0 auto}
-.dp-head h1{margin:0;font-size:19px;font-weight:700;line-height:1.3}
-@media (max-width:600px){.dp-head h1{font-size:16px}.dp-tool button{min-width:36px;padding:0 10px;font-size:15px}.dp-tool .page{padding:6px 10px;font-size:14px}.dp-body{padding:10px}}
-.dp-tool{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:8px;padding:10px 16px;background:#1b3f8b;color:#fff}
-.dp-tool button{height:40px;min-width:40px;padding:0 14px;white-space:nowrap;border:1px solid rgba(255,255,255,.55);border-radius:6px;background:transparent;color:#fff;font-size:16px;font-weight:700;cursor:pointer}
-.dp-tool button.print{margin-left:auto;background:#fff;color:#1b3f8b;border-color:#fff;padding:0 20px}
-.dp-tool .page{margin-left:auto;padding:6px 16px;border-radius:6px;background:rgba(255,255,255,.18);font-size:16px;font-weight:700}
-.dp-tool .page + .print{margin-left:auto}
-.dp-body{flex:1;padding:16px;overflow:auto}
-.dp-sheet{position:relative;margin:0 auto;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+/* 정부24 문서출력 창 형태 */
+.dp-head{display:flex;align-items:center;gap:14px;padding:16px 20px 8px;background:#e9ebee}
+.dp-head .logo{width:96px;height:30px;background:url("../../static/images/layout/logo-header.svg") no-repeat left center/contain;flex:0 0 auto}
+.dp-head h1{margin:0;padding-left:14px;border-left:1px solid #8a949e;font-size:18px;font-weight:500;line-height:1.3;color:#1e2124}
+.dp-tool{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:8px;padding:6px 20px 12px;background:#e9ebee}
+.dp-tool button{height:40px;min-width:40px;padding:0;border:0;border-radius:4px;background:#0f3b86;color:#fff;font-size:22px;font-weight:500;line-height:1;cursor:pointer}
+.dp-tool button.fit{font-size:16px}
+.dp-tool button.save,.dp-tool button.print{display:inline-flex;align-items:center;gap:6px;padding:0 14px;border:1px solid #8a949e;border-radius:4px;background:#fff;color:#1e2124;font-size:16px;font-weight:600}
+.dp-tool button.save::before{content:"";width:18px;height:18px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e2124' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v12m0 0l-4-4m4 4l4-4M4 17v3h16v-3'/%3E%3C/svg%3E") no-repeat center/contain}
+.dp-tool button.print::before{content:"";width:18px;height:18px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e2124' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M6 9V3h12v6M6 18H3v-7h18v7h-3M6 14h12v7H6z'/%3E%3C/svg%3E") no-repeat center/contain}
+.dp-tool button.close{margin-left:auto;background:transparent;color:#5f7fb5;font-size:34px;font-weight:300;min-width:36px}
+.dp-tool button:focus-visible{outline:3px solid #256ef4;outline-offset:2px}
+.dp-meta{display:flex;align-items:center;gap:18px;padding:4px 20px 10px;font-size:14px;color:#1e2124}
+.dp-meta .seal{width:64px;height:64px;border-radius:50%;border:2px solid #2a7d4f;color:#2a7d4f;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;font-weight:700;line-height:1.2;letter-spacing:.05em;background:#fff;opacity:.85}
+.dp-meta .seal b{font-size:13px}
+.dp-body{flex:1;padding:0 20px 24px;overflow:auto}
+.dp-sheet{position:relative;margin:0 auto;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.18)}
 .dp-sheet .aih-paper{position:absolute;left:0;top:0;transform-origin:0 0}
-@media print{@page{size:A4;margin:10mm}html,body{background:#fff}.dp-notice,.dp-head,.dp-tool{display:none!important}.dp-body{padding:0;overflow:visible}.dp-sheet{box-shadow:none;width:auto!important;height:auto!important}.dp-sheet .aih-paper{position:static;transform:none!important}}
+@media (max-width:600px){.dp-head{padding:12px 12px 6px}.dp-head h1{font-size:15px}.dp-tool{padding:4px 12px 10px;gap:6px}.dp-tool button{height:36px;min-width:36px;font-size:20px}.dp-tool button.save,.dp-tool button.print{padding:0 10px;font-size:14px}.dp-meta{padding:2px 12px 8px}.dp-body{padding:0 10px 16px}}
+@media print{@page{size:A4;margin:10mm}html,body{background:#fff}.dp-head,.dp-tool,.dp-meta{display:none!important}.dp-body{padding:0;overflow:visible}.dp-sheet{box-shadow:none;width:auto!important;height:auto!important}.dp-sheet .aih-paper{position:static;transform:none!important}}
 </style>
 </head>
 <body>
-<div class="dp-notice"><span class="tag">가상 서비스</span><span>사용성 평가용 견본 문서입니다. 법적 효력이 없습니다.</span></div>
-<div class="dp-head"><span class="logo" aria-hidden="true"></span><h1 id="dpTitle">발급 문서출력</h1></div>
+<div class="dp-head"><span class="logo" role="img" aria-label="정부24"></span><h1>문서출력</h1></div>
 <div class="dp-tool" role="toolbar" aria-label="문서 보기 도구">
-	<button type="button" data-z="in" aria-label="확대">＋</button><button type="button" data-z="out" aria-label="축소">－</button><button type="button" data-z="auto">자동</button>
-	<span class="page">1 / 1</span>
-	<button type="button" class="print" onclick="window.print()">인쇄</button>
+	<button type="button" data-z="in" aria-label="확대">+</button><button type="button" data-z="out" aria-label="축소">−</button><button type="button" class="fit" data-z="auto" aria-label="화면 맞춤">⤢</button>
+	<button type="button" class="save" onclick="window.print()">저장</button><button type="button" class="print" onclick="window.print()">인쇄</button>
+	<button type="button" class="close" aria-label="닫기" onclick="window.close()">×</button>
 </div>
+<div class="dp-meta"><span class="seal" aria-hidden="true"><b>진 본</b><span id="dpStamp"></span><span>정부24</span></span><span>문서확인번호 : <span id="dpNo"></span></span></div>
 <main class="dp-body"><div class="dp-sheet" id="dpSheet"></div></main>
 <script src="../../static/js/aih-doc.js"></script>
 <script>
 (function () {
 	var q = new URLSearchParams(location.search), doc = q.get('doc') || '주민등록표 등본';
-	document.title = '[시연용] 정부24 - ' + AihDoc.docTitle(doc);
-	document.getElementById('dpTitle').textContent = AihDoc.docTitle(doc);
+		document.title = '정부24 - 문서출력 (' + AihDoc.docTitle(doc) + ')';
+	var d = new Date(), z = function (n) { return (n < 10 ? '0' : '') + n; }; document.getElementById('dpStamp').textContent = d.getFullYear() + z(d.getMonth() + 1) + z(d.getDate()) + ' ' + z(d.getHours()) + ':' + z(d.getMinutes());
+	window.AIH_DOC_NO = '1755-' + String(1000 + Math.floor(Math.random() * 9000)) + '-' + String(1000 + Math.floor(Math.random() * 9000)) + '-' + String(10000 + Math.floor(Math.random() * 90000)); document.getElementById('dpNo').textContent = AIH_DOC_NO;
 	var sheet = document.getElementById('dpSheet'); sheet.innerHTML = AihDoc.paperHtml(doc);
 	var paper = sheet.firstElementChild, mode = 'auto', zoom = 1;
 	function fit() {

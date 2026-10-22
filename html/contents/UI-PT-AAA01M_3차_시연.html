@@ -3614,16 +3614,17 @@
 
 
   <script>
-  /* 시연용 로그인 세션 : 메인 · AI국민비서 화면 간 로그인 상태 유지(sessionStorage, 저장이 막힌 환경은 URL ls=1로 전달). 처음엔 로그인 전 상태 */
+  /* 시연용 로그인 세션 : 메인 · AI국민비서 화면 간 로그인 상태 유지(sessionStorage, 저장이 막힌 환경은 URL ls=1로 전달). 기본은 로그인된 상태(홍길동) */
   (function () {
     'use strict';
     var KEY = 'gov24AiDemoLoggedIn';
-    var mem = /[?&]ls=1(&|#|$)/.test(location.search);
+    var mem = !/[?&]ls=0(&|#|$)/.test(location.search);   // 시연 기본값: 로그인된 상태(홍길동). ?ls=0 이면 로그인 전
     function get() { try { var v = sessionStorage.getItem(KEY); if (v !== null) return v === '1'; } catch (e) {} return mem; }
     function set(v) { mem = !!v; try { sessionStorage.setItem(KEY, v ? '1' : '0'); } catch (e) {} document.dispatchEvent(new CustomEvent('demo-login', { detail: !!v })); }
-    if (mem) { try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
-      try { history.replaceState(null, '', location.href.replace(/([?&])ls=1(&?)/, function (m, a, b) { return b ? a : ''; }).replace(/\?$/, '')); } catch (e) {} }
-    window.DemoSession = { get: get, set: set, url: function (u) { if (!get()) return u; return u + (u.indexOf('?') > -1 ? '&' : '?') + 'ls=1'; } };
+    var urlLs = /[?&]ls=([01])(&|#|$)/.exec(location.search);
+    if (urlLs) { try { sessionStorage.setItem(KEY, urlLs[1]); } catch (e) {}
+      try { history.replaceState(null, '', location.href.replace(/([?&])ls=[01](&?)/, function (m, a, b) { return b ? a : ''; }).replace(/\?$/, '')); } catch (e) {} }
+    window.DemoSession = { get: get, set: set, url: function (u) { return u + (u.indexOf('?') > -1 ? '&' : '?') + 'ls=' + (get() ? '1' : '0'); } };
   })();
 
   /* 정부24 메인(PC) : 최종 시안(로그인 전 헤더 + 자주 찾는 서비스 + MyGOV) 상태로 정리 — 퍼블리싱 원본은 그대로 두고 시연본에서만 적용 */
