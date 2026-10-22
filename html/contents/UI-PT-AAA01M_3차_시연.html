@@ -348,7 +348,7 @@
 
                 <!-- 해당 링크는 모바일 공통UI > 	모바일앱-메인설정.html 화면이 열리면 됩니다. -->
                 <!-- <a href="" class="user-info">
-                  <p class="name"><span>김통합가나다라</span>님</p>
+                  <p class="name"><span>홍길동가나다라</span>님</p>
                   <i class="ico-sc-setting" aria-hidden="true"></i>
                   <span class="sr-only">설정하기</span>
                 </a> -->
@@ -2181,7 +2181,7 @@
                       <div class="main-my-info">
                         <a href="" class="name">
                           <i class="iconset ico-mygov-blue"></i>
-                          <strong title="김통합김통합김통합">김통합김통합김통합</strong>님의 MyGOV
+                          <strong title="홍길동홍길동홍길동">홍길동홍길동홍길동</strong>님의 MyGOV
                         </a>
 
                         <div class="detail-print">
@@ -3622,6 +3622,7 @@
     function get() { try { var v = sessionStorage.getItem(KEY); if (v !== null) return v === '1'; } catch (e) {} return mem; }
     function set(v) { mem = !!v; try { sessionStorage.setItem(KEY, v ? '1' : '0'); } catch (e) {} document.dispatchEvent(new CustomEvent('demo-login', { detail: !!v })); }
     var urlLs = /[?&]ls=([01])(&|#|$)/.exec(location.search);
+    if (!urlLs) { var fresh = !document.referrer || document.referrer.indexOf(location.host) < 0; if (fresh) { try { sessionStorage.setItem(KEY, '1'); } catch (e) {} } }   // 메인은 시연 시작점 : 새로 들어오면 로그인 상태로
     if (urlLs) { try { sessionStorage.setItem(KEY, urlLs[1]); } catch (e) {}
       try { history.replaceState(null, '', location.href.replace(/([?&])ls=[01](&?)/, function (m, a, b) { return b ? a : ''; }).replace(/\?$/, '')); } catch (e) {} }
     window.DemoSession = { get: get, set: set, url: function (u) { return u + (u.indexOf('?') > -1 ? '&' : '?') + 'ls=' + (get() ? '1' : '0'); } };
@@ -3663,7 +3664,7 @@
       fav.classList.add('demo-fav-only');
     }
     // MyGOV : 시안 문구·건수
-    var nm = $('.main-mygov .main-my-info .name strong'); if (nm) { nm.textContent = '김통합'; nm.title = '김통합'; }
+    var nm = $('.main-mygov .main-my-info .name strong'); if (nm) { nm.textContent = '홍길동'; nm.title = '홍길동'; }
     rm('.main-mygov .layer-print-count');
     var rows = [['민원 신청 현황', '3'], ['전자증명서', '5'], ['나의 혜택', '100'], ['나의 생활정보', '27']];
     $$('.main-mygov .main-my-list li').forEach(function (li, i) {
