@@ -238,6 +238,11 @@ body.v24-voice-open{overflow:hidden}
 .aih-faq .a p{margin:0}.aih-faq .a p+p{margin-top:1.6rem}
 .aih-faq .a .sub{display:block;margin-top:.4rem;padding-left:1.6rem;color:#464c53}
 .aih-faq .a .shot{display:block;max-width:50rem;margin:1rem 0 0;border:.1rem solid #cdd1d5;background:#fff}
+.aih-hide{visibility:hidden}
+.aih-in{animation:aihIn .28s ease-out both}
+@keyframes aihIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.aih-typing::after{content:"";display:inline-block;width:.15em;height:1em;margin-left:.1em;vertical-align:-.15em;background:#256ef4;animation:aihCaret .8s steps(1) infinite}
+@keyframes aihCaret{50%{opacity:0}}
 /* 하단 입력 */
 .v24-dock{position:sticky;bottom:0;z-index:50;padding:1.6rem 0 2.4rem;background:linear-gradient(rgba(238,244,248,0),#eef4f8 1.6rem)}
 .v24-dock form{display:flex;align-items:center;gap:1rem;padding:.8rem .8rem .8rem 2.2rem;border:.2rem solid transparent;border-radius:99rem;background:linear-gradient(#fff,#fff) padding-box,var(--v24-grad) border-box}
@@ -1878,7 +1883,13 @@ body.v24-voice-open{overflow:hidden}
 	function scrollBottom() {
 		clearTimeout(scrollBottom.t);
 		if (!root.classList.contains('is-chat')) return;   // AI전용홈(새로운 질문하기)에서는 자동 스크롤 안 함
-		scrollBottom.t = setTimeout(function () { if (root.classList.contains('is-chat')) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }); }, 80);
+		scrollBottom.t = setTimeout(function () {
+			if (!root.classList.contains('is-chat')) return;
+			var last = $$('.ai-conversation-section, .iw-ai-my-q', log).pop();
+			var bottom = document.documentElement.scrollHeight - window.innerHeight;
+			var top = last ? last.getBoundingClientRect().top + window.pageYOffset - 120 : bottom;   // 최신 답변의 첫 줄이 보이는 위치까지만 내림
+			window.scrollTo({ top: Math.max(0, Math.min(bottom, top)), behavior: 'smooth' });
+		}, 80);
 	}
 	function scrollTo(n) { scrollBottom(); }
 	new MutationObserver(scrollBottom).observe(log, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['class', 'style'] });
@@ -1894,8 +1905,30 @@ body.v24-voice-open{overflow:hidden}
 		if (title) log.appendChild(el(TITLE));
 		var sec = el('<div class="iw-ai-answer ai-conversation-section">' + THINK + '</div>');
 		log.appendChild(sec); if (opt.scroll) scrollTo(sec);
-		setTimeout(function () { sec.innerHTML = ''; build(sec); }, opt.delay == null ? THINK_MS : opt.delay);
+		setTimeout(function () { sec.innerHTML = ''; build(sec); reveal(sec); }, opt.delay == null ? THINK_MS : opt.delay);
 		return sec;
+	}
+	/* 답변 표출 연출 : 블록을 하나씩 보여 주고, 문장은 타자 치듯 표시 */
+	function typeInto(el, done) {
+		var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), nodes = [], n, total = 0;
+		while ((n = walker.nextNode())) { if (n.nodeValue.trim()) { nodes.push([n, n.nodeValue]); total += n.nodeValue.length; n.nodeValue = ''; } }
+		if (!total) { done(); return; }
+		var ms = Math.max(10, Math.min(24, 1300 / total)), i = 0, c = 0;
+		el.classList.add('aih-typing');
+		var t = setInterval(function () {
+			var cur = nodes[i]; c += (total > 120 ? 2 : 1); cur[0].nodeValue = cur[1].slice(0, c);
+			if (c >= cur[1].length) { cur[0].nodeValue = cur[1]; i++; c = 0; if (i >= nodes.length) { clearInterval(t); el.classList.remove('aih-typing'); done(); } }
+		}, ms);
+	}
+	function reveal(sec) {
+		var kids = [].slice.call(sec.children); kids.forEach(function (k) { k.classList.add('aih-hide'); });
+		var i = 0;
+		(function next() {
+			if (i >= kids.length) return;
+			var k = kids[i++]; k.classList.remove('aih-hide'); k.classList.add('aih-in');
+			if (k.tagName === 'P' && !k.querySelector('input,button,a') && k.textContent.trim().length > 6) typeInto(k, next);
+			else setTimeout(next, 180);
+		})();
 	}
 	function put(sec, html) { var w = document.createElement('div'); w.innerHTML = html; var last; while (w.firstChild) { last = w.firstChild; sec.appendChild(last); } return last; }
 	// 처리 단계 : 하나씩 진행 표시 → 완료(.done)
