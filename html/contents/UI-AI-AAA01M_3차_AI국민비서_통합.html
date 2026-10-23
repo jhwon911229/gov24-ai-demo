@@ -2133,56 +2133,48 @@ body.v24-voice-open{overflow:hidden}
 				chips('lk', [['조회하기', 'data-act="lookupYes"'], ['그만두기', 'data-act="lookupNo"']], 'ai-conversation-actions'));
 		});
 	}
+	/* 조회 서비스 : 해당 조회서비스의 정보 전체를 조회해 보여 줌 (질문한 항목은 강조) */
+	function lookupAnswer(svc, rows, hint, link, fq, hl) {
+		answer(true, function (sec) {
+			put(sec, '<p class="ai-followup-copy">' + NAME + '님의 <strong>“' + svc + '”</strong>' + josa(svc, '을', '를') + ' 조회했어요.' + (hl ? ' ' + hl : '') + '</p>' +
+				infoBox(rows) + (hint ? '<p class="form-hint info">' + hint + '</p>' : '') +
+				'<p class="ai-complete-message">조회가 완료되었습니다. 더 자세한 정보는 서비스 화면에서 확인할 수 있어요.</p>' + links([[link[0], link[1]]]));
+			end(sec, fq);
+		});
+	}
+	var LIC_ROWS = function (hlRenew) { return [['운전면허번호', LIC.no], ['면허 종별', LIC.type], ['면허 상태', LIC.status], ['취득일', LIC.issued], ['적성검사(갱신) 기간', hlRenew ? '<strong class="aih-point">' + LIC.renew + '</strong>' : LIC.renew], ['벌점', '0점']]; };
 	function licRenew() {
-		askLookup('운전면허 적성검사(갱신) 기간', function () { needAuth('운전면허 정보는 본인확인 후 알려드릴 수 있어요.', function () {
-			answer(true, function (sec) {
-				put(sec, '<p class="ai-followup-copy">' + NAME + '님의 운전면허 <strong>적성검사(갱신) 기간</strong>은 <strong class="aih-point">' + LIC.renew + '</strong>이에요.</p>' +
-					infoBox([['남은 기간', '약 5년 1개월 (만료일 ' + LIC.expire + ')'], ['면허 상태', LIC.status]]) +
-					'<p class="form-hint info">갱신 기간이 지나면 과태료가 부과될 수 있어요. 기간 안에 운전면허시험장이나 경찰서에서 갱신해 주세요.</p>');
-				end(sec, ['운전면허 정보 전체 보기', '여권 만료일 알려줘', '개인통관고유부호 알려줘']);
-			});
+		askLookup('운전면허 정보', function () { needAuth('운전면허 정보는 본인확인 후 알려드릴 수 있어요.', function () {
+			lookupAnswer('운전면허 정보', LIC_ROWS(true), '적성검사(갱신) 기간이 지나면 과태료가 부과될 수 있어요. 기간 안에 운전면허시험장이나 경찰서에서 갱신해 주세요.', ['운전면허 정보 조회 서비스', GOV],
+				['여권 정보 조회해줘', '개인통관고유부호 알려줘', '국세 고지내역 알려줘'], '적성검사(갱신) 기간은 <strong class="aih-point">' + LIC.renew + '</strong>이에요.');
 		}); });
 	}
 	function licFull() {
 		askLookup('운전면허 정보', function () { needAuth('운전면허 정보는 본인확인 후 알려드릴 수 있어요.', function () {
-			answer(true, function (sec) {
-				put(sec, '<p class="ai-followup-copy"><strong>“운전면허 정보”</strong>를 조회합니다.</p>' +
-					infoBox([['운전면허번호', LIC.no], ['면허 종별', LIC.type], ['면허 상태', LIC.status], ['취득일', LIC.issued], ['적성(갱신)기간', LIC.renew], ['벌점', '0점']]) +
-					'<p class="ai-complete-message">조회가 완료되었습니다. 더 자세한 정보는 민원 신청 화면에서 확인해 주세요.</p>' + links([['운전면허 정보 조회하기', GOV]]));
-				end(sec, ['여권 발급 이력 조회해줘', '국세 고지내역 알려줘', '회사에 제출할 서류 준비해줘']);
-			});
+			lookupAnswer('운전면허 정보', LIC_ROWS(false), null, ['운전면허 정보 조회 서비스', GOV], ['여권 정보 조회해줘', '국세 고지내역 알려줘', '회사에 제출할 서류 준비해줘']);
 		}); });
 	}
 	function passport() {
-		askLookup('여권 만료일', function () { needAuth('여권 정보는 본인확인 후 알려드릴 수 있어요.', function () {
-			answer(true, function (sec) {
-				put(sec, '<p class="ai-followup-copy">' + NAME + '님의 여권 <strong>만료일</strong>은 <strong class="aih-point">2029-03-14</strong>이에요. 남은 유효기간은 약 2년 5개월이에요.</p>' +
-					infoBox([['여권번호', 'M123A4567'], ['종류', '일반여권(복수)'], ['영문이름', 'HONG GILDONG']]) +
-					'<p class="form-hint info">유효기간이 6개월 미만이면 입국이 제한되는 나라가 있어요.</p>' + links([['여권 발급 이력 조회하기', GOV]]));
-				end(sec, ['여권 재발급 신청하고 싶어', '내가 받을 수 있는 혜택 뭐 있어?']);
-			});
+		askLookup('여권 정보', function () { needAuth('여권 정보는 본인확인 후 알려드릴 수 있어요.', function () {
+			lookupAnswer('여권 정보', [['여권번호', 'M123A4567'], ['여권 종류', '일반여권(복수) · 전자여권'], ['영문 성명', 'HONG GILDONG'], ['발급일', '2019-03-15'], ['만료일', '<strong class="aih-point">2029-03-14</strong> (남은 유효기간 약 2년 5개월)'], ['발급관청', '경기도 파주시'], ['여권 상태', '유효']],
+				'유효기간이 6개월 미만이면 입국이 제한되는 나라가 있어요.', ['여권 정보 조회 서비스', GOV], ['여권 재발급 신청하고 싶어', '운전면허 갱신기간 알려줘', '내가 받을 수 있는 혜택 뭐 있어?']);
 		}); });
 	}
 	function customs() {
 		askLookup('개인통관고유부호', function () { needAuth('개인통관고유부호는 본인확인 후 알려드릴 수 있어요.', function () {
-			answer(true, function (sec) {
-				put(sec, '<p class="ai-followup-copy">' + NAME + '님의 <strong>개인통관고유부호</strong>는 <strong class="aih-point">P123456789012</strong>예요.</p><p class="form-hint info">해외직구 결제 시 입력하세요. 관세청 유니패스에서도 확인할 수 있어요.</p>');
-				end(sec, ['운전면허 갱신기간 알려줘', '회사에 제출할 서류 준비해줘']);
-			});
+			lookupAnswer('개인통관고유부호', [['개인통관고유부호', '<strong class="aih-point">P123456789012</strong>'], ['성명', NAME], ['발급일', '2021-05-20'], ['상태', '정상 (사용 가능)'], ['최근 통관 이용', '2026-09-28 해외직구 1건']],
+				'해외직구 결제 시 입력하세요. 관세청 유니패스에서도 확인할 수 있어요.', ['개인통관고유부호 조회 서비스', GOV], ['운전면허 갱신기간 알려줘', '국세 고지내역 알려줘', '회사에 제출할 서류 준비해줘']);
 		}); });
 	}
 	function tax() {
 		askLookup('국세 고지내역', function () { needAuth('국세 고지내역은 본인확인 후 알려드릴 수 있어요.', function () {
-			answer(true, function (sec) {
-				put(sec, '<p class="ai-followup-copy">현재 납부해야 할 국세 고지내역이 <strong>1건</strong> 있어요.</p>' +
-					infoBox([['세목', '종합소득세'], ['고지세액', '325,000원'], ['납부기한', '2026-11-30'], ['납부여부', '<strong class="aih-point">미납</strong>'], ['전자납부번호', '0126-0426-2026-11-0001']]) + links([['국세고지내역 조회하기', GOV]]));
-				end(sec);
-			});
+			lookupAnswer('국세 고지내역', [['고지 건수', '<strong class="aih-point">1건 (미납)</strong>'], ['세목', '종합소득세'], ['고지세액', '325,000원'], ['납부기한', '2026-11-30'], ['전자납부번호', '0126-0426-2026-11-0001'], ['납부 방법', '정부24 · 홈택스 · 은행 인터넷뱅킹']],
+				'납부기한이 지나면 가산세가 붙을 수 있어요.', ['국세 고지내역 조회 서비스', GOV], ['여권 정보 조회해줘', '운전면허 갱신기간 알려줘', '내가 받을 수 있는 혜택 뭐 있어?']);
 		}); });
 	}
 
 	/* ---------- Ⅳ-3 ③ 음성으로 나의 맞춤혜택 확인 (혜택 나열 대신 혜택알리미 연결) ---------- */
-	var BNF_LIST = [['에너지바우처(난방비 지원)', '생계·의료급여 수급 가구 중 노인·장애인·영유아 등이 포함된 가구', '기간 내 신청'], ['청년 월세 한시 특별지원', '만 19~34세 무주택 청년', '상시신청'], ['국민취업지원제도', '구직 중인 15~69세', '상시신청'], ['경기도 청년기본소득', '경기도 3년 이상 거주 만 24세', '분기 접수'], ['통합문화이용권(문화누리카드)', '기초생활수급자·차상위계층', '~ 11.30.']];
+	var BNF_LIST = [['청년 월세 한시 특별지원', '만 19~34세 무주택 청년 (부모와 별도 거주)', '상시신청'], ['청년도약계좌', '만 19~34세 · 개인소득 7,500만원 이하', '매월 접수'], ['경기도 청년기본소득', '경기도 3년 이상 거주 만 24세', '분기 접수'], ['청년 전세보증금 반환보증 보증료 지원', '만 19~39세 · 보증금 3억원 이하 임차인', '상시신청'], ['국민취업지원제도 (청년특례)', '구직 중인 만 18~34세 청년', '상시신청']];
 	// 혜택 : 대화창에서는 행정정보 이용 동의를 받지 않음(동의·조건 설정은 혜택알리미에서) → 로그인 후 바로 조회
 	function benefit() {
 		askLookup('내 맞춤 혜택', function () { needAuth('맞춤 혜택은 ' + NAME + '님의 정보를 바탕으로 찾아드려요.', function () { benefitResult(); }); });
@@ -2197,10 +2189,10 @@ body.v24-voice-open{overflow:hidden}
 				if (none) {
 					put(sec, '<p class="ai-complete-message">아쉽게도 맞춤 혜택이 없어요.</p><p>정확한 혜택 조회를 위해서 혜택알리미 서비스를 이용해 보세요.<br>1만여 종의 혜택을 볼 수 있어요.</p>' + links([['내 맞춤 조건 설정하기', BNF_SETTING]]));
 				} else {
-					put(sec, '<p class="ai-complete-message">맞춤 혜택을 찾았어요.</p>' +
-						'<div class="ai-card-link-panel">' + BNF_LIST.slice(0, 5).map(function (b) { return '<a href="' + BNF + '" class="btn-card-box" target="_blank" title="' + esc(b[0]) + ' 혜택알리미 상세(새 창)"><b class="tit">' + esc(b[0]) + '<i class="iconset ico-ai-arrow" aria-hidden="true"></i></b><p class="txt"><span>대상 :</span><span>' + esc(b[1]) + '</span></p><p class="txt">기간 : ' + esc(b[2]) + '</p></a>'; }).join('') +
-						'<a href="' + BNF_PAGE + '" class="btn-more" onclick="this.href=DemoSession.url(BNF_PAGE)" title="혜택알리미 맞춤혜택">혜택알리미에서 더 많은 혜택 보기<i class="iconset ico-ai-arrow" aria-hidden="true"></i></a></div>' +
-						'<p class="form-hint info">이외에도 혜택알리미에 <strong>신청 가능한 혜택 3개</strong>와 <strong>확인이 필요한 혜택 2개</strong>가 더 있어요. 자세한 내용은 혜택알리미에서 확인하세요.</p>');
+					put(sec, '<p class="ai-complete-message">' + NAME + '님이 받을 수 있는 청년 맞춤 혜택을 찾았어요.</p>' +
+						'<p>이외에도 혜택알리미에 <strong>신청 가능한 혜택 3개</strong>와 <strong>확인이 필요한 혜택 2개</strong>가 더 있어요.</p>' +
+						'<div class="answer-choice"><a href="' + BNF_PAGE + '" class="btn-choice" onclick="this.href=DemoSession.url(BNF_PAGE)" title="혜택알리미 맞춤혜택"><span>혜택알리미에서 더 많은 혜택 보기</span><i class="iconset ico-arr-more" aria-hidden="true"></i></a></div>' +
+						'<div class="ai-card-link-panel">' + BNF_LIST.slice(0, 5).map(function (b) { return '<a href="' + BNF_PAGE + '" class="btn-card-box" onclick="this.href=DemoSession.url(BNF_PAGE)" title="' + esc(b[0]) + ' 혜택알리미 상세"><b class="tit">' + esc(b[0]) + '<i class="iconset ico-ai-arrow" aria-hidden="true"></i></b><p class="txt"><span>대상 :</span><span>' + esc(b[1]) + '</span></p><p class="txt">기간 : ' + esc(b[2]) + '</p></a>'; }).join('') + '</div>');
 				}
 				end(sec, ['경기도에서 내가 받을 수 있는 혜택이 뭐야?', '회사에 제출할 서류 준비해줘', '운전면허 갱신기간 알려줘']);
 			}, 2200);
@@ -2346,6 +2338,7 @@ body.v24-voice-open{overflow:hidden}
 		if (/운전면허.*(전체|정보조회|조회해|정보보)/.test(t)) return licFull();
 		if (/운전면허|갱신|적성검사/.test(t)) return licRenew();
 		if (/여권/.test(t) && !/재발급|신청/.test(t)) return passport();
+		if (/통관고유부호|통관부호/.test(t)) return customs();
 		if (/통관/.test(t)) return customs();
 		if (/국세|고지/.test(t)) return tax();
 		if (/비밀번호|비번/.test(t)) return faq(1, ['주민등록등본 발급해줘', '이사 가면 해야 할 일 정리해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
