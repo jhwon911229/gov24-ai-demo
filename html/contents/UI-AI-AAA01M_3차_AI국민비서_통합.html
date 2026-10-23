@@ -215,6 +215,8 @@ body.v24-voice-open{overflow:hidden}
 .aih .ai-conversation-section>.aih-guide+.aih-ext-chips{margin-top:1.6rem}
 .aih .aih-note{margin-top:.8rem!important;color:#6d7882}
 .aih .aih-fb-done{margin-left:.4rem;font-size:1.4rem;color:#0b50d0}
+.aih .ai-issuance-view .ai-issuance-conversation .box-bg-gray{max-width:100%;width:100%;box-sizing:border-box}
+.aih .box-bg-gray ul li{word-break:keep-all;overflow-wrap:anywhere}
 /* 답변전체읽기 */
 .aih .iw-ai-feedback{display:flex;align-items:center;gap:.6rem}
 .aih .btn-tts{display:inline-flex;align-items:center;gap:.4rem;height:4rem;padding:0 1.2rem;border:.1rem solid #cdd1d5;border-radius:9.9rem;background:#f4f5f6;font-size:1.5rem;color:#464c53;line-height:1}
@@ -2156,7 +2158,7 @@ body.v24-voice-open{overflow:hidden}
 	}
 	function passport() {
 		askLookup('여권 정보', function () { needAuth('여권 정보는 본인확인 후 알려드릴 수 있어요.', function () {
-			lookupAnswer('여권 정보', [['여권번호', 'M123A4567'], ['여권 종류', '일반여권(복수) · 전자여권'], ['영문 성명', 'HONG GILDONG'], ['발급일', '2019-03-15'], ['만료일', '<strong class="aih-point">2029-03-14</strong> (남은 유효기간 약 2년 5개월)'], ['발급관청', '경기도 파주시'], ['여권 상태', '유효']],
+			lookupAnswer('여권 정보', [['여권번호', 'M123A4567'], ['여권 종류', '일반여권(복수) · 전자여권'], ['영문 성명', 'HONG GILDONG'], ['발급일', '2019-03-15'], ['만료일', '<strong class="aih-point">2029-03-14</strong> · 약 2년 5개월 남음'], ['발급관청', '경기도 파주시'], ['여권 상태', '유효']],
 				null, ['여권 정보 조회 서비스', GOV], ['여권 재발급 신청하고 싶어', '운전면허 갱신기간 알려줘', '내가 받을 수 있는 혜택 뭐 있어?'], '만료일이 얼마 남지 않은 여권은 입국이 제한되는 국가가 있어요.');
 		}); });
 	}
