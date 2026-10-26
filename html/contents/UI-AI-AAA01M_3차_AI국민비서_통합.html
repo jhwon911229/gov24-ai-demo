@@ -217,6 +217,11 @@ body.v24-voice-open{overflow:hidden}
 .aih .aih-fb-done{margin-left:.4rem;font-size:1.4rem;color:#0b50d0}
 .aih .ai-issuance-view .ai-issuance-conversation .box-bg-gray{max-width:100%;width:100%;box-sizing:border-box}
 .aih .box-bg-gray ul li{word-break:keep-all;overflow-wrap:anywhere}
+.aih .ai-conversation-section>p.aih-lead,.aih .ai-conversation-section>.ai-complete-message.aih-lead{font-size:1.9rem;line-height:1.6}
+.aih .answer-choice .btn-choice.aih-bnf-go{background:linear-gradient(100deg,#0fb87d,#256ef4);color:#fff;font-weight:700;border:0;box-shadow:0 .4rem 1rem rgba(37,110,244,.25)}
+.aih .answer-choice .btn-choice.aih-bnf-go span{color:#fff}
+.aih .answer-choice .btn-choice.aih-bnf-go .ico-arr-more{filter:brightness(0) invert(1)}
+.aih .answer-choice .btn-choice.aih-bnf-go:hover{filter:brightness(1.06)}
 /* 답변전체읽기 */
 .aih .iw-ai-feedback{display:flex;align-items:center;gap:.6rem}
 .aih .btn-tts{display:inline-flex;align-items:center;gap:.4rem;height:4rem;padding:0 1.2rem;border:.1rem solid #cdd1d5;border-radius:9.9rem;background:#f4f5f6;font-size:1.5rem;color:#464c53;line-height:1}
@@ -2138,7 +2143,7 @@ body.v24-voice-open{overflow:hidden}
 	/* 조회 서비스 : 해당 조회서비스의 정보 전체를 조회해 보여 줌 (질문한 항목은 강조) */
 	function lookupAnswer(svc, rows, hint, link, fq, hl) {
 		answer(true, function (sec) {
-			put(sec, '<p class="ai-followup-copy">' + NAME + '님의 <strong>“' + svc + '”</strong>' + josa(svc, '을', '를') + ' 조회했어요.' + (hl ? ' ' + hl : '') + '</p>' +
+			put(sec, '<p class="ai-followup-copy aih-lead">' + NAME + '님의 <strong>“' + svc + '”</strong>' + josa(svc, '을', '를') + ' 조회했어요.' + (hl ? ' ' + hl : '') + '</p>' +
 				infoBox(rows) + (hint ? '<p class="form-hint info">' + hint + '</p>' : '') +
 				'<p class="ai-complete-message">조회가 완료되었습니다. 더 자세한 정보는 서비스 화면에서 확인할 수 있어요.</p>' + links([[link[0], link[1]]]));
 			end(sec, fq);
@@ -2148,7 +2153,7 @@ body.v24-voice-open{overflow:hidden}
 	function licRenew() {
 		askLookup('운전면허 정보', function () { needAuth('운전면허 정보는 본인확인 후 알려드릴 수 있어요.', function () {
 			lookupAnswer('운전면허 정보', LIC_ROWS(true), '적성검사(갱신) 기간이 지나면 과태료가 부과될 수 있어요. 기간 안에 운전면허시험장이나 경찰서에서 갱신해 주세요.', ['운전면허 정보 조회 서비스', GOV],
-				['여권 정보 조회해줘', '개인통관고유부호 알려줘', '국세 고지내역 알려줘'], '적성검사(갱신) 기간은 <strong class="aih-point">' + LIC.renew + '</strong>이에요.');
+				['여권 정보 조회해줘', '개인통관고유부호 알려줘', '국세 고지내역 알려줘']);
 		}); });
 	}
 	function licFull() {
@@ -2158,13 +2163,13 @@ body.v24-voice-open{overflow:hidden}
 	}
 	function passport() {
 		askLookup('여권 정보', function () { needAuth('여권 정보는 본인확인 후 알려드릴 수 있어요.', function () {
-			lookupAnswer('여권 정보', [['여권번호', 'M123A4567'], ['여권 종류', '일반여권(복수) · 전자여권'], ['영문 성명', 'HONG GILDONG'], ['발급일', '2019-03-15'], ['만료일', '<strong class="aih-point">2029-03-14</strong> · 약 2년 5개월 남음'], ['발급관청', '경기도 파주시'], ['여권 상태', '유효']],
+			lookupAnswer('여권 정보', [['여권번호', 'M123A4567'], ['여권 종류', '일반여권(복수) · 전자여권'], ['영문 성명', 'HONG GILDONG'], ['발급일', '2019-03-15'], ['만료일', '<strong class="aih-point">2029-03-14</strong> · 약 2년 5개월 남음'], ['여권 상태', '유효']],
 				null, ['여권 정보 조회 서비스', GOV], ['여권 재발급 신청하고 싶어', '운전면허 갱신기간 알려줘', '내가 받을 수 있는 혜택 뭐 있어?'], '만료일이 얼마 남지 않은 여권은 입국이 제한되는 국가가 있어요.');
 		}); });
 	}
 	function customs() {
 		askLookup('개인통관고유부호', function () { needAuth('개인통관고유부호는 본인확인 후 알려드릴 수 있어요.', function () {
-			lookupAnswer('개인통관고유부호', [['개인통관고유부호', '<strong class="aih-point">P123456789012</strong>'], ['성명', NAME], ['발급일', '2021-05-20'], ['상태', '정상 (사용 가능)'], ['최근 통관 이용', '2026-09-28 해외직구 1건']],
+			lookupAnswer('개인통관고유부호', [['개인통관고유부호', '<strong class="aih-point">P123456789012</strong>']],
 				'해외직구 결제 시 입력하세요. 관세청 유니패스에서도 확인할 수 있어요.', ['개인통관고유부호 조회 서비스', GOV], ['운전면허 갱신기간 알려줘', '국세 고지내역 알려줘', '회사에 제출할 서류 준비해줘']);
 		}); });
 	}
@@ -2191,9 +2196,9 @@ body.v24-voice-open{overflow:hidden}
 				if (none) {
 					put(sec, '<p class="ai-complete-message">아쉽게도 맞춤 혜택이 없어요.</p><p>정확한 혜택 조회를 위해서 혜택알리미 서비스를 이용해 보세요.<br>1만여 종의 혜택을 볼 수 있어요.</p>' + links([['내 맞춤 조건 설정하기', BNF_SETTING]]));
 				} else {
-					put(sec, '<p class="ai-complete-message">' + NAME + '님이 받을 수 있는 청년 맞춤 혜택을 찾았어요.</p>' +
-						'<p>이외에도 혜택알리미에 <strong>신청 가능한 혜택 3개</strong>와 <strong>확인이 필요한 혜택 2개</strong>가 더 있어요.</p>' +
-						'<div class="answer-choice"><a href="' + BNF_PAGE + '" class="btn-choice" onclick="this.href=DemoSession.url(BNF_PAGE)" title="혜택알리미 맞춤혜택"><span>혜택알리미에서 더 많은 혜택 보기</span><i class="iconset ico-arr-more" aria-hidden="true"></i></a></div>' +
+					put(sec, '<p class="ai-complete-message aih-lead">' + NAME + '님이 받을 수 있는 청년 맞춤 혜택을 찾았어요.</p>' +
+						'<p class="aih-lead"><strong>청년 월세 한시 특별지원</strong> 외에도 신청 가능한 혜택 <strong>7건</strong>, 확인이 필요한 혜택 <strong>2건</strong>이 있어요.</p>' +
+						'<div class="answer-choice"><a href="' + BNF_PAGE + '" class="btn-choice aih-bnf-go" onclick="this.href=DemoSession.url(BNF_PAGE)" title="혜택알리미 맞춤혜택"><span>혜택알리미에서 더 많은 혜택 보기</span><i class="iconset ico-arr-more" aria-hidden="true"></i></a></div>' +
 						'<div class="ai-card-link-panel">' + BNF_LIST.slice(0, 5).map(function (b) { return '<a href="' + BNF_PAGE + '" class="btn-card-box" onclick="this.href=DemoSession.url(BNF_PAGE)" title="' + esc(b[0]) + ' 혜택알리미 상세"><b class="tit">' + esc(b[0]) + '<i class="iconset ico-ai-arrow" aria-hidden="true"></i></b><p class="txt"><span>대상 :</span><span>' + esc(b[1]) + '</span></p><p class="txt">기간 : ' + esc(b[2]) + '</p></a>'; }).join('') + '</div>');
 				}
 				end(sec, ['경기도에서 내가 받을 수 있는 혜택이 뭐야?', '회사에 제출할 서류 준비해줘', '운전면허 갱신기간 알려줘']);
