@@ -1544,7 +1544,6 @@ body.v24-voice-open{overflow:hidden}
 				<div class="links aih-scn"><button type="button" data-scn="2">② 대화로 개인 정보 조회</button></div>
 				<div class="links aih-scn"><button type="button" data-scn="3">③ 음성으로 맞춤혜택 확인</button></div>
 				<p style="margin-top:.8rem">음성 입력 방식(시안)</p>
-				<div class="vm-opt"><label><input type="radio" name="demoVm" value="1"> 1안 누르고 말하기</label><label><input type="radio" name="demoVm" value="2"> 2안 자동 종료(침묵 감지)</label><label><input type="radio" name="demoVm" value="3"> 3안 버튼 시작·종료</label></div>
 				<p>옵션</p>
 				<label><input type="checkbox" id="demoError"> 음성 인식 실패(오류 화면) 보기</label>
 				<label><input type="checkbox" id="demoNoBenefit"> 맞춤 혜택 없음 화면 보기</label>
@@ -1798,7 +1797,7 @@ body.v24-voice-open{overflow:hidden}
 	}
 	/* ---- 음성 입력 방식 시안 : 1안 누르고 말하기 / 2안 자동 종료(침묵 감지) / 3안 버튼 시작·종료 (sessionStorage · ?vm= 로 전환) ---- */
 	var VM_KEY = 'gov24AiVoiceMode';
-	function getVM() { var m = (new URLSearchParams(location.search)).get('vm'); if (!m) { try { m = sessionStorage.getItem(VM_KEY); } catch (e) {} } return /^[123]$/.test(m || '') ? m : '1'; }
+	function getVM() { return '1'; }   // 음성 입력 방식 확정 : 누르고 말하기(푸시투톡)
 	var VM = getVM();
 	function setVM(m) { VM = m; try { sessionStorage.setItem(VM_KEY, m); } catch (e) {} V.el.setAttribute('data-vm', m); $$('input[name=demoVm]').forEach(function (r) { r.checked = r.value === m; }); if (!V.el.hidden) openVoice(); }
 	V.el.setAttribute('data-vm', VM); $$('input[name=demoVm]').forEach(function (r) { r.checked = r.value === VM; r.addEventListener('change', function () { if (r.checked) setVM(r.value); }); });
