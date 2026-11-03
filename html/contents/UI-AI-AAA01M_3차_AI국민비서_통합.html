@@ -2199,7 +2199,7 @@ body.v24-voice-open{overflow:hidden}
 				if (none) {
 					put(sec, '<p class="ai-complete-message">아쉽게도 맞춤 혜택이 없어요.</p><p>정확한 혜택 조회를 위해서 혜택알리미 서비스를 이용해 보세요.<br>1만여 종의 혜택을 볼 수 있어요.</p>' + links([['내 맞춤 조건 설정하기', BNF_SETTING]]));
 				} else {
-					put(sec, '<p class="ai-followup-copy aih-lead">추천 혜택을 찾았어요.<br>결혼축하금 지원부터 알아볼까요?</p>' +
+					put(sec, '<p class="ai-followup-copy aih-lead">추천 혜택을 찾았어요.</p>' +
 						'<div class="answer-choice"><a href="' + BNF_PAGE + '" class="btn-choice aih-bnf-go" onclick="this.href=DemoSession.url(BNF_PAGE)" title="혜택알리미 맞춤혜택"><span>혜택알리미에서 더 보기</span><i class="iconset ico-arr-more" aria-hidden="true"></i></a></div>' +
 						'<div class="ai-card-link-panel">' + BNF_LIST.map(function (b) { var u = BNF_DTL + '?id=' + b[0]; return '<a href="' + u + '" class="btn-card-box" onclick="this.href=DemoSession.url(\'' + u + '\')" title="' + esc(b[1]) + ' 혜택알리미 상세보기"><b class="tit">' + esc(b[1]) + '<i class="iconset ico-ai-arrow" aria-hidden="true"></i></b><p class="txt"><span>대상 :</span><span>' + esc(b[2]) + '</span></p><p class="txt">기간 : ' + esc(b[3]) + '</p></a>'; }).join('') + '</div>');
 				}
