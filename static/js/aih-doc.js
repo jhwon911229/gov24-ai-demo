@@ -25,9 +25,9 @@
 			'<tr class="sp"><td colspan="4">== 공&nbsp;&nbsp;란 ==</td></tr></tbody></table>' +
 			'<table style="margin-top:-1px"><colgroup><col style="width:8%"><col style="width:12%"><col style="width:40%"><col style="width:26%"><col style="width:14%"></colgroup>' +
 			'<thead><tr><th>번호</th><th>세대주<br>관계</th><th>성명(한자)<br>주민등록번호</th><th>발생일 / 신고일<br>등록상태</th><th>변동사유</th></tr></thead><tbody>' +
-			'<tr><td class="c">1</td><td class="c">본인</td><td>' + NAME + ' (' + HANJA + ')<br>600101-1*******</td><td class="c">2024-03-02 / 2024-03-02<br>거주자</td><td class="c">전입</td></tr>' +
-			'<tr><td class="c">2</td><td class="c">배우자</td><td>성춘향 (成春香)<br>620505-2*******</td><td class="c">2024-03-02 / 2024-03-02<br>거주자</td><td class="c">전입</td></tr>' +
-			'<tr><td class="c">3</td><td class="c">자녀</td><td>홍길순 (洪吉順)<br>900303-2*******</td><td class="c">2024-03-02 / 2024-03-02<br>거주자</td><td class="c">전입</td></tr>' +
+			'<tr><td class="c">1</td><td class="c">본인</td><td>' + NAME + ' (' + HANJA + ')<br>950101-1*******</td><td class="c">2024-03-02 / 2024-03-02<br>거주자</td><td class="c">전입</td></tr>' +
+			'<tr><td class="c">2</td><td class="c">배우자</td><td>성춘향 (成春香)<br>970505-2*******</td><td class="c">2024-03-02 / 2024-03-02<br>거주자</td><td class="c">전입</td></tr>' +
+			'<tr><td class="c">3</td><td class="c">자녀</td><td>홍길순 (洪吉順)<br>250303-4*******</td><td class="c">2025-03-03 / 2025-03-10<br>거주자</td><td class="c">출생</td></tr>' +
 			'<tr class="sp"><td class="bl"></td><td colspan="4">== 이하 여백 ==</td></tr>' + emptyRows(6, 5) + '</tbody></table>' +
 			sign(ISSUER) + foot() + '</div>';
 	}
@@ -38,10 +38,10 @@
 	}
 	var DOCS = {
 		'주민등록표 등본': { title: '주민등록등본(국문)', html: jumin },
-		'건강보험 자격득실 확인서': { title: '건강보험 자격득실 확인서', html: function () { return generic('건강보험 자격득실<small>확 인 서</small>', '위 사람의 건강보험 자격 취득·상실 내역이 아래와 같음을 확인합니다.', [['성명', NAME], ['주민등록번호', '600101-1*******'], ['자격 구분', '직장가입자'], ['사업장(기관) 명칭', '㈜시연컴퍼니'], ['자격취득일', '2021-02-01'], ['자격상실일', '해당 없음 (현재 가입 중)'], ['조회 기간', '2021-02-01 ~ ' + T.join('-')]], '국민건강보험공단 이사장'); } },
-		'국가기술자격 취득사항 확인서': { title: '국가기술자격 취득사항 확인서', html: function () { return generic('국가기술자격<small>취득사항 확인서</small>', '위 사람의 국가기술자격 취득사항이 아래와 같음을 확인합니다.', [['성명', NAME], ['생년월일', '1960-01-01'], ['자격 종목', '정보처리기사'], ['자격 등급', '기사'], ['자격번호', '21201234567A'], ['취득일', '2021-11-26'], ['시행기관', '한국산업인력공단']], '한국산업인력공단 이사장'); } }
+		'건강보험 자격득실 확인서': { title: '건강보험 자격득실 확인서', html: function () { return generic('건강보험 자격득실<small>확 인 서</small>', '위 사람의 건강보험 자격 취득·상실 내역이 아래와 같음을 확인합니다.', [['성명', NAME], ['주민등록번호', '950101-1*******'], ['자격 구분', '직장가입자'], ['사업장(기관) 명칭', '㈜시연컴퍼니'], ['자격취득일', '2021-02-01'], ['자격상실일', '해당 없음 (현재 가입 중)'], ['조회 기간', '2021-02-01 ~ ' + T.join('-')]], '국민건강보험공단 이사장'); } },
+		'국가기술자격 취득사항 확인서': { title: '국가기술자격 취득사항 확인서', html: function () { return generic('국가기술자격<small>취득사항 확인서</small>', '위 사람의 국가기술자격 취득사항이 아래와 같음을 확인합니다.', [['성명', NAME], ['생년월일', '1995-01-01'], ['자격 종목', '정보처리기사'], ['자격 등급', '기사'], ['자격번호', '21201234567A'], ['취득일', '2021-11-26'], ['시행기관', '한국산업인력공단']], '한국산업인력공단 이사장'); } }
 	};
-	function paperHtml(doc) { var d = DOCS[doc]; if (d) return d.html(); return generic(esc(doc), '위 사항이 사실과 틀림없음을 확인합니다.', [['성명', NAME], ['주민등록번호', '600101-1*******'], ['발급 민원', doc], ['용도', '제출용']], ISSUER); }
+	function paperHtml(doc) { var d = DOCS[doc]; if (d) return d.html(); return generic(esc(doc), '위 사항이 사실과 틀림없음을 확인합니다.', [['성명', NAME], ['주민등록번호', '950101-1*******'], ['발급 민원', doc], ['용도', '제출용']], ISSUER); }
 	function docTitle(doc) { var d = DOCS[doc]; return (d ? d.title : doc) + ' 발급 문서출력'; }
 	w.AihDoc = { paperHtml: paperHtml, docTitle: docTitle, printUrl: function (doc) { return 'UI-AI-DOC_문서출력.html?doc=' + encodeURIComponent(doc); } };
 })(window);
