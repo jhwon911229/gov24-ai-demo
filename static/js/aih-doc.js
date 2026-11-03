@@ -27,7 +27,7 @@
 			'<thead><tr><th>번호</th><th>세대주<br>관계</th><th>성명(한자)<br>주민등록번호</th><th>발생일 / 신고일<br>등록상태</th><th>변동사유</th></tr></thead><tbody>' +
 			'<tr><td class="c">1</td><td class="c">본인</td><td>' + NAME + ' (' + HANJA + ')<br>950101-1*******</td><td class="c">2024-03-02 / 2024-03-02<br>거주자</td><td class="c">전입</td></tr>' +
 			'<tr><td class="c">2</td><td class="c">배우자</td><td>성춘향 (成春香)<br>970505-2*******</td><td class="c">2024-03-02 / 2024-03-02<br>거주자</td><td class="c">전입</td></tr>' +
-			'<tr><td class="c">3</td><td class="c">자녀</td><td>홍길순 (洪吉順)<br>250303-4*******</td><td class="c">2025-03-03 / 2025-03-10<br>거주자</td><td class="c">출생</td></tr>' +
+			'<tr><td class="c">3</td><td class="c">세대원</td><td>홍길순 (洪吉順)<br>250303-4*******</td><td class="c">2025-03-03 / 2025-03-10<br>거주자</td><td class="c">출생</td></tr>' +
 			'<tr class="sp"><td class="bl"></td><td colspan="4">== 이하 여백 ==</td></tr>' + emptyRows(6, 5) + '</tbody></table>' +
 			sign(ISSUER) + foot() + '</div>';
 	}
