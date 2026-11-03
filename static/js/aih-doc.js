@@ -3,7 +3,7 @@
 	function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 	function today() { var d = new Date(); return [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)]; }
 	var T = today(), DATE_KO = T[0] + '년 ' + T[1] + '월 ' + T[2] + '일', DATE_SL = T[0] + '/' + T[1] + '/' + T[2];
-	var NAME = '홍길동', HANJA = '洪吉童', ADDR = '경기도 파주시 시연로 123, 101동 1001호 (시연아파트)', ISSUER = '경기도 파주시장';
+	var NAME = '홍길동', HANJA = '洪吉童', ADDR = '전북특별자치도 김제시 시연로 123, 101동 1001호 (시연아파트)', ISSUER = '전북특별자치도 김제시장';
 	function wm() { var s = ''; for (var i = 0; i < 14; i++) s += '<span style="left:' + ((i % 4) * 160 - 60) + 'px;top:' + (Math.floor(i / 4) * 230 + 40 + (i % 2) * 60) + 'px">견본 · 시연용</span>'; return '<div class="wm" aria-hidden="true">' + s + '</div>'; }
 	function head(no, certTxt) {
 		return '<div class="p-top"><div class="l"><div class="p-stamp-round" aria-hidden="true"><small>시연확인</small><b>진 본</b><small>' + DATE_SL + '</small><small>KST · 견본</small></div>' +

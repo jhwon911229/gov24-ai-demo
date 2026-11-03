@@ -218,8 +218,8 @@ body.v24-voice-open{overflow:hidden}
 .aih .ai-issuance-view .ai-issuance-conversation .box-bg-gray{max-width:100%;width:100%;box-sizing:border-box}
 .aih .box-bg-gray ul li{word-break:keep-all;overflow-wrap:anywhere}
 .aih .ai-conversation-section>p.aih-lead,.aih .ai-conversation-section>.ai-complete-message.aih-lead{font-size:1.9rem;line-height:1.6}
-.aih .answer-choice .btn-choice.aih-bnf-go{background:linear-gradient(100deg,#0fb87d,#256ef4);color:#fff;font-weight:700;border:0;box-shadow:0 .4rem 1rem rgba(37,110,244,.25)}
-.aih .answer-choice .btn-choice.aih-bnf-go span{color:#fff}
+.aih .answer-choice .btn-choice.aih-bnf-go{position:relative;width:100%;justify-content:center;min-height:4.8rem;font-size:1.7rem;background:#052b57;color:#fff;font-weight:600;border:0;border-radius:.6rem}
+.aih .answer-choice .btn-choice.aih-bnf-go span{color:#fff;font-size:1.7rem}.aih .answer-choice .btn-choice.aih-bnf-go .ico-arr-more{position:absolute;right:1.6rem;top:50%;transform:translateY(-50%)}
 .aih .answer-choice .btn-choice.aih-bnf-go .ico-arr-more{filter:brightness(0) invert(1)}
 .aih .answer-choice .btn-choice.aih-bnf-go:hover{filter:brightness(1.06)}
 /* 답변전체읽기 */
@@ -1467,7 +1467,7 @@ body.v24-voice-open{overflow:hidden}
               <span class="lbl">이렇게 물어보세요</span>
               <button type="button" class="prompt-chip">“회사에 제출할 서류 준비해줘”</button>
               <button type="button" class="prompt-chip">“운전면허 갱신기간 알려줘”</button>
-              <button type="button" class="prompt-chip">“내가 받을 수 있는 혜택 뭐 있어?”</button>
+              <button type="button" class="prompt-chip">“나 결혼했는데 받을 수 있는 지원이 있어?”</button>
             </div>
           </section>
           <section class="aih-svc" aria-labelledby="aihSvcTit">
@@ -1753,7 +1753,7 @@ body.v24-voice-open{overflow:hidden}
 (function () {
 	'use strict';
 	var PROC_MS = 2500, INTRO_MS = 1800, THINK_MS = 700, STEP_MS = 650;
-	var SAMPLE_Q = '내가 받을 수 있는 혜택 뭐 있어?'; var VOICE_Q = null;
+	var SAMPLE_Q = '나 결혼했는데 받을 수 있는 지원이 있어?'; var VOICE_Q = null;
 	var GOV = 'https://www.gov.kr/portal/main', MYAPPLY = GOV, LIFE = 'https://plus.gov.kr/portal/lgd', BNF = 'https://www.gov.kr/portal/rcvfvrSvc/main', BNF_PAGE = './UI-PT-BNF01M_3차_혜택알리미.html';
 	var $ = function (s, r) { return (r || document).querySelector(s); };
 	var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
@@ -1966,7 +1966,7 @@ body.v24-voice-open{overflow:hidden}
 	   ====================================================================== */
 	var NAME = '홍길동';
 	function follow(list) {
-		list = (list && list.length) ? list : ['회사에 제출할 서류 준비해줘', '운전면허 갱신기간 알려줘', '내가 받을 수 있는 혜택 뭐 있어?'];
+		list = (list && list.length) ? list : ['회사에 제출할 서류 준비해줘', '운전면허 갱신기간 알려줘', '나 결혼했는데 받을 수 있는 지원이 있어?'];
 		return '<p class="ai-followup-copy">이어서 물어볼 수 있어요.</p>' + chips('fq', list.map(function (q) { return [q, 'data-q="' + esc(q) + '"']; }), 'ai-conversation-actions ai-delivery-options');
 	}
 	function end(sec, extra) { put(sec, FEEDBACK + follow(extra)); }
@@ -2051,8 +2051,8 @@ body.v24-voice-open{overflow:hidden}
 		needAuth('발급을 위해 본인확인이 필요해요.', function () { addrStep(docs); }, true);
 	}
 	/* ---------- 주민등록표 등본 : 출력방식 안내 후 주민등록상 주소 확인 (불일치 시 시도·시군구 선택 — 사용성 테스트 구현과 동일) ---------- */
-	var ADDR = { sido: '경기도', gugun: '파주시' };
-	var SIDO = [['서울특별시', ['종로구', '용산구', '관악구', '서초구', '강남구', '강북구']], ['부산광역시', ['해운대구', '부산진구', '동래구', '남구', '사하구', '수영구']], ['대구광역시', ['중구', '수성구', '달서구', '북구', '동구', '달성군']], ['인천광역시', ['남동구', '연수구', '부평구', '서구', '계양구', '중구']], ['광주광역시', ['동구', '서구', '남구', '북구', '광산구']], ['대전광역시', ['동구', '중구', '서구', '유성구', '대덕구']], ['경기도', ['파주시', '수원시', '고양시', '성남시', '용인시', '김포시']], ['강원특별자치도', ['춘천시', '원주시', '강릉시', '속초시', '동해시', '삼척시']]];
+	var ADDR = { sido: '전북특별자치도', gugun: '김제시' };
+	var SIDO = [['서울특별시', ['종로구', '용산구', '관악구', '서초구', '강남구', '강북구']], ['부산광역시', ['해운대구', '부산진구', '동래구', '남구', '사하구', '수영구']], ['대구광역시', ['중구', '수성구', '달서구', '북구', '동구', '달성군']], ['인천광역시', ['남동구', '연수구', '부평구', '서구', '계양구', '중구']], ['광주광역시', ['동구', '서구', '남구', '북구', '광산구']], ['대전광역시', ['동구', '중구', '서구', '유성구', '대덕구']], ['경기도', ['파주시', '수원시', '고양시', '성남시', '용인시', '김포시']], ['전북특별자치도', ['전주시', '군산시', '익산시', '정읍시', '남원시', '김제시']], ['강원특별자치도', ['춘천시', '원주시', '강릉시', '속초시', '동해시', '삼척시']]];
 	function addrStep(docs) {
 		if (docs.indexOf('주민등록표 등본') < 0) { packProgress(docs); return; }
 		S.pendingDocs = docs;
@@ -2120,7 +2120,7 @@ body.v24-voice-open{overflow:hidden}
 	function openDoc(doc) { window.open(AihDoc.printUrl(doc), '_blank'); }
 	function packDone(docs) {
 		S.issuedDocs = (S.issuedDocs || []).concat(docs);
-		var fq = docs.indexOf('주민등록표 등본') >= 0 ? ['발급한 등본에 세대원은 몇 명이에요?', '내가 받을 수 있는 혜택 뭐 있어?', '소득금액증명도 발급해줘'] : ['여권 만료일 알려줘', '내가 받을 수 있는 혜택 뭐 있어?', '소득금액증명도 발급해줘'];
+		var fq = docs.indexOf('주민등록표 등본') >= 0 ? ['발급한 등본에 세대원은 몇 명이에요?', '나 결혼했는데 받을 수 있는 지원이 있어?', '소득금액증명도 발급해줘'] : ['여권 만료일 알려줘', '나 결혼했는데 받을 수 있는 지원이 있어?', '소득금액증명도 발급해줘'];
 		answer(false, function (sec) {
 			put(sec, '<p class="ai-followup-copy">발급 신청하신 문서는 온라인발급(본인출력)으로 진행했어요. 발급이 완료되어 인쇄할 수 있어요.</p>' +
 				'<p class="ai-complete-message">모든 발급이 완료되었습니다. 각 문서는 서비스 신청 내역에서 확인할 수 있습니다.</p>' + links([['서비스 신청내역', MYAPPLY]]));
@@ -2164,7 +2164,7 @@ body.v24-voice-open{overflow:hidden}
 	function passport() {
 		askLookup('여권 정보', function () { needAuth('여권 정보는 본인확인 후 알려드릴 수 있어요.', function () {
 			lookupAnswer('여권 정보', [['여권번호', 'M123A4567'], ['여권 종류', '일반여권(복수) · 전자여권'], ['영문 성명', 'HONG GILDONG'], ['발급일', '2019-03-15'], ['만료일', '<strong class="aih-point">2029-03-14</strong> · 약 2년 5개월 남음'], ['여권 상태', '유효']],
-				null, ['여권 정보 조회 서비스', GOV], ['여권 재발급 신청하고 싶어', '운전면허 갱신기간 알려줘', '내가 받을 수 있는 혜택 뭐 있어?'], '만료일이 얼마 남지 않은 여권은 입국이 제한되는 국가가 있어요.');
+				null, ['여권 정보 조회 서비스', GOV], ['여권 재발급 신청하고 싶어', '운전면허 갱신기간 알려줘', '나 결혼했는데 받을 수 있는 지원이 있어?'], '만료일이 얼마 남지 않은 여권은 입국이 제한되는 국가가 있어요.');
 		}); });
 	}
 	function customs() {
@@ -2176,15 +2176,16 @@ body.v24-voice-open{overflow:hidden}
 	function tax() {
 		askLookup('국세 고지내역', function () { needAuth('국세 고지내역은 본인확인 후 알려드릴 수 있어요.', function () {
 			lookupAnswer('국세 고지내역', [['고지 건수', '<strong class="aih-point">1건 (미납)</strong>'], ['세목', '종합소득세'], ['고지세액', '325,000원'], ['납부기한', '2026-11-30'], ['전자납부번호', '0126-0426-2026-11-0001'], ['납부 방법', '정부24 · 홈택스 · 은행 인터넷뱅킹']],
-				'납부기한이 지나면 가산세가 붙을 수 있어요.', ['국세 고지내역 조회 서비스', GOV], ['여권 정보 조회해줘', '운전면허 갱신기간 알려줘', '내가 받을 수 있는 혜택 뭐 있어?']);
+				'납부기한이 지나면 가산세가 붙을 수 있어요.', ['국세 고지내역 조회 서비스', GOV], ['여권 정보 조회해줘', '운전면허 갱신기간 알려줘', '나 결혼했는데 받을 수 있는 지원이 있어?']);
 		}); });
 	}
 
 	/* ---------- Ⅳ-3 ③ 음성으로 나의 맞춤혜택 확인 (혜택 나열 대신 혜택알리미 연결) ---------- */
-	var BNF_LIST = [['청년 월세 한시 특별지원', '만 19~34세 무주택 청년 (부모와 별도 거주)', '상시신청'], ['청년도약계좌', '만 19~34세 · 개인소득 7,500만원 이하', '매월 접수'], ['청년 주택드림 청약통장', '만 19~34세 무주택 · 연소득 5,000만원 이하', '상시신청'], ['청년 전세보증금 반환보증 보증료 지원', '만 19~39세 · 보증금 3억원 이하 임차인', '상시신청'], ['경기도 청년 노동자 통장', '경기도 거주 만 18~34세 노동자', '~ 11.14.']];
+	var BNF_LIST = [['kimje', '김제시 결혼축하금 지원', '김제시 거주 만19~49세 부부', '상시신청'], ['jeonse', '신혼부부 전세자금 대출', '혼인 7년 이내 무주택 신혼부부', '상시신청'], ['happy', '행복주택 공급', '혼인 7년 이내 무주택 신혼부부', '모집공고 시 신청'], ['interest', '신혼부부 전세자금 대출이자 지원', '무주택 신혼부부(혼인 7년 이내)', '상시신청']];
+	var BNF_DTL = './UI-PT-BNF02M_3차_혜택상세.html';
 	// 혜택 : 대화창에서는 행정정보 이용 동의를 받지 않음(동의·조건 설정은 혜택알리미에서) → 로그인 후 바로 조회
 	function benefit() {
-		askLookup('내 맞춤 혜택', function () { needAuth('맞춤 혜택은 ' + NAME + '님의 정보를 바탕으로 찾아드려요.', function () { benefitResult(); }); });
+		needAuth('맞춤 혜택은 ' + NAME + '님의 정보를 바탕으로 찾아드려요.', function () { benefitResult(); });
 	}
 	function benefitResult() {
 		var none = !!($('#demoNoBenefit') && $('#demoNoBenefit').checked);
@@ -2196,12 +2197,11 @@ body.v24-voice-open{overflow:hidden}
 				if (none) {
 					put(sec, '<p class="ai-complete-message">아쉽게도 맞춤 혜택이 없어요.</p><p>정확한 혜택 조회를 위해서 혜택알리미 서비스를 이용해 보세요.<br>1만여 종의 혜택을 볼 수 있어요.</p>' + links([['내 맞춤 조건 설정하기', BNF_SETTING]]));
 				} else {
-					put(sec, '<p class="ai-complete-message aih-lead">' + NAME + '님이 받을 수 있는 청년 맞춤 혜택을 찾았어요.</p>' +
-						'<p class="aih-lead"><strong>청년 월세 한시 특별지원</strong> 외에도 신청 가능한 혜택 <strong>7건</strong>, 확인이 필요한 혜택 <strong>2건</strong>이 있어요.</p>' +
-						'<div class="answer-choice"><a href="' + BNF_PAGE + '" class="btn-choice aih-bnf-go" onclick="this.href=DemoSession.url(BNF_PAGE)" title="혜택알리미 맞춤혜택"><span>혜택알리미에서 더 많은 혜택 보기</span><i class="iconset ico-arr-more" aria-hidden="true"></i></a></div>' +
-						'<div class="ai-card-link-panel">' + BNF_LIST.slice(0, 5).map(function (b) { return '<a href="' + BNF_PAGE + '" class="btn-card-box" onclick="this.href=DemoSession.url(BNF_PAGE)" title="' + esc(b[0]) + ' 혜택알리미 상세"><b class="tit">' + esc(b[0]) + '<i class="iconset ico-ai-arrow" aria-hidden="true"></i></b><p class="txt"><span>대상 :</span><span>' + esc(b[1]) + '</span></p><p class="txt">기간 : ' + esc(b[2]) + '</p></a>'; }).join('') + '</div>');
+					put(sec, '<p class="ai-followup-copy aih-lead">추천 혜택을 찾았어요.<br>결혼축하금 지원부터 알아볼까요?</p>' +
+						'<div class="answer-choice"><a href="' + BNF_PAGE + '" class="btn-choice aih-bnf-go" onclick="this.href=DemoSession.url(BNF_PAGE)" title="혜택알리미 맞춤혜택"><span>혜택알리미에서 더 보기</span><i class="iconset ico-arr-more" aria-hidden="true"></i></a></div>' +
+						'<div class="ai-card-link-panel">' + BNF_LIST.map(function (b) { var u = BNF_DTL + '?id=' + b[0]; return '<a href="' + u + '" class="btn-card-box" onclick="this.href=DemoSession.url(\'' + u + '\')" title="' + esc(b[1]) + ' 혜택알리미 상세보기"><b class="tit">' + esc(b[1]) + '<i class="iconset ico-ai-arrow" aria-hidden="true"></i></b><p class="txt"><span>대상 :</span><span>' + esc(b[2]) + '</span></p><p class="txt">기간 : ' + esc(b[3]) + '</p></a>'; }).join('') + '</div>');
 				}
-				end(sec, ['경기도에서 내가 받을 수 있는 혜택이 뭐야?', '회사에 제출할 서류 준비해줘', '운전면허 갱신기간 알려줘']);
+				end(sec, ['주민등록등본 발급해줘', '이사 가면 해야 할 일 정리해줘', '회사에 제출할 서류 준비해줘']);
 			}, 2200);
 		});
 	}
@@ -2236,7 +2236,7 @@ body.v24-voice-open{overflow:hidden}
 			marriage: '서류에서 그 내용을 확인할 수 없어요. 혼인 관계는 <strong>가족관계증명서(혼인관계증명서)</strong>에서 확인할 수 있어요.',
 			rrn: '주민등록번호 같은 <strong>개인정보는 대화로 안내해 드리지 않아요.</strong> 정부24에서 발급된 서류를 직접 확인해 주세요.'
 		};
-		var FQ = { count: ['배우자도 같이 올라가 있어요?', '혼인 날짜도 나와요?', '주민등록번호는 어떻게 나와요?'], spouse: ['혼인 날짜도 나와요?', '주민등록번호는 어떻게 나와요?', '발급한 등본에 세대원은 몇 명이에요?'], marriage: ['주민등록번호는 어떻게 나와요?', '가족관계증명서 발급해줘', '내가 받을 수 있는 혜택 뭐 있어?'], rrn: ['발급한 등본 인쇄해줘', '소득금액증명도 발급해줘', '내가 받을 수 있는 혜택 뭐 있어?'] };
+		var FQ = { count: ['배우자도 같이 올라가 있어요?', '혼인 날짜도 나와요?', '주민등록번호는 어떻게 나와요?'], spouse: ['혼인 날짜도 나와요?', '주민등록번호는 어떻게 나와요?', '발급한 등본에 세대원은 몇 명이에요?'], marriage: ['주민등록번호는 어떻게 나와요?', '가족관계증명서 발급해줘', '나 결혼했는데 받을 수 있는 지원이 있어?'], rrn: ['발급한 등본 인쇄해줘', '소득금액증명도 발급해줘', '나 결혼했는데 받을 수 있는 지원이 있어?'] };
 		answer(true, function (sec) {
 			put(sec, '<p>' + A[kind] + '</p>' + (kind === 'rrn' ? links([['발급한 등본 보기', AihDoc.printUrl('주민등록표 등본')]]) : ''));
 			end(sec, FQ[kind]);
@@ -2301,13 +2301,13 @@ body.v24-voice-open{overflow:hidden}
 		guideAnswer('이사를 준비하거나 전입신고 등 행정절차가 궁금하다면 아래 정보를 확인해 보세요.',
 			[['이사 업체 선정 하기', ['info']], ['불필요한 물품 처리 하기', ['info']], ['주소 이전 및 우편물 관리 하기', ['apply', 'info']], ['공과금 및 관리비 정산 하기', ['info']], ['전입신고 및 확정일자 받기', ['apply', 'info']], ['가스, 전기, 수도 등 명의변경 하기', ['apply', 'info']], ['자녀 전학 수속 하기', ['apply', 'info']]],
 			LIFE + '/lgddtl?contsSn=404', null,
-			['출산하면 받을 수 있는 서비스랑 해야 할 신고 다 알려줘', '주민등록등본 발급해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
+			['출산하면 받을 수 있는 서비스랑 해야 할 신고 다 알려줘', '주민등록등본 발급해줘', '나 결혼했는데 받을 수 있는 지원이 있어?']);
 	}
 	function lifeBirth() {
 		guideAnswer('출산 후 받을 수 있는 지원과 해야 할 신고가 궁금하다면 아래 정보를 확인해 보세요.',
 			[['출생확인 하기', ['info']], ['산후관리 하기', ['bnf', 'info']], ['출생신고 하기', ['apply', 'info']], ['출산지원 신청 하기', ['apply', 'bnf', 'info']], ['출산휴가 및 육아휴직 신청 하기', ['apply', 'bnf', 'info']], ['영유아 검진 예약 하기', ['apply', 'info']], ['어린이집 입소대기 신청 하기', ['apply', 'info']], ['그밖에 할 일', ['info']]],
 			LIFE + '/lgddtl?contsSn=15', [['출산장려금 지원 (경기도 하남시)', BNF], ['행복출산 통합신청', GOV]],
-			['이사 가면 해야 할 일 정리해줘', '주민등록등본 발급해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
+			['이사 가면 해야 할 일 정리해줘', '주민등록등본 발급해줘', '나 결혼했는데 받을 수 있는 지원이 있어?']);
 	}
 
 	/* ---------- 자주 묻는 질문 (Figma PC_AI통합검색_자주 묻는 질문) ---------- */
@@ -2331,7 +2331,7 @@ body.v24-voice-open{overflow:hidden}
 	function fallback() {
 		answer(true, function (sec) {
 			put(sec, '<p>질문을 정확히 이해하지 못했어요. 아래 예시처럼 다시 말씀해 주세요.</p>');
-			put(sec, '<p class="ai-followup-copy">이렇게 물어보세요.</p>' + chips('fb', ['회사에 제출할 서류 준비해줘', '운전면허 갱신기간 알려줘', '내가 받을 수 있는 혜택 뭐 있어?'].map(function (q) { return [q, 'data-q="' + esc(q) + '"']; }), 'ai-conversation-actions ai-delivery-options'));
+			put(sec, '<p class="ai-followup-copy">이렇게 물어보세요.</p>' + chips('fb', ['회사에 제출할 서류 준비해줘', '운전면허 갱신기간 알려줘', '나 결혼했는데 받을 수 있는 지원이 있어?'].map(function (q) { return [q, 'data-q="' + esc(q) + '"']; }), 'ai-conversation-actions ai-delivery-options'));
 		});
 	}
 
@@ -2341,6 +2341,7 @@ body.v24-voice-open{overflow:hidden}
 	function route(q) {
 		var t = q.replace(/\s/g, '');
 		lockAll();
+		if (/결혼|신혼/.test(t)) return benefit();
 		if (/취업|회사|이직|제출할서류|취직/.test(t)) return jobPack();
 		if (/운전면허.*(전체|정보조회|조회해|정보보)/.test(t)) return licFull();
 		if (/운전면허|갱신|적성검사/.test(t)) return licRenew();
@@ -2348,9 +2349,9 @@ body.v24-voice-open{overflow:hidden}
 		if (/통관고유부호|통관부호/.test(t)) return customs();
 		if (/통관/.test(t)) return customs();
 		if (/국세|고지/.test(t)) return tax();
-		if (/비밀번호|비번/.test(t)) return faq(1, ['주민등록등본 발급해줘', '이사 가면 해야 할 일 정리해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
-		if (/출입국/.test(t)) return faq(2, ['주민등록등본 발급해줘', '이사 가면 해야 할 일 정리해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
-		if (/취학통지/.test(t)) return faq(4, ['주민등록등본 발급해줘', '이사 가면 해야 할 일 정리해줘', '내가 받을 수 있는 혜택 뭐 있어?']);
+		if (/비밀번호|비번/.test(t)) return faq(1, ['주민등록등본 발급해줘', '이사 가면 해야 할 일 정리해줘', '나 결혼했는데 받을 수 있는 지원이 있어?']);
+		if (/출입국/.test(t)) return faq(2, ['주민등록등본 발급해줘', '이사 가면 해야 할 일 정리해줘', '나 결혼했는데 받을 수 있는 지원이 있어?']);
+		if (/취학통지/.test(t)) return faq(4, ['주민등록등본 발급해줘', '이사 가면 해야 할 일 정리해줘', '나 결혼했는데 받을 수 있는 지원이 있어?']);
 		if (/출산|태어|출생/.test(t)) return lifeBirth();
 		if (/이사|이사가면|이사할때/.test(t)) return lifeMove();
 		if (/발급한등본|발급받은등본|등본인쇄|등본출력|인쇄해줘/.test(t) && /인쇄|출력/.test(t)) return docPrint();
@@ -2439,7 +2440,7 @@ body.v24-voice-open{overflow:hidden}
 	$$('[data-scn]', remote).forEach(function (b) { b.addEventListener('click', function () {
 		remote.classList.remove('open'); goHome();
 		var n = b.getAttribute('data-scn');
-		if (n === '3') { VOICE_Q = '내가 받을 수 있는 혜택 뭐 있어?'; S.permGranted = true; openVoice(); }
+		if (n === '3') { VOICE_Q = '나 결혼했는데 받을 수 있는 지원이 있어?'; S.permGranted = true; openVoice(); }
 		else pickChip(+n);   // 시나리오상 검색창에 타이핑하지 않음 → AI전용홈의 예시 질문을 눌러 시작
 	}); });
 	// AI전용홈 예시 질문 강조(시연 진입용) : 해당 칩이 깜빡이고, 누르면 대화 시작
@@ -2450,7 +2451,7 @@ body.v24-voice-open{overflow:hidden}
 	}
 	var pk = /[?&]pick=([123])/.exec(location.search); if (pk) setTimeout(function () { pickChip(+pk[1]); }, 300);
 	var vm = /[?&]voice=1/.test(location.search);
-	if (vm) { VOICE_Q = '내가 받을 수 있는 혜택 뭐 있어?'; S.permGranted = true; setTimeout(openVoice, 300); }
+	if (vm) { VOICE_Q = '나 결혼했는데 받을 수 있는 지원이 있어?'; S.permGranted = true; setTimeout(openVoice, 300); }
 	// 메인 검색창에서 질문을 가지고 들어온 경우(?q=) 바로 대화 시작
 	var qm = /[?&]q=([^&#]*)/.exec(location.search);
 	if (qm) { var q0 = ''; try { q0 = decodeURIComponent(qm[1].replace(/\+/g, ' ')); } catch (x) {} if (q0.trim()) setTimeout(function () { ask(q0); }, 250); }
