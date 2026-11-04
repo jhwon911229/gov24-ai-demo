@@ -319,7 +319,8 @@
 	.sch-mo-shortcut-home-wrap.demo-two{display:flex;gap:.8rem}
 	.sch-mo-shortcut-home-wrap.demo-two .btn-txt{flex:1}
 	</style>
-<style id="demo-proto-banner">#demoProtoBanner{position:fixed;top:0;left:0;right:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;gap:.8rem;height:3.6rem;padding:0 1.2rem;background:#ffcc33;color:#1e2124;font-size:1.4rem;font-weight:700;line-height:1.2;text-align:center;box-shadow:0 .1rem .4rem rgba(0,0,0,.15);pointer-events:none}#demoProtoBanner::before{content:"!";display:inline-flex;align-items:center;justify-content:center;width:1.8rem;height:1.8rem;border-radius:50%;background:#1e2124;color:#ffcc33;font-size:1.2rem}html body{padding-top:3.6rem!important}.v24-voice{top:3.6rem!important}.aih-mohead{top:3.6rem!important}.demo-remote{z-index:2147483001}@media (max-width:1024px){#demoProtoBanner{font-size:1.2rem;height:3.2rem}html body{padding-top:3.2rem!important}.v24-voice{top:3.2rem!important}.aih-mohead{top:3.2rem!important}}</style></head>
+<style id="demo-proto-banner">#demoProtoBanner{position:fixed;top:0;left:0;right:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;gap:.8rem;height:3.6rem;padding:0 1.2rem;background:#ffcc33;color:#1e2124;font-size:1.4rem;font-weight:700;line-height:1.2;text-align:center;box-shadow:0 .1rem .4rem rgba(0,0,0,.15);pointer-events:none}#demoProtoBanner::before{content:"!";display:inline-flex;align-items:center;justify-content:center;width:1.8rem;height:1.8rem;border-radius:50%;background:#1e2124;color:#ffcc33;font-size:1.2rem}html body{padding-top:3.6rem!important}.v24-voice{top:3.6rem!important}.aih-mohead{top:3.6rem!important}.demo-remote{z-index:2147483001}@media (max-width:1024px){#demoProtoBanner{font-size:1.2rem;height:3.2rem}html body{padding-top:3.2rem!important}.v24-voice{top:3.2rem!important}.aih-mohead{top:3.2rem!important}}</style><style id="aih-mygov">.main-mygov .detail-print{display:none!important}.aih-tl-hide{display:none!important}.sch-main .main-mygov .timeline-list-wrap .timeline-modal-body .timeline-modal-desc::before{content:none}</style>
+</head>
 
 <body><div id="demoProtoBanner" role="note">시연용 프로토타입 · 실제 정부24 서비스가 아닙니다</div>
   <div id="__nuxt">
@@ -2182,7 +2183,7 @@
                       <div class="main-my-info">
                         <a href="" class="name">
                           <i class="iconset ico-mygov-blue"></i>
-                          <strong title="홍길동홍길동홍길동">홍길동홍길동홍길동</strong>님의 MyGOV
+                          <strong title="홍길동">홍길동</strong>님의 MyGOV
                         </a>
 
                         <div class="detail-print">
@@ -2199,7 +2200,7 @@
                           <li>
                             <a href="" class="btn-txt ico-arr-right">
                               <strong class="txt">서비스 신청 내역</strong>
-                              <em class="count">5<span class="sr-only">건</span></em>
+                              <em class="count">0<span class="sr-only">건</span></em>
                             </a>
                           </li>
                           <li>
@@ -2213,15 +2214,13 @@
                               <strong class="txt">나의 혜택</strong>
                               <!-- <em class="count">10,000<span class="sr-only">건</span></em> -->
                               <!-- 없는 경우 아래로 표시 -->
-                              <em class="txt-02">보조금24 이용 동의하기</em>
+                              <em class="count">35<span class="sr-only">건</span></em>
                             </a>
                           </li>
                           <li>
                             <a href="" class="btn-txt ico-arr-right">
                               <strong class="txt">나의 생활정보</strong>
-                              <em class="count">100<span class="sr-only">건</span></em>
-                              <!-- 없는 경우 아래로 표시 -->
-                              <!--<em class="txt-02">생활정보 확인하기</em> -->
+                              <em class="txt-02">생활정보 확인하기</em>
                             </a>
                           </li>
                         </ul>
@@ -2253,297 +2252,176 @@
                           </div>
 
                           <div class="timeline-modal-body">
-                            <p class="timeline-modal-desc">자세한 내용은 모바일에서 확인해 주세요</p>
+                            <p class="timeline-modal-desc">한눈에 보는 민원 소식과 혜택 알림</p>
 
                             <ul class="timeline-list">
-                              <!-- type-1: 국민비서, type-2: 정부24, type-3: 혜택알리미 -->
-
-                              <!-- 
-                                  260123 혜택알리미 상세내용 타입 추가 : 
-                                  li요소에 class="detail-contents" 
-                                -->
-                              <li class="detail-contents">
-                                <div class="detail-link type-3">
-                                  <div class="thumb" aria-hidden="true"></div>
-                                  <button type="button" class="btn-accord" aria-label="국민내일배움카드 내용 더 보기">
-                                    <i class="iconset sm ico-arr-right" aria-hidden="true"></i>
-                                    <span class="sr-only">내용 더 보기</span>
-                                  </button>
-                                  <div class="txt">
-                                    <div class="meta">
-                                      <span class="service">혜택알리미</span>
-                                      <span class="bullet" aria-hidden="true"></span>
-                                      <span class="date">2025.08.21 18:00</span>
-                                    </div>
-                                    <p class="tit">국민내일배움카드</p>
-                                  </div>
-                                </div>
-                                <div class="contents-body">
-                                  <div class="bg-wrap">
-                                    <p class="badge primary">중앙부처</p>
-                                    <strong>국민내일배움카드</strong>
-                                    <p class="txt">급격한 기술발전에 적응하고 노동시장 변화에 대응하는 사회안전망 차원에서 생애에 걸친 역량개발 향상 등을 위해 국민 스스로 직업능력개발훈련을 실시할 수 있습니다.</p>
-                                  </div>
-                                  <div class="txt-wrap">
-                                    <div class="txt-box">
-                                      <p class="head">신청기간</p>
-                                      <p class="body">상시신청</p>
-                                    </div>
-                                    <div class="txt-box">
-                                      <p class="head">전화문의</p>
-                                      <p class="body">고용노동부 고객상담센터(1350)</p>
-                                    </div>
-                                    <div class="txt-box">
-                                      <p class="head">신청방법</p>
-                                      <p class="body">가까운 고용센터를 방문하거나 고용24를 통해 신청</p>
-                                    </div>
-                                    <div class="txt-box">
-                                      <p class="head">접수기관</p>
-                                      <p class="body">고용노동부 각 지역 관할 고용센터 및 고객상담센터</p>
-                                    </div>
-                                    <div class="txt-box">
-                                      <p class="head">지원형태</p>
-                                      <p class="body">상시신청</p>
-                                    </div>
-                                    <div class="txt-box">
-                                      <p class="head">지원대상</p>
-                                      <p class="body">○ 국민 누구나<br>
-                                        ○ 지원 제외 대상<br>
-                                        ① 공무원, 사립학교 교직원<br>
-                                        ② 졸업까지 수업연한이 2년이 초과하여 남은 대학생 및 졸업예정자가 아닌 고등학생<br>
-                                        ③ 연 매출 4억원 이상의 자영업자<br>
-                                        ④ 월 임금 300만원 이상인 대규모기업 근로자(만45세 미만)<br>
-                                        ⑤ 월 소득 500만원 이상인 특수형태근로종사자 등<br>
-                                        ⑥ 만 75세 이상자 등</p>
-                                    </div>
-                                    <div class="txt-box">
-                                      <p class="head">지원내용</p>
-                                      <p class="body">○  5년간 300~500만원 한도 내에서 고용노동부로부터 인정 받은 적합훈련과정을 수강한 경우 훈련비의 일부 또는 전액지원</p>
-                                    </div>
-                                    <a href="" class="btn-txt ico-arr-right" title="페이지 이동">바로가기</a>
-                                  </div>
-                                </div>
-                              </li>
-
-
-
-
-                              <!-- 
-                                  260126 국민비서 상세내용 타입 추가 : 
-                                  li요소에 class="detail-contents" 
-                                -->
-                              <li class="detail-contents">
-                                <div class="detail-link type-1">
-                                  <div class="thumb" aria-hidden="true"></div>
-                                  <button type="button" class="btn-accord" aria-label="다자녀 가정 캠핑 지원금 신청 안내 내용 닫기" aria-expanded="true">
-                                    <i class="iconset sm ico-arr-right" aria-hidden="true"></i>
-                                    <span class="sr-only">내용 닫기</span>
-                                  </button>
-                                  <div class="txt">
-                                    <div class="meta">
-                                      <span class="service">국민비서</span>
-                                      <span class="bullet" aria-hidden="true"></span>
-                                      <span class="date">2025.08.21 18:00</span>
-                                    </div>
-                                    <p class="tit">국민비서 상세내용</p>
-                                  </div>
-                                </div>
-                                <div class="contents-body">
-                                  <div class="bg-wrap">
-                                    <p class="badge primary">테스트</p>
-                                    <strong>상세내용</strong>
-                                    <p class="txt">국민비서 상세내용 입니다. lorem1000</p>
-                                  </div>
-                                  <div class="txt-wrap">
-                                    <div class="txt-box">
-                                      <p class="head">신청기간</p>
-                                      <p class="body">상시신청</p>
-                                    </div>
-                                    <a href="" class="btn-txt ico-arr-right" title="페이지 이동">바로가기</a>
-                                  </div>
-                                </div>
-                              </li>
-
-
-                              <li>
-                                <div class="detail-link type-1">
-                                  <div class="thumb" aria-hidden="true"></div>
-                                  <button type="button" class="btn-accord" aria-label="다자녀 가정 캠핑 지원금 신청 안내 내용 닫기" aria-expanded="true">
-                                    <i class="iconset sm ico-arr-right" aria-hidden="true"></i>
-                                    <span class="sr-only">내용 닫기</span>
-                                  </button>
-                                  <div class="txt">
-                                    <div class="meta">
-                                      <span class="service">국민비서</span>
-                                      <span class="bullet" aria-hidden="true"></span>
-                                      <span class="date">2025.08.21 18:00</span>
-                                    </div>
-                                    <p class="tit">다자녀 가정 캠핑 지원금 신청 안내 (숲나들e 신청 필수) 지원금 신청 안내 (숲나들e 신청 필수) 지원금 신청 안내 (숲나들e 신청 필수)</p>
-                                    <a href="" class="btn-shortcut btn-txt ico-arr-right">바로가기</a>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div class="detail-link type-2">
-                                  <div class="thumb" aria-hidden="true"></div>
-                                  <button type="button" class="btn-accord" aria-label="여권재발급 신청 완료 내용 더 보기">
-                                    <i class="iconset sm ico-arr-right" aria-hidden="true"></i>
-                                    <span class="sr-only">내용 더 보기</span>
-                                  </button>
-                                  <div class="txt">
-                                    <div class="meta">
-                                      <span class="service">정부24</span>
-                                      <span class="bullet" aria-hidden="true"></span>
-                                      <span class="date">2025.08.21 18:00</span>
-                                    </div>
-                                    <p class="tit">여권재발급 신청 완료</p>
-                                    <a href="" class="btn-shortcut btn-txt ico-arr-right">바로가기</a>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div class="detail-link type-3">
-                                  <div class="thumb" aria-hidden="true"></div>
-                                  <button type="button" class="btn-accord" aria-label="청년부부 내 집 마련 대출이자 지원 내용 더 보기">
-                                    <i class="iconset sm ico-arr-right" aria-hidden="true"></i>
-                                    <span class="sr-only">내용 더 보기</span>
-                                  </button>
-                                  <div class="txt">
-                                    <div class="meta">
-                                      <span class="service">혜택알리미</span>
-                                      <span class="bullet" aria-hidden="true"></span>
-                                      <span class="date">2025.08.21 18:00</span>
-                                    </div>
-                                    <p class="tit">청년부부 내 집 마련 대출이자 지원</p>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div class="detail-link">
-                                  <div class="thumb" aria-hidden="true"></div>
-                                  <button type="button" class="btn-accord" aria-label="다자녀 가정 캠핑 지원금 신청 안내 내용 더 보기">
-                                    <i class="iconset sm ico-arr-right" aria-hidden="true"></i>
-                                    <span class="sr-only">내용 더 보기</span>
-                                  </button>
-                                  <div class="txt">
-                                    <div class="meta">
-                                      <span class="service">없는 경우?</span>
-                                      <span class="bullet" aria-hidden="true"></span>
-                                      <span class="date">2025.08.21 18:00</span>
-                                    </div>
-                                    <p class="tit">다자녀 가정 캠핑 지원금 신청 안내 (숲나들e 신청 필수)</p>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div class="detail-link type-1">
-                                  <div class="thumb" aria-hidden="true"></div>
-                                  <button type="button" class="btn-accord" aria-label="다자녀 가정 캠핑 지원금 신청 안내 내용 더 보기">
-                                    <i class="iconset sm ico-arr-right" aria-hidden="true"></i>
-                                    <span class="sr-only">내용 더 보기</span>
-                                  </button>
-                                  <div class="txt">
-                                    <div class="meta">
-                                      <span class="service">국민비서</span>
-                                      <span class="bullet" aria-hidden="true"></span>
-                                      <span class="date">2025.08.21 18:00</span>
-                                    </div>
-                                    <p class="tit">다자녀 가정 캠핑 지원금 신청 안내 (숲나들e 신청 필수)</p>
-                                    <a href="" class="btn-shortcut btn-txt ico-arr-right">바로가기</a>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div class="detail-link type-2">
-                                  <div class="thumb" aria-hidden="true"></div>
-                                  <button type="button" class="btn-accord" aria-label="여권재발급 신청 완료 내용 더 보기">
-                                    <i class="iconset sm ico-arr-right" aria-hidden="true"></i>
-                                    <span class="sr-only">내용 더 보기</span>
-                                  </button>
-                                  <div class="txt">
-                                    <div class="meta">
-                                      <span class="service">정부24</span>
-                                      <span class="bullet" aria-hidden="true"></span>
-                                      <span class="date">2025.08.21 18:00</span>
-                                    </div>
-                                    <p class="tit">여권재발급 신청 완료</p>
-                                    <a href="" class="btn-shortcut btn-txt ico-arr-right">바로가기</a>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div class="detail-link type-3">
-                                  <div class="thumb" aria-hidden="true"></div>
-                                  <button type="button" class="btn-accord" aria-label="청년부부 내 집 마련 대출이자 지원 내용 더 보기">
-                                    <i class="iconset sm ico-arr-right" aria-hidden="true"></i>
-                                    <span class="sr-only">내용 더 보기</span>
-                                  </button>
-                                  <div class="txt">
-                                    <div class="meta">
-                                      <span class="service">혜택알리미</span>
-                                      <span class="bullet" aria-hidden="true"></span>
-                                      <span class="date">2025.08.21 18:00</span>
-                                    </div>
-                                    <p class="tit">청년부부 내 집 마련 대출이자 지원</p>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div class="detail-link type-1">
-                                  <div class="thumb" aria-hidden="true"></div>
-                                  <button type="button" class="btn-accord" aria-label="다자녀 가정 캠핑 지원금 신청 안내 내용 더 보기">
-                                    <i class="iconset sm ico-arr-right" aria-hidden="true"></i>
-                                    <span class="sr-only">내용 더 보기</span>
-                                  </button>
-                                  <div class="txt">
-                                    <div class="meta">
-                                      <span class="service">국민비서</span>
-                                      <span class="bullet" aria-hidden="true"></span>
-                                      <span class="date">2025.08.21 18:00</span>
-                                    </div>
-                                    <p class="tit">다자녀 가정 캠핑 지원금 신청 안내 (숲나들e 신청 필수)</p>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div class="detail-link type-1">
-                                  <div class="thumb" aria-hidden="true"></div>
-                                  <button type="button" class="btn-accord" aria-label="다자녀 가정 캠핑 지원금 신청 안내 내용 더 보기">
-                                    <i class="iconset sm ico-arr-right" aria-hidden="true"></i>
-                                    <span class="sr-only">내용 더 보기</span>
-                                  </button>
-                                  <div class="txt">
-                                    <div class="meta">
-                                      <span class="service">국민비서</span>
-                                      <span class="bullet" aria-hidden="true"></span>
-                                      <span class="date">2025.08.21 18:00</span>
-                                    </div>
-                                    <p class="tit">다자녀 가정 캠핑 지원금 신청 안내 (숲나들e 신청 필수)</p>
-                                  </div>
-                                </div>
-                              </li>
-                              <li>
-                                <div class="detail-link type-2">
-                                  <div class="thumb" aria-hidden="true"></div>
-                                  <button type="button" class="btn-accord" aria-label="여권재발급 신청 완료 내용 더 보기">
-                                    <i class="iconset sm ico-arr-right" aria-hidden="true"></i>
-                                    <span class="sr-only">내용 더 보기</span>
-                                  </button>
-                                  <div class="txt">
-                                    <div class="meta">
-                                      <span class="service">정부24</span>
-                                      <span class="bullet" aria-hidden="true"></span>
-                                      <span class="date">2025.08.21 18:00</span>
-                                    </div>
-                                    <p class="tit">여권재발급 신청 완료</p>
-                                  </div>
-                                </div>
-                              </li>
-                            </ul>
+<li class="detail-contents" data-pg="1">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 주민등록표 등·초본 세대주 관계 표기 변경 안내 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.30 23:15</span></div>
+<p class="tit">[알림] 주민등록표 등·초본 세대주 관계 표기 변경 안내</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 주민등록표 등·초본 세대주 관계 표기 변경 안내</strong><p class="txt">2026년 10월 29일부터 주민등록표 등·초본은 기본(일반) 발급 시 세대주 본인·배우자를 제외한 가족을 ‘세대원’으로 표시합니다. 가족 관계를 자세히 표시하려면 ‘상세’를 선택해 발급해 주세요.</p></div></div>
+</li>
+<li class="detail-contents" data-pg="1">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 민원처리 안내 (일반민원 처리 완료) 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.29 10:30</span></div>
+<p class="tit">[알림] 민원처리 안내 (일반민원 처리 완료)</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 민원처리 안내 (일반민원 처리 완료)</strong><p class="txt">신청하신 「주민등록표 등본」 민원이 처리되었습니다. 정부24 [MyGOV > 서비스 신청 내역]에서 확인하실 수 있습니다.</p></div></div>
+</li>
+<li class="detail-contents" data-pg="1">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 민원처리 안내 (일반민원 처리 완료) 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.29 10:30</span></div>
+<p class="tit">[알림] 민원처리 안내 (일반민원 처리 완료)</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 민원처리 안내 (일반민원 처리 완료)</strong><p class="txt">신청하신 「건강보험 자격득실 확인서」 민원이 처리되었습니다. 정부24 [MyGOV > 서비스 신청 내역]에서 확인하실 수 있습니다.</p></div></div>
+</li>
+<li class="detail-contents" data-pg="1">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 민원처리 안내 (일반민원 처리 완료) 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.29 10:30</span></div>
+<p class="tit">[알림] 민원처리 안내 (일반민원 처리 완료)</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 민원처리 안내 (일반민원 처리 완료)</strong><p class="txt">신청하신 「국가기술자격 취득사항 확인서」 민원이 처리되었습니다. 정부24 [MyGOV > 서비스 신청 내역]에서 확인하실 수 있습니다.</p></div></div>
+</li>
+<li class="detail-contents" data-pg="1">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 민원처리 안내 (일반민원 처리 완료) 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.29 10:30</span></div>
+<p class="tit">[알림] 민원처리 안내 (일반민원 처리 완료)</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 민원처리 안내 (일반민원 처리 완료)</strong><p class="txt">신청하신 「소득금액증명」 민원이 처리되었습니다. 정부24 [MyGOV > 서비스 신청 내역]에서 확인하실 수 있습니다.</p></div></div>
+</li>
+<li class="detail-contents" data-pg="1">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 민원처리 안내 (일반민원 처리 완료) 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.29 10:30</span></div>
+<p class="tit">[알림] 민원처리 안내 (일반민원 처리 완료)</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 민원처리 안내 (일반민원 처리 완료)</strong><p class="txt">신청하신 「가족관계증명서」 민원이 처리되었습니다. 정부24 [MyGOV > 서비스 신청 내역]에서 확인하실 수 있습니다.</p></div></div>
+</li>
+<li class="detail-contents aih-tl-hide" data-pg="2">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 운전면허 적성검사(갱신) 기간 안내 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.27 09:00</span></div>
+<p class="tit">[알림] 운전면허 적성검사(갱신) 기간 안내</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 운전면허 적성검사(갱신) 기간 안내</strong><p class="txt">운전면허 적성검사(갱신) 기간을 미리 확인해 보세요. 갱신 기간이 지나면 과태료가 부과될 수 있습니다.</p></div></div>
+</li>
+<li class="detail-contents aih-tl-hide" data-pg="2">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 국가건강검진 대상 안내 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.24 14:20</span></div>
+<p class="tit">[알림] 국가건강검진 대상 안내</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 국가건강검진 대상 안내</strong><p class="txt">올해 국가건강검진 대상자입니다. 12월 31일까지 가까운 검진기관에서 받으세요.</p></div></div>
+</li>
+<li class="detail-contents aih-tl-hide" data-pg="2">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 신혼부부 맞춤 혜택 안내 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.21 11:05</span></div>
+<p class="tit">[알림] 신혼부부 맞춤 혜택 안내</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 신혼부부 맞춤 혜택 안내</strong><p class="txt">결혼축하금 지원 등 신청할 수 있는 혜택이 있어요. 혜택알리미에서 확인해 보세요.</p></div></div>
+</li>
+<li class="detail-contents aih-tl-hide" data-pg="2">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 민원처리 안내 (일반민원 처리 완료) 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.18 16:40</span></div>
+<p class="tit">[알림] 민원처리 안내 (일반민원 처리 완료)</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 민원처리 안내 (일반민원 처리 완료)</strong><p class="txt">신청하신 「여권 재발급」 민원이 처리되었습니다.</p></div></div>
+</li>
+<li class="detail-contents aih-tl-hide" data-pg="2">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 자동차 정기검사 기간 안내 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.15 10:10</span></div>
+<p class="tit">[알림] 자동차 정기검사 기간 안내</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 자동차 정기검사 기간 안내</strong><p class="txt">자동차 정기검사 기간이 다가오고 있어요. 기간 내 검사를 받아 주세요.</p></div></div>
+</li>
+<li class="detail-contents aih-tl-hide" data-pg="2">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 주민세(개인분) 납부 안내 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.12 09:30</span></div>
+<p class="tit">[알림] 주민세(개인분) 납부 안내</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 주민세(개인분) 납부 안내</strong><p class="txt">주민세(개인분) 납부 기간을 확인해 주세요.</p></div></div>
+</li>
+<li class="detail-contents aih-tl-hide" data-pg="3">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 민원처리 안내 (일반민원 처리 완료) 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.08 13:00</span></div>
+<p class="tit">[알림] 민원처리 안내 (일반민원 처리 완료)</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 민원처리 안내 (일반민원 처리 완료)</strong><p class="txt">신청하신 「건축물대장」 민원이 처리되었습니다.</p></div></div>
+</li>
+<li class="detail-contents aih-tl-hide" data-pg="3">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 국민비서 알림 서비스 가입 완료 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.05 10:00</span></div>
+<p class="tit">[알림] 국민비서 알림 서비스 가입 완료</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 국민비서 알림 서비스 가입 완료</strong><p class="txt">국민비서 알림 서비스 가입이 완료되었습니다.</p></div></div>
+</li>
+<li class="detail-contents aih-tl-hide" data-pg="3">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 민원처리 안내 (일반민원 처리 완료) 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.10.02 18:20</span></div>
+<p class="tit">[알림] 민원처리 안내 (일반민원 처리 완료)</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 민원처리 안내 (일반민원 처리 완료)</strong><p class="txt">신청하신 「토지(임야)대장」 민원이 처리되었습니다.</p></div></div>
+</li>
+<li class="detail-contents aih-tl-hide" data-pg="3">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 추석 연휴 민원 처리 일정 안내 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.09.29 09:40</span></div>
+<p class="tit">[알림] 추석 연휴 민원 처리 일정 안내</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 추석 연휴 민원 처리 일정 안내</strong><p class="txt">추석 연휴 기간에는 일부 민원 처리가 지연될 수 있습니다.</p></div></div>
+</li>
+<li class="detail-contents aih-tl-hide" data-pg="3">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 민원처리 안내 (일반민원 처리 완료) 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.09.25 15:15</span></div>
+<p class="tit">[알림] 민원처리 안내 (일반민원 처리 완료)</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 민원처리 안내 (일반민원 처리 완료)</strong><p class="txt">신청하신 「자동차등록원부」 민원이 처리되었습니다.</p></div></div>
+</li>
+<li class="detail-contents aih-tl-hide" data-pg="3">
+<div class="detail-link type-1">
+<div class="thumb" aria-hidden="true"></div>
+<button type="button" class="btn-accord" aria-label="[알림] 예비군 훈련 일정 안내 내용 더 보기"><i class="iconset sm ico-arr-right" aria-hidden="true"></i><span class="sr-only">내용 더 보기</span></button>
+<div class="txt"><div class="meta"><span class="service">국민비서</span><span class="bullet" aria-hidden="true"></span><span class="date">2026.09.22 11:30</span></div>
+<p class="tit">[알림] 예비군 훈련 일정 안내</p></div>
+</div>
+<div class="contents-body"><div class="bg-wrap"><strong>[알림] 예비군 훈련 일정 안내</strong><p class="txt">예비군 훈련 일정을 확인해 주세요.</p></div></div>
+</li>
+</ul>
                           </div>
 
                           <div class="timeline-modal-footer">
-                            <p class="timeline-modal-desc">더 많은 알림은 앱에서 확인해 주세요</p>
+                            <button type="button" class="btn-more-timeline" id="aihTlMore"><span>더보기 (<em id="aihTlPg" style="font-style:normal">1</em>/3)</span><i class="iconset ico-more-plus" aria-hidden="true"></i></button>
 
                           </div>
                         </div>
@@ -3667,13 +3545,12 @@
     // MyGOV : 시안 문구·건수
     var nm = $('.main-mygov .main-my-info .name strong'); if (nm) { nm.textContent = '홍길동'; nm.title = '홍길동'; }
     rm('.main-mygov .layer-print-count');
-    var rows = [['민원 신청 현황', '3'], ['전자증명서', '5'], ['나의 혜택', '100'], ['나의 생활정보', '27']];
+    var rows = [['서비스 신청 내역', '0'], ['전자증명서', '0'], ['나의 혜택', '35'], ['나의 생활정보', null]];
     $$('.main-mygov .main-my-list li').forEach(function (li, i) {
       if (!rows[i]) return; var a = $('a', li); if (!a) return;
-      a.innerHTML = '<strong class="txt">' + rows[i][0] + '</strong><em class="count">' + rows[i][1] + '<span class="sr-only">건</span></em>';
+      a.innerHTML = '<strong class="txt">' + rows[i][0] + '</strong>' + (rows[i][1] === null ? '<em class="txt-02">생활정보 확인하기</em>' : '<em class="count">' + rows[i][1] + '<span class="sr-only">건</span></em>');
     });
-    var sb = $('.main-mygov .service-bottom');
-    if (sb) sb.innerHTML = '<div class="demo-mygov-chips"><a href="" class="chip">토지(임야)대장등본 발급 <span aria-hidden="true">›</span></a><a href="" class="chip">주민등록표 초본 발급 <span aria-hidden="true">›</span></a><button type="button" class="more" aria-label="출력하지 않은 신청 더보기"></button></div>';
+    // 내 지갑 소식 : 킷 타임라인(더보기 → 타임라인 모달) 그대로 사용
     // 혜택알리미 · 생활·가족가이드 : 시안 문구
     rm('.sc-main-benefit .bn-btn-wrap');
     var leaf = function (el) { return $$('*', el).filter(function (x) { return !x.children.length && x.textContent.trim(); })[0] || el; };
@@ -3723,6 +3600,9 @@
     var hint = document.querySelector(IS_MO ? '.btn-aihome' : '.btn-ai-assistant'); if (hint) hint.classList.add('demo-pulse');
   })();
   </script>
+<script>
+(function(){var pg=1,b=document.getElementById('aihTlMore');if(!b)return;b.addEventListener('click',function(){if(pg>=3){return;}pg++;document.querySelectorAll('.timeline-list li[data-pg="'+pg+'"]').forEach(function(l){l.classList.remove('aih-tl-hide');});document.getElementById('aihTlPg').textContent=pg;if(pg>=3){b.disabled=true;b.style.opacity='.5';}});})();
+</script>
 </body>
 
 </html>
